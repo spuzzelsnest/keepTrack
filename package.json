@@ -1,0 +1,22 @@
+{
+  "name": "keeptrack",
+  "version": "1.0.0",
+  "description": "premises access time",
+  "main": "src/srv/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spuzzelsnest/keepTrack.git"
+  },
+  "author": "Spuzzelsnest",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spuzzelsnest/keepTrack/issues"
+  },
+  "homepage": "https://github.com/spuzzelsnest/keepTrack#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
