@@ -4,7 +4,8 @@
   "description": "premises access time",
   "main": "src/srv/index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node_modules/.bin/nodemon src/srv/index.js --exec babel-node --"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,18 @@
   },
   "homepage": "https://github.com/spuzzelsnest/keepTrack#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.0.0",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-syntax-export-default-from": "^7.2.0",
+    "@babel/preset-env": "^7.4.5",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.19.1"
   }
 }
