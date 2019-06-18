@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RestService } from '../rest.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-edit',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogEditComponent implements OnInit {
 
-  constructor() { }
+    @Input() logData:any = { day: '', userId: '', prod_price:0 };
+
+  constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.rest.getLog(this.route.snapshot.params['id']).subscribe((data: {}) => {
+      console.log(data);
+      this.logData = data;
+    });
+  }
+
+  updateLog() {
+    this.rest.updateLog(this.route.snapshot.params['id'], this.logData).subscribe((result) => {
+      this.router.navigate(['/log-details/'+result._id]);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
 }

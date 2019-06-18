@@ -1,3 +1,10 @@
-<p>
-  log-detail works!
-</p>
+<div *ngIf="log" class="logs">
+  <h2>{{log.prod_name | uppercase}} Details</h2>
+  <div><span>day: </span>{{log.day}}</div>
+  <div><span>Update Date: </span>{{log.updatedAt | date}}</div>
+  <div>
+    <button routerLink="/log-edit/{{log._id}}">
+      Edit
+    </button>
+  </div>
+</div>

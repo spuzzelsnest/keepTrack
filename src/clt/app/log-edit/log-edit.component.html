@@ -1,3 +1,12 @@
-<p>
-  log-edit works!
-</p>
+<div>
+  <h2>Edit Timetracking</h2>
+  <div>
+    <label>Log Date:
+      <input [(ngModel)]="logData.day" placeholder="Log Date"/>
+    </label><br>
+    <label>User Id:
+      <input [(ngModel)]="logData.userId" placeholder="Logged in User"/>
+    </label><br>
+  </div>
+  <button (click)="updateLog()">Update</button>
+</div>
