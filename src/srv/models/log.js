@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     Log.belongsTo(models.User, {
         foreignKey: 'userId',
         onDelete: 'CASCADE',
-    }) };
+    }) 
+   Log.hasOne(models.Logitem, {
+       foreignKey: 'logId',
+       onDelete: 'CASCADE',
+   })  
+  };
   return Log;
 };
