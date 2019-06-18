@@ -18,7 +18,7 @@ export class LogAddComponent implements OnInit {
 
   addLog() {
     this.rest.addLog(this.logData).subscribe((result) => {
-      this.router.navigate(['/log-details/'+result._id]);
+      this.router.navigate(['/log/'+result._id]);
     }, (err) => {
       console.log(err);
     });

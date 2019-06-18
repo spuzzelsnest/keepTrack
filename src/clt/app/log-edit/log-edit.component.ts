@@ -22,7 +22,7 @@ export class LogEditComponent implements OnInit {
 
   updateLog() {
     this.rest.updateLog(this.route.snapshot.params['id'], this.logData).subscribe((result) => {
-      this.router.navigate(['/log-details/'+result._id]);
+      this.router.navigate(['/log/'+result._id]);
     }, (err) => {
       console.log(err);
     });
