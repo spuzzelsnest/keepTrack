@@ -19,7 +19,6 @@ export class LogAddComponent implements OnInit {
   }
 
   addLog(form: NgForm) {
-    
     this.rest.addLog(this.logData).subscribe((result) => {
       this.router.navigate(['/log/'+result._id]);
     }, (err) => {
