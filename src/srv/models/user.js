@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     points: DataTypes.NUMERIC
   },{
     active: DataTypes.BOOLEAN
-  } {});
+  });
   User.associate = function(models) {
-      User.hasMany(Log);
+      User.hasMany(models.Log);
     // associations can be defined here
   };
 User.findeByPK = async login =>{

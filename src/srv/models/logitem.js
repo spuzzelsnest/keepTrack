@@ -9,13 +9,12 @@ module.exports = (sequelize, DataTypes) => {
     breakIn: DataTypes.STRING
   },{
     endAt: DataTypes.STRING  
-  }
-      {});
+  });
   Logitem.associate = function(models) {
-    Logitem.belongsTo(models.log,{
+    Logitem.belongsTo(models.Log,{
         foreignKey: 'logId',
     })
-    Logitem.hasMany(models.log)
+    Logitem.hasMany(models.Log)
   };
   return Logitem;
 };
