@@ -9,11 +9,10 @@ class LogicController{
       });
     }
     getUser(req, res, next){}
-    getAllLogs(req, res, next){
+    
+    getLogs(req, res, next){
         models.Log.findAll()
         .then(logs => res.status(200).send({
-            success: 'true',
-            message: 'All logs',
             logs,
         }));
     }

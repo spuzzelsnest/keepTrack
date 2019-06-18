@@ -12,33 +12,6 @@ import { LogAddComponent } from './log-add/log-add.component';
 import { LogDetailComponent } from './log-detail/log-detail.component';
 import { LogEditComponent } from './log-edit/log-edit.component';
 
-const appRoutes: Routes = [
-  {
-    path: 'logs',
-    component: LogComponent,
-    data: { title: 'Logs List' }
-  },
-  {
-    path: 'log-details/:id',
-    component: LogDetailComponent,
-    data: { title: 'Log Details' }
-  },
-  {
-    path: 'log-add',
-    component: LogAddComponent,
-    data: { title: 'Log Add' }
-  },
-  {
-    path: 'log-edit/:id',
-    component: LogEditComponent,
-    data: { title: 'Log Edit' }
-  },
-  { path: '',
-    redirectTo: '/logs',
-    pathMatch: 'full'
-  }
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +22,6 @@ const appRoutes: Routes = [
     LogEditComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
     FormsModule,
     BrowserModule,
     HttpClientModule,

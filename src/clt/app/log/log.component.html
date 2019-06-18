@@ -1,3 +1,17 @@
-<p>
-  log works!
-</p>
+<h2>Log List</h2>
+
+<div>
+  <button (click)="add()">
+    Add
+  </button>
+</div>
+
+<ul class="logs">
+  <li *ngFor="let log of logs; let i=index;">
+    <a routerLink="/logs-details/{{log._id}}">
+      <span class="badge">{{i+1}}</span> {{log.day}}
+    </a>
+    <button class="delete" title="delete Log"
+      (click)="delete(log._id)">x</button>
+  </li>
+</ul>
