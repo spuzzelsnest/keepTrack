@@ -11,6 +11,7 @@ import { LogComponent } from './log/log.component';
 import { LogAddComponent } from './log-add/log-add.component';
 import { LogDetailComponent } from './log-detail/log-detail.component';
 import { LogEditComponent } from './log-edit/log-edit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LogEditComponent } from './log-edit/log-edit.component';
     FormsModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
