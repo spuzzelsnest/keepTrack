@@ -22,8 +22,8 @@ export class RestService {
   constructor(private http: HttpClient) { }
     
   private extractData(res: Response) {
-      let body = Object.keys(res);
-      //let body = res;
+      //let body = Object.keys(res);
+      let body = res;
       return body || { };
     }
     
@@ -34,27 +34,27 @@ getLogs(): Observable<any> {
 }
 
 getLog(id): Observable<any> {
-  return this.http.get(endpoint + 'logs/' + id).pipe(
+  return this.http.get(endpoint + 'log/' + id).pipe(
     map(this.extractData));
 }
 
 addLog(log): Observable<any> {
   console.log(log);
-  return this.http.post<any>(endpoint + 'logs', JSON.stringify(log), httpOptions).pipe(
+  return this.http.post<any>(endpoint + 'add', JSON.stringify(log), httpOptions).pipe(
     tap((log) => console.log(`added log w/ id=${log.id}`)),
     catchError(this.handleError<any>('addLog'))
   );
 }
 
 updateLog(id, log): Observable<any> {
-  return this.http.put(endpoint + 'logs/' + id, JSON.stringify(log), httpOptions).pipe(
+  return this.http.put(endpoint + 'log/' + id, JSON.stringify(log), httpOptions).pipe(
     tap(_ => console.log(`updated log id=${id}`)),
     catchError(this.handleError<any>('updateLog'))
   );
 }
 
 deleteLog(id): Observable<any> {
-  return this.http.delete<any>(endpoint + 'logs/' + id, httpOptions).pipe(
+  return this.http.delete<any>(endpoint + 'log/' + id, httpOptions).pipe(
     tap(_ => console.log(`deleted log id=${id}`)),
     catchError(this.handleError<any>('deleteLog'))
   );
