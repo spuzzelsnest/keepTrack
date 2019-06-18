@@ -6,7 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule,
          MatCardModule,
-         MatButtonModule
+         MatButtonModule,
+         MatExpansionModule
        } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,7 +36,8 @@ import { LogEditComponent } from './log-edit/log-edit.component';
     BrowserAnimationsModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

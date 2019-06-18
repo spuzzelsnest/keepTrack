@@ -1,9 +1,4 @@
-mat-card{
-    width: 80%;
-    margin: auto;
-}
-mat-form-field,
-input {
-width: 100%
-    
+:host {
+    display: block;
+    margin-top: 1rem;
 }
