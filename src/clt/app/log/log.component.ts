@@ -25,7 +25,7 @@ export class LogComponent implements OnInit {
  }
     
 add() {
-    this.router.navigate(['/log-add']);
+    this.router.navigate(['/add']);
   }
 
 delete(id) {

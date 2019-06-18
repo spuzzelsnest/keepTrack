@@ -14,17 +14,17 @@ const routes: Routes = [
     data: { title: 'Logs List' }
   },
   {
-    path: 'log-details/:id',
+    path: 'log/:id',
     component: LogDetailComponent,
     data: { title: 'Log Details' }
   },
   {
-    path: 'log-add',
+    path: 'add',
     component: LogAddComponent,
     data: { title: 'Log Add' }
   },
   {
-    path: 'log-edit/:id',
+    path: 'log/:id',
     component: LogEditComponent,
     data: { title: 'Log Edit' }
   },

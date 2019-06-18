@@ -8,15 +8,11 @@
 <mat-accordion *ngIf="logs.length >0 ">
     <mat-expansion-panel *ngFor="let log of logs; let i=index;">
     <mat-expansion-panel-header>
-        <a routerLink="/log-details/{{log._id}}">
-            <span class="badge">{{i+1}}</span>{{log.day}}
+        <a routerLink="/log/{{log._id}}">
+            <span class="badge">{{i+1}} {{log.day}}</span>
         </a>
     </mat-expansion-panel-header>
-    <button mat-raised-button
-            color="warn"
-            class="delete" 
-            title="delete Log"
-            (click)="delete(log._id)">x</button>
+        {{log.userId}}
 </mat-expansion-panel>
 </mat-accordion>
 <p class="info-text mat-body-1"*ngIf="logs.length <= 0">No Acces recorded yet!</p>
