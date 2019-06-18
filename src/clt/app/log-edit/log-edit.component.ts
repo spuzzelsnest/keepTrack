@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LogEditComponent implements OnInit {
 
-    @Input() logData:any = { day: '', userId: '', prod_price:0 };
+    @Input() logData:any = {day: '', userId: ''};
 
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
 
