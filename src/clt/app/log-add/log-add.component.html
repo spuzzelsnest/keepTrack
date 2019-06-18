@@ -1,13 +1,17 @@
-<div>
-  <h2>Logs Add</h2>
-  <div>
+<mat-card>
+  <mat-form-field>
     <label>Log Date:
-      <input [(ngModel)]="logs_day" placeholder="Log Date"/>
-    </label><br>
+      <input matInput [(ngModel)]="logs_day" placeholder="Log Date"/>
+    </label>
+  </mat-form-field>
+        <br>
+  <mat-form-field>
     <label>Log User:
-      <input [(ngModel)]="logs_userId" placeholder="Product Description"/>
+      <input matInput [(ngModel)]="logs_userId" placeholder="UserID"/>
     </label><br>
-    
-  </div>
-  <button (click)="addLog()">Save</button>
-</div>
+  </mat-form-field>
+    <button 
+            mat-raised-button
+            color='primary'
+            (click)="addLog()">Save</button>
+</mat-card>
