@@ -7,7 +7,11 @@ import { LogDetailComponent } from './log-detail/log-detail.component';
 import { LogEditComponent } from './log-edit/log-edit.component';
 
 const routes: Routes = [
-    
+    {
+      path:'/login',
+      component: LoginComponent,
+      data: { title: 'Login' }
+    },
     {
     path: 'logs',
     component: LogComponent,

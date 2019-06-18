@@ -1,5 +1,5 @@
 <mat-card>
-    <form (submit)="addLog(logForm)" #logForm="ngForm">
+    <form (submit)="addLog(addLogForm)" #addLogForm="ngForm">
     <mat-form-field>
     <input
         matInput
@@ -17,7 +17,9 @@
         type="text"
         name="userId"
         ngModel
-        placeholder="UserID"/>
+        placeholder="loading ID"
+        #userId="ngModel"/>
+      <mat-error *ngIf="userId.invalid">RFID KEY NOT FOUND</mat-error>
   </mat-form-field>
     <br>
     <button 
