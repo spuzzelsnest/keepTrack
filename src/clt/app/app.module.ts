@@ -12,6 +12,7 @@ import { MatInputModule,
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
 import { ClockComponent } from './clock/clock.component';
 import { LogComponent } from './log/log.component';
 import { LogAddComponent } from './log-add/log-add.component';
@@ -22,6 +23,7 @@ import { LogEditComponent } from './log-edit/log-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     ClockComponent,
     LogComponent,
     LogAddComponent,
