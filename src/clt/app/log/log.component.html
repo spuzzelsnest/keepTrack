@@ -1,4 +1,4 @@
-<h2>Log List</h2>
+<h2>{{ title }}</h2>
 
 <div>
   <button (click)="add()">
@@ -8,7 +8,7 @@
 
 <ul class="logs">
   <li *ngFor="let log of logs; let i=index;">
-    <a routerLink="/logs-details/{{log._id}}">
+    <a routerLink="/log-details/{{log._id}}">
       <span class="badge">{{i+1}}</span> {{log.day}}
     </a>
     <button class="delete" title="delete Log"
