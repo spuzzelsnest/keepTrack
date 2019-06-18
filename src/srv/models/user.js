@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     active: DataTypes.BOOLEAN
   } {});
   User.associate = function(models) {
+      User.hasMany(Log);
     // associations can be defined here
   };
 User.findeByPK = async login =>{

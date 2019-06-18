@@ -1,36 +1,41 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Logitems', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      startAt: {
         type: Sequelize.STRING
       },
-      email: {
+      breakOut: {
         type: Sequelize.STRING
       },
-      key: {
-        type: Sequelize.NUMERIC
+      breakIn: {
+        type: Sequelize.STRING
       },
-      active: {
-        type: Sequelize.BOOLEAN
+      endAt: {
+        type: Sequelize.STRING
+      },
+      logId:{
+           type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Logitems');
   }
 };
