@@ -1,8 +1,7 @@
-/* Products Component's private CSS styles */
-mat-card{
-    width: 80%;
-    margin: auto;
-}
 mat-form-field{
 width: 100%   
+}
+
+.info-text{
+    text-align: center;
 }
