@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule,
+import { MatToolbarModule,
+         MatInputModule,
          MatCardModule,
          MatButtonModule,
          MatExpansionModule
@@ -36,6 +37,7 @@ import { LogEditComponent } from './log-edit/log-edit.component';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,
