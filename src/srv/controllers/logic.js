@@ -36,6 +36,8 @@ class LogicController{
         });
     }
     getLog(req, res){}
+    
+    editLog(req, res){}
 }
 
 const logicController = new LogicController();

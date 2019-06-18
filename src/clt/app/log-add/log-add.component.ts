@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms'
+
+import { RestService } from '../rest.service';
 
 @Component({
   selector: 'app-log-add',
@@ -9,16 +11,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LogAddComponent implements OnInit {
 
-@Input() logData = { day:'', userId: '' };
+@Input() logData = {day:'', userId: ''};
 
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   }
 
-  addLog() {
+  addLog(form: NgForm) {
+    
     this.rest.addLog(this.logData).subscribe((result) => {
-      this.router.navigate(['/log-details/'+result._id]);
+      this.router.navigate(['/log/'+result._id]);
     }, (err) => {
       console.log(err);
     });

@@ -24,7 +24,7 @@ const routes: Routes = [
     data: { title: 'Log Add' }
   },
   {
-    path: 'log/:id',
+    path: 'edit/:id',
     component: LogEditComponent,
     data: { title: 'Log Edit' }
   },

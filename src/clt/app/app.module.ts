@@ -8,7 +8,9 @@ import { MatToolbarModule,
          MatInputModule,
          MatCardModule,
          MatButtonModule,
-         MatExpansionModule
+         MatExpansionModule,
+         MatDatepickerModule,
+         MatNativeDateModule
        } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -41,9 +43,11 @@ import { LogEditComponent } from './log-edit/log-edit.component';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

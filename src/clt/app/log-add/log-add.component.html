@@ -1,14 +1,32 @@
 <mat-card>
-  <mat-form-field>
-      <input matInput [(ngModel)]="day" placeholder="Log Date"/>
+    <form (submit)="addLog(logForm)" #logForm="ngForm">
+    <mat-form-field>
+    <input
+        matInput
+        [matDatepicker]="picker" 
+        name="day"
+        ngModel
+        placeholder="Log Date"/>
+         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
         <br>
   <mat-form-field>
-      <input matInput [(ngModel)]="userId" placeholder="UserID"/>
+      <input 
+        matInput
+        type="text"
+        name="userId"
+        ngModel
+        placeholder="UserID"/>
   </mat-form-field>
     <br>
     <button 
-            mat-raised-button
-            color='primary'
-            (click)="addLog()">Save</button>
+        mat-raised-button
+        color='primary'
+        type="submit">
+    Save
+    </button>
+    
+    </form>
+  
 </mat-card>

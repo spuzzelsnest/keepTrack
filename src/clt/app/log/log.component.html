@@ -1,14 +1,14 @@
 <mat-card>
   <button mat-raised-button
           color="primary"
-          (click)="add()">
+          (click)="addLog()">
     Add
   </button>
 <br>
 <mat-accordion *ngIf="logs.length >0 ">
     <mat-expansion-panel *ngFor="let log of logs; let i=index;">
     <mat-expansion-panel-header>
-        <a routerLink="/log/{{log._id}}">
+        <a routerLink="/edit/{{log._id}}">
             <span class="badge">{{i+1}} {{log.day}}</span>
         </a>
     </mat-expansion-panel-header>
