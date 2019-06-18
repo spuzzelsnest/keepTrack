@@ -2,9 +2,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Log = sequelize.define('Log', {
     day: DataTypes.STRING
-  }, {});
+  },
+    {});
   Log.associate = function(models) {
-    // associations can be defined here
-  };
+    log.belongsTo(models.Users, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE',
+    }) };
   return Log;
 };

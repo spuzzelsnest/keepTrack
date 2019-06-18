@@ -11,6 +11,15 @@ module.exports = {
       startAt: {
         type: Sequelize.STRING
       },
+      breakOut: {
+        type: Sequelize.STRING
+      },
+      breakIn: {
+        type: Sequelize.STRING
+      },
+      endAt: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
