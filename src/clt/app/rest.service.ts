@@ -11,6 +11,7 @@ const endpoint = 'http://localhost:1945/api/';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
+     // 'Content-Type':  'application/x-www-form-urlencoded'
   })
 };
 
@@ -22,17 +23,9 @@ export class RestService {
   constructor(private http: HttpClient) { }
     
   private extractData(res: Response) {
-       //      res => {
-         //  let logs = res["logs"];
-        //   let log = logs[0];
-          // console.log(log["id"]);
-            // }
       const logs = [];
-      //let body = Object(res.logs);
       let body = Object(res["logs"]);
-      
-      return body || { };
-        //return Object(res);  
+      return body || { }; 
   }
     
 getLogs(): Observable<any> {
