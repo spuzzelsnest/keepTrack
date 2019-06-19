@@ -8,13 +8,8 @@
 <mat-accordion *ngIf="logs.length >0 ">
     <mat-expansion-panel *ngFor="let log of logs; let i=index;">
     <mat-expansion-panel-header>
-<<<<<<< HEAD
-        <a routerLink="/edit/{{log._id}}">
-            <span class="badge">{{i+1}} {{log.day}}</span>
-=======
         <a routerLink="/log/{{log._id}}">
             <span class="badge">{{i+1}}</span>{{log.day}}
->>>>>>> 209e556e85d5ef9c78556ecd6e27ba0871a68582
         </a>
     </mat-expansion-panel-header>
         {{log.userId}}

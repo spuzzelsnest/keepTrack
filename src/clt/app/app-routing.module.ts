@@ -9,7 +9,7 @@ import { LogEditComponent } from './log-edit/log-edit.component';
 
 const routes: Routes = [
     {
-      path:'/login',
+      path:'login',
       component: LoginComponent,
       data: { title: 'Login' }
     },
@@ -34,7 +34,7 @@ const routes: Routes = [
     data: { title: 'Log Edit' }
   },
   { path: '',
-    redirectTo: '/logs',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
     

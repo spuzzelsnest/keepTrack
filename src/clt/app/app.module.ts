@@ -28,6 +28,7 @@ import { LogEditComponent } from './log-edit/log-edit.component';
   declarations: [
     AppComponent,
     HeaderComponent,
+    LoginComponent,
     ClockComponent,
     LogComponent,
     LogAddComponent,
