@@ -18,13 +18,12 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class RestService {
-
+ 
   constructor(private http: HttpClient) { }
     
   private extractData(res: Response) {
-      //let body = Object.keys(res);
-      let body = Object(res);
-      //let body = res;
+      const logs = [];
+      let body = Object(res.logs);
       return body || { };
     }
     
