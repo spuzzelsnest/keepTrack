@@ -1,1 +1,18 @@
-<mat-toolbar color="primary"></mat-toolbar>
+<mat-toolbar color="primary">
+  <span>
+      <a mat-button
+         routerLinkActive="mat-accent"
+         routerLink="/add">
+         Add New
+      </a>
+  </span>
+  <span class="spacer"></span>
+  <ul>
+    <li>
+      <a mat-button
+         routerLink="/">
+         Logout
+    </a>
+    </li>
+  </ul>
+</mat-toolbar>

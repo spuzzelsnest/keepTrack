@@ -9,21 +9,18 @@ import { LogEditComponent } from './log-edit/log-edit.component';
 const routes: Routes = [
     {
       path:'login',
-      component: LoginComponent,
-      data: { title: 'Login' }
+      component: LoginComponent
     },{
     path: ':key/logs',
-    component: LogComponent,
-    data: { title: 'Logs List' }
+    component: LogComponent
   },{
     path: 'add',
-    component: LogAddComponent,
-    data: { title: 'Log Add' }
+    component: LogAddComponent
   },{
     path: 'edit/:id',
-    component: LogEditComponent,
-    data: { title: 'Log Edit' }
-  },{ path: '',
+    component: LogEditComponent
+  },{ 
+    path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   }

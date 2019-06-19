@@ -12,7 +12,17 @@ import { RestService } from '../rest.service';
 export class LoginComponent {
     value:any;
 
-    constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
+    constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {
+    /*
+        this.route.params.subscribe(params => {
+            console.log(params);
+            if (params["key"]) {
+                this.getLogs(params["key"]);
+            }
+        });
+    
+    */
+    }
     
     ngOnInit(){
     }
