@@ -23,14 +23,9 @@ export class LogComponent implements OnInit {
          this.logs=data;
      });
  }
-    
-<<<<<<< HEAD
+
 addLog() {
     this.router.navigate(['/add']);
-=======
-add() {
-    this.router.navigate(['/log/add']);
->>>>>>> 209e556e85d5ef9c78556ecd6e27ba0871a68582
   }
 
 delete(id) {

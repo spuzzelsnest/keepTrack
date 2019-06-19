@@ -1,0 +1,21 @@
+<p>
+<mat-card color="primary">
+<form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+    <mat-form-field>
+        <input matInput 
+           type="password" 
+           name="key"
+           ngModel
+           required
+           placeholder="Scan Your Key"
+           #key="ngModel">
+        <mat-error *ngIf="key.invalid">Scan Your Key</mat-error>
+    </mat-form-field>
+    <br>
+    <button 
+        mat-raised-button 
+        color="primary"
+        type="submit">Login</button>
+    </form>
+</mat-card>
+</p>
