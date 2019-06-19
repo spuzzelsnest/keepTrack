@@ -12,10 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     active: DataTypes.BOOLEAN
   });
   User.associate = function(models) {
-      User.hasMany(models.Log, {
-          foreignKey: 'userId'
-      });
-
+      User.hasMany(models.Log);
+      models.Log.belongsTo(User);
   };
 User.findeByPK = async login =>{
     let user = await User.findOne({

@@ -9,10 +9,9 @@ class LogicController{
       });
     }
     
-    getUser(req, res, next){
+    getLogin(req, res, next){
         models.User.findAll({
             include: [{
-                where: {"key":'1'}
             }]
         })
     .then(login => res.status(200).send({
@@ -25,7 +24,7 @@ class LogicController{
         models.Log.findAll({
             include: [{
                 model: models.Logitem,
-                //where: {"userId": 1}
+              //  where: {"key": key}
             }]
         })
         .then(logs => res.status(200).send({
@@ -52,9 +51,7 @@ class LogicController{
             });
         });
     }
-    
-    getLog(req, res){}
-    
+
     editLog(req, res){}
 }
 

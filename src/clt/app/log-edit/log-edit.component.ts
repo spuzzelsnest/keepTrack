@@ -14,10 +14,12 @@ export class LogEditComponent implements OnInit {
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.rest.getLog(this.route.snapshot.params['id']).subscribe((data: {}) => {
-      console.log(data);
-      this.logData = data;
+   /*
+   this.rest.getLogs(this.route.snapshot.params['id']).subscribe((data: {}) => {
+     //console.log(data);
+      //this.logData = data;
     });
+    */
   }
 
   updateLog() {

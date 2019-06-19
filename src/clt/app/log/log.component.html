@@ -1,6 +1,6 @@
   <button mat-raised-button
           color="primary"
-          (click)="addLog()">
+          (click)="addLogBtn()">
     Add New
   </button>
 <mat-card>
@@ -13,6 +13,7 @@
         </a>
     </mat-expansion-panel-header>
         {{log.userId}}
+        {{ log.startAt}}
 </mat-expansion-panel>
 </mat-accordion>
 <p class="info-text mat-body-1"*ngIf="logs.length <= 0">No Acces recorded yet!</p>

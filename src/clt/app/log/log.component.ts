@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RestService } from '../rest.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -7,16 +7,18 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './log.component.html',
   styleUrls: ['./log.component.css']
 })
-export class LogComponent implements OnInit {
+export class LogComponent {
   logs:any = [];
-  
-    constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
+    constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {
+        this.route.params.subscribe(params => {
+      console.log(params);
+      if (params["key"]) {
+        this.getLogs(params["key"]);
+      }
+    });
+    }
 
-  ngOnInit() {
-      this.getLogs();
-  }
-  
- getLogs(){
+ getLogs(key: string){
      this.logs = [];
      this.rest.getLogs().subscribe((data: {}) => {
          this.logs=data;

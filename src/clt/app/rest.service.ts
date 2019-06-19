@@ -27,16 +27,22 @@ export class RestService {
       let body = Object(res["logs"]);
       return body || { }; 
   }
-    
+
+  private userLogin(res: Response) {
+      const users = [];
+      let body = Object(res["key"]);
+      return body || { }; 
+  }
+ 
+getLogin(key): Observable<any> {
+  return this.http.get(endpoint + 'login/' + key).pipe(
+    map(this.userLogin));
+}
+
 getLogs(): Observable<any> {
   return this.http.get(endpoint + 'logs').pipe(
     map(this.extractData),
   );
-}
-
-getLog(id): Observable<any> {
-  return this.http.get(endpoint + 'log/' + id).pipe(
-    map(this.extractData));
 }
 
 storeLog(log): Observable<any> {
@@ -52,14 +58,14 @@ updateLog(id, log): Observable<any> {
     catchError(this.handleError<any>('updateLog'))
   );
 }
-
+/*
 deleteLog(id): Observable<any> {
   return this.http.delete<any>(endpoint + 'log/' + id, httpOptions).pipe(
     tap(_ => console.log(`deleted log id=${id}`)),
     catchError(this.handleError<any>('deleteLog'))
   );
 }    
-  
+*/ 
 private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
