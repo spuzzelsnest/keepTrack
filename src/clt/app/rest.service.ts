@@ -40,7 +40,6 @@ getLog(id): Observable<any> {
 }
 
 storeLog(log): Observable<any> {
-  console.log(log);
   return this.http.post<any>(endpoint + 'add', JSON.stringify(log), httpOptions).pipe(
     tap((log) => console.log(`added log w/ id=${log.id}`)),
     catchError(this.handleError<any>('storeLog'))
@@ -60,8 +59,7 @@ deleteLog(id): Observable<any> {
     catchError(this.handleError<any>('deleteLog'))
   );
 }    
-    
-    
+  
 private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 

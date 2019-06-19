@@ -7,14 +7,22 @@ module.exports = (sequelize, DataTypes) => {
   }
 );
   Log.associate = function(models) {
+   
     Log.belongsTo(models.User, {
         foreignKey: 'userId',
-        onDelete: 'CASCADE',
-    }) 
-   Log.hasOne(models.Logitem, {
+    })
+    
+    Log.hasMany(models.User,{
+        foreignKey: 'userId',
+    })
+   
+    Log.hasOne(models.Logitem, {
        foreignKey: 'logId',
        onDelete: 'CASCADE',
-   })  
+   })
+    models.Logitem.belongsTo (Log, {
+        foreignKey: 'logId',
+    })
   };
   return Log;
 };

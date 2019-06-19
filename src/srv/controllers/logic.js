@@ -11,7 +11,11 @@ class LogicController{
     getUser(req, res, next){}
     
     getLogs(req, res, next){
-        models.Log.findAll()
+        models.Log.findAll({
+            include: [{
+                model: models.Logitem,
+            }]
+        })
         .then(logs => res.status(200).send({
             logs,
         }));

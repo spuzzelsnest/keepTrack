@@ -19,7 +19,6 @@ export class LogComponent implements OnInit {
  getLogs(){
      this.logs = [];
      this.rest.getLogs().subscribe((data: {}) => {
-         console.log(data);
          this.logs=data;
      });
  }
@@ -27,7 +26,7 @@ export class LogComponent implements OnInit {
 addLog() {
     this.router.navigate(['/add']);
   }
-
+/*
 delete(id) {
     this.rest.deleteLog(id)
       .subscribe(res => {
@@ -37,4 +36,5 @@ delete(id) {
         }
       );
   }
+  */
 }
