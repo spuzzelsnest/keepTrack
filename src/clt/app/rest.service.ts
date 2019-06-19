@@ -23,7 +23,7 @@ export class RestService {
     
   private extractData(res: Response) {
       //let body = Object.keys(res);
-      let body = Object(res.logs);
+      let body = Object(res);
       //let body = res;
       return body || { };
     }
