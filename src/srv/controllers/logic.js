@@ -8,18 +8,31 @@ class LogicController{
           message: 'hello world'
       });
     }
-    getUser(req, res, next){}
+    
+    getUser(req, res, next){
+        models.User.findAll({
+            include: [{
+                where: {"key":'1'}
+            }]
+        })
+    .then(login => res.status(200).send({
+            succes: 'true',
+            login
+        }));
+    }
     
     getLogs(req, res, next){
         models.Log.findAll({
             include: [{
                 model: models.Logitem,
+                //where: {"userId": 1}
             }]
         })
         .then(logs => res.status(200).send({
             logs,
         }));
     }
+    
     addLog(req, res){
         if (!req.body.day){
             return res.status(400).send({
@@ -39,6 +52,7 @@ class LogicController{
             });
         });
     }
+    
     getLog(req, res){}
     
     editLog(req, res){}
