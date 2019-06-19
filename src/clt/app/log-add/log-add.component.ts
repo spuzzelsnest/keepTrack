@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms'
 
@@ -11,7 +11,7 @@ import { RestService } from '../rest.service';
 })
 export class LogAddComponent implements OnInit {
 
-@Input() logData = {day:'', userId: ''};
+//@Input() logData = {day:'', userId: ''};
 
   constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) { }
 
@@ -19,8 +19,8 @@ export class LogAddComponent implements OnInit {
   }
 
   storeLog(form: NgForm) {
-    this.rest.storeLog(this.logData).subscribe((result) => {
-      this.router.navigate(['/log/'+result._id]);
+    this.rest.storeLog(form.value).subscribe((result) => {
+      this.router.navigate(['/logs/']);
         console.log(result);
     }, (err) => {
       console.log(err);
