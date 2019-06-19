@@ -22,10 +22,18 @@ export class RestService {
   constructor(private http: HttpClient) { }
     
   private extractData(res: Response) {
+       //      res => {
+         //  let logs = res["logs"];
+        //   let log = logs[0];
+          // console.log(log["id"]);
+            // }
       const logs = [];
-      let body = Object(res.logs);
+      //let body = Object(res.logs);
+      let body = Object(res["logs"]);
+      
       return body || { };
-    }
+        //return Object(res);  
+  }
     
 getLogs(): Observable<any> {
   return this.http.get(endpoint + 'logs').pipe(
@@ -38,11 +46,11 @@ getLog(id): Observable<any> {
     map(this.extractData));
 }
 
-addLog(log): Observable<any> {
+storeLog(log): Observable<any> {
   console.log(log);
   return this.http.post<any>(endpoint + 'add', JSON.stringify(log), httpOptions).pipe(
     tap((log) => console.log(`added log w/ id=${log.id}`)),
-    catchError(this.handleError<any>('addLog'))
+    catchError(this.handleError<any>('storeLog'))
   );
 }
 
