@@ -9,23 +9,26 @@ import { RestService } from '../rest.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+    
+    private mode = 'logout';
+    private key: string;
+    private userId: number;
     value:any;
 
-    constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {
-    /*
-        this.route.params.subscribe(params => {
-            console.log(params);
-            if (params["key"]) {
-                this.getLogs(params["key"]);
-            }
-        });
-    
-    */
-    }
+    constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {}
     
     ngOnInit(){
-    }
+    this.route.paramMap.subscribe((paramMap: ParamMap) =>{
+        if (paramMap.has('key')){
+            this.mode = 'edit';
+            this.key = paramMap.get('key');
+        }else{
+          this.mode = 'logout';
+          this.key = null;
+        }
+    });
+  }
 
     onLogin(form: NgForm){
         if (form.invalid){

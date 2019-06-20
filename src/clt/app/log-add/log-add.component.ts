@@ -10,6 +10,7 @@ import { RestService } from '../rest.service';
   styleUrls: ['./log-add.component.css']
 })
 export class LogAddComponent implements OnInit {
+    
     private mode = 'create';
     private key: string;
     private id: number;
