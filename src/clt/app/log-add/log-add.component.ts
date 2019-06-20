@@ -19,9 +19,9 @@ export class LogAddComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) =>{
-        if (paramMap.has('key')){
+        if (paramMap.has('id')){
             this.mode = 'edit';
-            this.key = paramMap.get('key');
+            this.key = paramMap.get('id');
         }else{
           this.mode = 'create';
           this.key = null;

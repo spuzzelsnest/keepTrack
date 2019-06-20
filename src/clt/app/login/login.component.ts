@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     ngOnInit(){
     this.route.paramMap.subscribe((paramMap: ParamMap) =>{
         if (paramMap.has('key')){
-            this.mode = 'edit';
+            this.mode = 'login';
             this.key = paramMap.get('key');
         }else{
           this.mode = 'logout';
