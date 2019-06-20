@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms'
+import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 import { RestService } from '../rest.service';
 
