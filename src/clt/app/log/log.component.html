@@ -7,8 +7,14 @@
             <span class="badge">{{log.day}}</span>
         </a>
     </mat-expansion-panel-header>
-        {{log.userId}}
-        {{ log.startAt}}
+      <p>{{log.userId}}</p>
+        {{log.startAt}}
+        <mat-action-row>
+        
+        <a mat-buttn color="primary" [routerlink]="['/edit', log.id]">EDIT</a>
+        
+        </mat-action-row>
+        
 </mat-expansion-panel>
 </mat-accordion>
 <p class="info-text mat-body-1"*ngIf="logs.length <= 0">No Acces recorded yet!</p>

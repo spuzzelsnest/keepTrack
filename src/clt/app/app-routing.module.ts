@@ -17,8 +17,8 @@ const routes: Routes = [
     path: 'add',
     component: LogAddComponent
   },{
-    path: 'edit/:id',
-    component: LogEditComponent
+    path: 'edit/:logId',
+    component: LogAddComponent
   },{ 
     path: '',
     redirectTo: '/login',
