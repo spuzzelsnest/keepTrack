@@ -5,6 +5,6 @@ const router = new express.Router();
 router.get('/api/login',  LogicController.start);
 router.get('/api/login?:key', LogicController.getLogin);
 router.get('/api/logs/:key', LogicController.getLogs);
-router.post('/api/add/:key', LogicController.addLog);
+router.post('/api/add', LogicController.addLog);
 
 export default router;
