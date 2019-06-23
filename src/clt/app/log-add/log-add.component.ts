@@ -22,6 +22,7 @@ export class LogAddComponent implements OnInit {
         if (paramMap.has('key')){
             this.mode = 'edit';
             this.key = paramMap.get('key');
+            console.log(this.key);
         }else{
           this.mode = 'create';
           this.key = null;

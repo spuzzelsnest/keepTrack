@@ -19,10 +19,12 @@ export class LoginComponent implements OnInit {
     constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {}
     
     ngOnInit(){
+      this.key = this.route.snapshot.paramMap.get('key'); 
     this.route.paramMap.subscribe((paramMap: ParamMap) =>{
         if (paramMap.has('key')){
             this.mode = 'edit';
             this.key = paramMap.get('key');
+            console.log(this.key);
         }else{
           this.mode = 'logout';
           this.key = null;
@@ -34,7 +36,6 @@ export class LoginComponent implements OnInit {
         if (form.invalid){
             return;
         }
-
         this.rest.getLogin(this.value.key).subscribe((result) =>{
             this.router.navigate([result+'/logs']);
             console.log(result);

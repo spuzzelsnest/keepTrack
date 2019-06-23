@@ -12,6 +12,7 @@ class LogicController{
     getLogin(req, res, next){
         models.User.findAll({
             include: [{
+                model: models.User
             }]
         })
     .then(login => res.status(200).send({
