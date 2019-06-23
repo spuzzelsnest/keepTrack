@@ -17,7 +17,7 @@ const routes: Routes = [
     path: ':key/add',
     component: LogAddComponent
   },{
-    path: 'edit/:logId',
+    path: ':key/edit/:logId',
     component: LogAddComponent
   },{ 
     path: '',

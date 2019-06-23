@@ -1,11 +1,11 @@
 <mat-card>
-    <form (submit)="storeLog(addLogForm)" #addLogForm="ngForm">
+    <form (submit)="onAddLog(addLogForm)" #addLogForm="ngForm">
     <mat-form-field>
     <input
         matInput
         [matDatepicker]="picker" 
         name="day"
-        ngModel
+        [ngModel]="log.day"
         placeholder="Log Date"/>
          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
@@ -16,7 +16,7 @@
         matInput
         type="text"
         name="userId"
-        ngModel
+        [ngModel]='log.userId'
         placeholder="loading ID"
         #userId="ngModel"/>
       <mat-error *ngIf="userId.invalid">RFID KEY NOT FOUND</mat-error>

@@ -1,6 +1,7 @@
-import { Component, ngOnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
-import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
+import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
+import { logModel } from '../logModel';
 
 @Component({
   selector: 'app-log',
@@ -17,11 +18,11 @@ export class LogComponent {
     
     constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {}
     
-    OnInit(){
+    ngOnInit(){
         
     this.route.params.subscribe(params => {
       console.log(params.key);
-      if (paramMap.has('key')) {
+      if (params.has('key')) {
         this.mode = 'login';
         this.key = params.key;
         this.getLogs(this.key);
@@ -30,7 +31,7 @@ export class LogComponent {
          this.mode = 'logout';
          this.key = null;
       }
-          console.log(mode);
+         console.log(this.mode);
     });
     }
 
