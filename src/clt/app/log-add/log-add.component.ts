@@ -12,20 +12,25 @@ import { RestService } from '../rest.service';
 export class LogAddComponent implements OnInit {
     
     private mode = 'create';
-    private key: string;
-    private id: number;
+    private logId: string;
+    private log = [];
 
-  constructor(public rest:RestService, public route: ActivatedRoute, private router: Router) { }
+  constructor(public rest:RestService, public route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) =>{
-        if (paramMap.has('key')){
+        if (paramMap.has('logId')){
             this.mode = 'edit';
+<<<<<<< HEAD
             this.key = paramMap.get('key');
             console.log(this.key);
+=======
+            this.logId = paramMap.get('logId');
+            this.log = this.rest.getLog(this.logId);
+>>>>>>> 6c47cfe236e6b90a709f581272830ac5d4b33c7d
         }else{
-          this.mode = 'create';
-          this.key = null;
+          this.mode = 'add';
+          this.logId = null;
         }
     });
   }

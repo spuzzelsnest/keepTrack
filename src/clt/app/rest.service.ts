@@ -45,6 +45,13 @@ getLogs(): Observable<any> {
   );
 }
 
+getLog(logId: string): Observable<any> {
+  return this.http.get<any>(endpoint + 'log/'+logId).pipe(
+    tap(_ => console.log(`fetched product id=${logId}`)),
+    catchError(this.handleError<any>(`getProduct id=${logId}`))
+  );
+}
+
 storeLog(log): Observable<any> {
   return this.http.post<any>(endpoint + 'add', JSON.stringify(log), httpOptions).pipe(
     tap((log) => console.log(`added log w/ id=${log.id}`)),
