@@ -1,30 +1,56 @@
 <mat-card>
 <br>
-{{logs.length}} logs for User {{logs}}
+Found {{logs.length}} logs for UserId 
 <mat-accordion *ngIf="logs.length >0 ">
     <mat-expansion-panel *ngFor="let log of logs; let i=index;">
     <mat-expansion-panel-header>
-        
-            <span class="badge">
-                                <mat-form-field>
-                    <input
-                        matInput
-                        value="{{log.day}}"
-                        [matDatepicker]="picker" 
-                        name="day"
-                        [ngModel]="log.day"/>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-            </span>
+        <span class="badge">
+            <mat-form-field>
+                <input
+                    matInput
+                    value="{{log.day}}"
+                    [matDatepicker]="picker" 
+                    name="day"
+                    [ngModel]="log.day"/>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </span>
     </mat-expansion-panel-header>
-      <p>{{log.userId}}</p>
-        {{log.startAt}}
+        <p>
+        <input 
+            matInput
+            type="time"
+            name="startAt"
+            [ngModel]='log.startAt'
+            value=""
+            #startAt="ngModel"/>
+        <input 
+            matInput
+            type="time"
+            name="breakOut"
+            [ngModel]='log.breakOut'
+            value=""
+            #startAt="ngModel"/>
+        <input 
+            matInput
+            type="time"
+            name="breakIn"
+            [ngModel]='log.breakIn'
+            value=""
+            #startAt="ngModel"/>
+        <input 
+            matInput
+            type="time"
+            name="endAt"
+            [ngModel]='log.endAt'
+            value=""
+            #startAt="ngModel"/>
+
         
+        </p>
         <mat-action-row>
-        
-      <a mat-button color="primary" routerLink="{{log.id}}">Edit</a>
-        
+            <a mat-button color="primary" routerLink="{{log.id}}">Edit</a>
         </mat-action-row>
         
 </mat-expansion-panel>
