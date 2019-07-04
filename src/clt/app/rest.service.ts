@@ -42,11 +42,11 @@ checkLogin(key: string): Observable<userModel> {
     map(this.userLogin));
 }
 
-getLogs(id): Observable<logModel> {
-  return this.http.get<logModel>(endpoint + 'logs').pipe(
-    tap(_ => console.log('fetched Logs')),
-    catchError(this.handleError('getLogs', [])),
-    map(this.extractData),
+getLogs(key:string, userId: number): Observable<logModel[]> {
+  return this.http.get<logModel[]>(endpoint + key+'/logs').pipe(
+    tap(_ => console.log(`user with key=${key}`)),
+    catchError(this.handleError(`getLogs from userId=${userId}`, [])),
+    map(this.extractData)
   );
 }
 

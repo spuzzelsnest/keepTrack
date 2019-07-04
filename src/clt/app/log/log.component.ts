@@ -35,7 +35,7 @@ export class LogComponent {
     });
     }
 
-    getLogs(key: string){
+    onGetLogs(key: string){
      this.logs = [];
      this.rest.getLogs().subscribe((data: {}) => {
          this.logs=data;
