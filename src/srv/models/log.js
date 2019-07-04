@@ -1,21 +1,20 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Log = sequelize.define('Log', {
-    day: DataTypes.STRING
-  },{
+  const log = sequelize.define('Log',{
+    id: {   type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true },
+    day: DataTypes.STRING,
     userId: DataTypes.NUMERIC
-  }
-);
-  Log.associate = function(models) {
+  },{});
+  
+log.associate = function(models) {
    
-    Log.hasOne(models.Logitem, {
-       foreignKey: 'logId',
-      
-   })
-    models.Logitem.belongsTo (Log, {
-        foreignKey: 'logId',
-         onDelete: 'CASCADE',
+    log.belongsTo(models.User,{
+        foreignKey: 'userId'
+    }),
+    log.hasOne(models.Logitem,{
+        foreignKey: 'logId'
     })
   };
-  return Log;
+  return log;
 };

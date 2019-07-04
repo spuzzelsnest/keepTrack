@@ -4,7 +4,6 @@ import { NgForm } from '@angular/forms';
 
 import { RestService } from '../rest.service';
 import { logModel } from '../logModel';
-import { logitemModel } from '../logitemModel';
 
 @Component({
   selector: 'app-log-add',

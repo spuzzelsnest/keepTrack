@@ -3,6 +3,7 @@ import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { RestService } from '../rest.service';
+import { logModel } from '../logModel';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
         if (form.invalid){
             return;
         }
+        const inputKey = form.value.key;
         this.rest.checkLogin(inputKey).subscribe((result) =>{
         const key = result[0].key;
         this.router.navigate([inputKey+'/logs']);

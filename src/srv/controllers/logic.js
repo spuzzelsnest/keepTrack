@@ -3,23 +3,27 @@ import models from '../models';
 class LogicController{
 
     start(req, res){
-      return res.status(200).send({
-          success: 'true',
-          message: 'hello world'
-      });
+      return;
     }
     
     getLogin(req, res, next){
+        if (!req.params.key){
+            return res.status(400).send({
+                success: 'false',
+                message: 'Key is required',
+            });
+        }else{
+        
         models.User.findAll({
-            include: [{
-                model: models.User
-            }]
+             where: {key: req.params.key}
         })
-    .then(login => res.status(200).send({
+        .then(userLogin => res.status(200).send({
             succes: 'true',
-            login
+            message: `Key found =${userLogin}`,
+            userLogin
         }));
-    }
+       }
+  }
     
     getLogs(req, res, next){
         models.Log.findAll({

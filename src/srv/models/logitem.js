@@ -1,7 +1,5 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Logitem = sequelize.define('Logitem', 
-  {
+  const logitem = sequelize.define('Logitem', {
     startAt: DataTypes.TIME
   },{
     breakOut: DataTypes.TIME
@@ -11,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
     endAt: DataTypes.TIME
   },{
     logId: DataTypes.NUMMERIC
-    });
-  Logitem.associate = function(models) {
+  },{});
 
-    Logitem.belongsTo(models.Log,{
-        foreignKey: 'logId',
-    }),
-    models.Log.hasOne(Logitem)
+logitem.associate = models => {
+
+    logitem.belongsTo(models.Log,{
+        foreignKey: 'logId'
+    })
   };
-  return Logitem;
+  return logitem;
 };

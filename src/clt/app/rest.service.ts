@@ -23,6 +23,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class RestService {
  
   constructor(private http: HttpClient) { }
@@ -39,52 +40,56 @@ export class RestService {
       return body || { }; 
   }
 
-checkLogin(key: string): Observable<userModel> {
-  return this.http.get(endpoint + 'login/' + key).pipe(
-    map(this.userLogin));
-}
-
-getLogs(key:string, userId: number): Observable<logModel[]> {
-  return this.http.get<logModel[]>(endpoint + key+'/logs').pipe(
-    tap(_ => console.log(`user with key=${key}`)),
-    catchError(this.handleError(`getLogs from userId=${userId}`, [])),
-    map(this.extractData)
-  );
-}
-
-getLog(id: number): Observable<logModel> {
-  return this.http.get<logModel>(endpoint + 'log/'+id)
+  checkLogin(key: string): Observable<userModel> {
+  return this.http.get(endpoint + 'login/' + key)
     .pipe(
-        filter(l => l.id === id),
-        tap(_ => console.log(`fetched logs id=${id}`)),
-        catchError(this.handleError<any>(`getLog id=${id}`))
-    , takeUntil(this.unsubscribe$))
-    .subscribe(logs => this.log = logs);
+        map(this.userLogin)
+    );
 }
 
+  getLogs(key:string, userId: number): Observable<logModel[]> {
+  return this.http.get<logModel[]>(endpoint + key+'/logs')
+    .pipe(
+        tap(_ => console.log(`user with key=${key}`)),
+        catchError(this.handleError(`getLogs from userId=${userId}`)),
+        map(this.extractData)
+   );
+}
+
+  getLog(id: number): Observable<logModel[]> {
+    return this.http.get<logModel[]>(endpoint + 'log/'+id)
+      .pipe(
+   //     filter(l => l.id === id),
+        tap(_ => console.log(`fetched logs id=${id}`)),
+        catchError(this.handleError<any>(`getLog id=${id}`)),
+        //takeUntil(this.unsubscribe$)
+    //  .subscribe(logs => this.log = logs));
+)}
     
-storeLog(log): Observable<logModel> {
+  storeLog(log): Observable<logModel> {
   return this.http.post<logModel>(endpoint + 'add', JSON.stringify(log), httpOptions).pipe(
     tap((log) => console.log(`added log w/ id=${log.id}`)),
     catchError(this.handleError<any>('storeLog'))
   );
 }
 
-updateLog(id, log): Observable<any> {
+  updateLog(id, log): Observable<any> {
   return this.http.put(endpoint + 'log/' + id, JSON.stringify(log), httpOptions).pipe(
     tap(_ => console.log(`updated log id=${id}`)),
     catchError(this.handleError<any>('updateLog'))
   );
 }
-/*
+
+  /*
 deleteLog(id): Observable<logModel> {
   return this.http.delete<logModel>(endpoint + 'log/' + id, httpOptions).pipe(
     tap(_ => console.log(`deleted log id=${id}`)),
     catchError(this.handleError<any>('deleteLog'))
   );
 }    
-*/ 
-private handleError<T> (operation = 'operation', result?: T) {
+*/
+
+ private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
     // TODO: send the error to remote logging infrastructure

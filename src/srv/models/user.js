@@ -1,25 +1,24 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
-    name: DataTypes.STRING
-  },{
-    email: DataTypes.STRING
-  },{
-    key: DataTypes.NUMERIC
-  },{
-    points: DataTypes.NUMERIC
-  },{
+  const user = sequelize.define('User', {
+    id: { 
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true },
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    key: DataTypes.STRING,
+    points: DataTypes.NUMERIC,
     active: DataTypes.BOOLEAN
-  });
-  User.associate = function(models) {
-      User.hasMany(models.Log);
-      models.Log.belongsTo(User);
-  };
-User.findeByPK = async login =>{
-    let user = await User.findOne({
-        where: {key:login},
+  },{});
+
+user.associate = models => {
+    user.belongsToMany (models.Logitem, {
+        through: 'Logs'
+    }),
+    user.hasMany (models.Log, {
+        foreignKey: 'userId'
     })
-    return User;
- }
-return User;
+};  
+
+return user;
 };
