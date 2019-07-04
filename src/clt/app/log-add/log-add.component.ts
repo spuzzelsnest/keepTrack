@@ -14,7 +14,7 @@ import { logModel } from '../logModel';
 export class LogAddComponent implements OnInit {
     
     private mode = 'create';
-    private logId: number;
+    private logId: string;
     log: logModel[] = [];
     value:any;
 

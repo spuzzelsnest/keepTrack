@@ -42,8 +42,8 @@ checkLogin(key: string): Observable<userModel> {
     map(this.userLogin));
 }
 
-getLogs(): Observable<logModel[]> {
-  return this.http.get<logModel[]>(endpoint + 'logs').pipe(
+getLogs(id): Observable<logModel> {
+  return this.http.get<logModel>(endpoint + 'logs').pipe(
     tap(_ => console.log('fetched Logs')),
     catchError(this.handleError('getLogs', [])),
     map(this.extractData),
