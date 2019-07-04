@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { RestService } from '../rest.service';
 import { logModel } from '../logModel';
+import { logitemModel } from '../logitemModel';
 
 @Component({
   selector: 'app-log-add',
@@ -16,6 +17,7 @@ export class LogAddComponent implements OnInit {
     private mode = 'create';
     private logId: string;
     log: logModel[] = [];
+    logitem: logitemModel[] = [];
     value:any;
 
   constructor(public rest:RestService, public route: ActivatedRoute, private router: Router) {}
@@ -26,7 +28,7 @@ export class LogAddComponent implements OnInit {
             this.mode = 'edit';
             this.logId = paramMap.get('logId');
             console.log(this.logId);
-            this.log = this.rest.getLog(this.logId);
+            //this.log = this.rest.getLog(this.logId);
         }else{
           this.mode = 'add';
           this.logId = null;

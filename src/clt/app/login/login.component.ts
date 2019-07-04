@@ -23,14 +23,12 @@ export class LoginComponent implements OnInit {
         if (form.invalid){
             return;
         }
-    
-            this.rest.checkLogin(form.value.key)
-           // this.rest.getLogin(this.value.key).subscribe((result) =>{
-          //  this.router.navigate([result+'/logs']);
-            console.log(form.value.key);
-         (err)=>{
+        this.rest.checkLogin(inputKey).subscribe((result) =>{
+        const key = result[0].key;
+        this.router.navigate([inputKey+'/logs']);
+        },(err)=>{
             console.log(err);
-        };
+        });
             form.resetForm();
    }
 }

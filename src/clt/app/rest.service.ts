@@ -8,6 +8,8 @@ import { map, catchError, filter, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { logModel } from './logModel';
 import { userModel } from './userModel';
+import { logitemModel } from './logitemModel';
+
 //const endpoint = environment.apiUrl;
 const endpoint = 'http://localhost:1945/api/';
 

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RestService } from '../rest.service';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
+
 import { logModel } from '../logModel';
+import { logitemModel } from '../logitemModel';
 
 @Component({
   selector: 'app-log',
@@ -25,7 +27,7 @@ export class LogComponent {
       if (params.has('key')) {
         this.mode = 'login';
         this.key = params.key;
-        this.getLogs(this.key);
+        this.onGetLogs(this.key);
         
       }else{
          this.mode = 'logout';
