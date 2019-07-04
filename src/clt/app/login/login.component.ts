@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
         }
         const inputKey = form.value.key;
         this.rest.checkLogin(inputKey).subscribe((result) =>{
-        const key = result[0].key;
         this.router.navigate([inputKey+'/logs']);
         },(err)=>{
             console.log(err);
