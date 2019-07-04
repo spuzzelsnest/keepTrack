@@ -23,8 +23,7 @@ export class LogComponent {
     ngOnInit(){
         
     this.route.params.subscribe(params => {
-      console.log(params.key);
-      if (params.has('key')) {
+      if (params['key']) {
         this.mode = 'login';
         this.key = params.key;
         this.onGetLogs(this.key);
