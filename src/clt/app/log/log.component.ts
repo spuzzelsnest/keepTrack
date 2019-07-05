@@ -10,6 +10,7 @@ import { logitemModel } from '../logitemModel';
   templateUrl: './log.component.html',
   styleUrls: ['./log.component.css']
 })
+
 export class LogComponent {
     
     private mode = 'logout';
@@ -39,6 +40,7 @@ export class LogComponent {
      this.logs = [];
      this.rest.getLogs(this.key).subscribe((data: {}) => {
          this.logs=data;
+         console.log(this.logs);
      });
  }
 

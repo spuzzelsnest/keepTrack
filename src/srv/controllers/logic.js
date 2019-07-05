@@ -14,12 +14,13 @@ class LogicController{
             });
         }else{
         
-        models.User.findAll({
-             where: {key: req.params.key}
+        models.User.findOne({
+             where: {key: req.params.key},
+             
         })
         .then(userLogin => res.status(200).send({
             succes: 'true',
-            message: `Key found =${userLogin[0].key}`,
+            message: `Key found =${userLogin.key}`,
             userLogin
         }));
        }
