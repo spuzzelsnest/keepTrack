@@ -19,18 +19,20 @@ class LogicController{
         })
         .then(userLogin => res.status(200).send({
             succes: 'true',
-            message: `Key found =${userLogin}`,
+            message: `Key found =${userLogin[0].key}`,
             userLogin
         }));
        }
   }
     
     getLogs(req, res, next){
+        
         models.Log.findAll({
             include: [{
                 model: models.Logitem,
-              //  where: {"key": key}
-            }]
+                model: models.User
+            }],
+             where: {userId: '2'},
         })
         .then(logs => res.status(200).send({
             logs,

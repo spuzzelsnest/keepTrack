@@ -47,11 +47,11 @@ export class RestService {
     );
 }
 
-  getLogs(key:string, userId: number): Observable<logModel[]> {
+  getLogs(key:string): Observable<logModel[]> {
   return this.http.get<logModel[]>(endpoint + key+'/logs')
     .pipe(
         tap(_ => console.log(`user with key=${key}`)),
-        catchError(this.handleError(`getLogs from userId=${userId}`)),
+        catchError(this.handleError(`getLogs failed`)),
         map(this.extractData)
    );
 }

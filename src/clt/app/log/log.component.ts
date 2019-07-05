@@ -32,7 +32,6 @@ export class LogComponent {
          this.mode = 'logout';
          this.key = null;
       }
-         console.log(this.mode);
     });
     }
 
