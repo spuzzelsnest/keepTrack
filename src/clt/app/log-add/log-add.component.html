@@ -7,19 +7,49 @@
         name="day"
         [ngModel]="log.day"
         placeholder="Log Date"/>
-         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
         <br>
   <mat-form-field>
       <input 
-        matInput
-        type="text"
-        name="userId"
-        [ngModel]='log.userId'
-        placeholder="loading ID"
-        #userId="ngModel"/>
-      <mat-error *ngIf="userId.invalid">RFID KEY NOT FOUND</mat-error>
+            matInput
+            type="time"
+            name="startAt"
+            [ngModel]='log.startAt'
+            value=""
+            #startAt="ngModel"/>
+   <!--   <mat-error *ngIf="startAt.invalid">Start Time</mat-error> -->
+  </mat-form-field>
+  <mat-form-field>
+      <input 
+            matInput
+            type="time"
+            name="breakOut"
+            [ngModel]='log.breakOut'
+            value=""
+            #startAt="ngModel"/>
+   <!--  <mat-error *ngIf="breakOut.invalid">Break</mat-error> -->
+  </mat-form-field>
+          <mat-form-field>
+      <input 
+            matInput
+            type="time"
+            name="breakIn"
+            [ngModel]='log.breakIn'
+            value=""
+            #startAt="ngModel"/>
+ <!--    <mat-error *ngIf="breakIn.invalid">Break</mat-error> -->
+  </mat-form-field>
+          <mat-form-field>
+      <input 
+            matInput
+            type="time"
+            name="endAt"
+            [ngModel]='log.endAt'
+            value=""
+            #startAt="ngModel"/>
+   <!--   <mat-error *ngIf="endAt.invalid">End At</mat-error> -->
   </mat-form-field>
     <br>
     <button 
