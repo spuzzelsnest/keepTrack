@@ -13,18 +13,16 @@ class LogicController{
                 message: 'Key is required',
             });
         }else{
-        
         models.User.findOne({
              where: {key: req.params.key},
-             
         })
-        .then(userLogin => res.status(200).send({
-            succes: 'true',
-            message: `Key found =${userLogin.key}`,
-            userLogin
-        }));
-       }
-  }
+            .then(userLogin => res.status(200).send({
+                succes: 'true',
+                message: `Key found =${userLogin.key}`,
+                userLogin
+            }));
+        }
+    }
     
     getLogs(req, res, next){
         
@@ -33,7 +31,7 @@ class LogicController{
                 model: models.Logitem,
                 model: models.User
             }],
-             where: {userId: '2'},
+             where: {'$User.key$': req.params.key},
         })
         .then(logs => res.status(200).send({
             logs,

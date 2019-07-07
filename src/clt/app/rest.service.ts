@@ -43,6 +43,8 @@ export class RestService {
   checkLogin(key: string): Observable<userModel> {
   return this.http.get(endpoint + 'login/' + key)
     .pipe(
+        tap(_ => console.log(`user with key=${key}`)),
+        catchError(this.handleError(`User failed`)),
         map(this.userLogin)
     );
 }
@@ -59,10 +61,10 @@ export class RestService {
   getLog(id: number): Observable<logModel[]> {
     return this.http.get<logModel[]>(endpoint + 'log/'+id)
       .pipe(
-   //     filter(l => l.id === id),
+   //   filter(l => l.id === id),
         tap(_ => console.log(`fetched logs id=${id}`)),
         catchError(this.handleError<any>(`getLog id=${id}`)),
-        //takeUntil(this.unsubscribe$)
+      //takeUntil(this.unsubscribe$)
     //  .subscribe(logs => this.log = logs));
 )}
     
