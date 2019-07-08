@@ -1,7 +1,7 @@
 <app-header></app-header>
 <mat-card>
 <br>
-Found {{logs.length}} logs for {{userName}}
+Found {{logs.length}} logs for {{userName}} 
 <mat-accordion *ngIf="logs.length >0 ">
     <mat-expansion-panel *ngFor="let log of logs; let i=index;">
     <mat-expansion-panel-header>
@@ -19,13 +19,15 @@ Found {{logs.length}} logs for {{userName}}
         </span>
     </mat-expansion-panel-header>
        <mat-form-field>
-           {{this.logs[i]['Logitem'].startAt}}
+
+           {{logs[i]['Logitem'].startAt}}
       <input
             matInput
             type="time"
             name="startAt"
             [ngModel]='log.startAt'
-            value="{{this.logs[i]['Logitem'].startAt}}"
+            placeholder='Start Time'
+            value="{{logs[i]['Logitem'].startAt}}"
             #startAt="ngModel"/>
    <!--   <mat-error *ngIf="startAt.invalid">Start Time</mat-error> -->
   </mat-form-field>
@@ -34,6 +36,7 @@ Found {{logs.length}} logs for {{userName}}
             matInput
             type="time"
             name="breakOut"
+            placeholder='Break Time'
             [ngModel]='log.breakOut'
             value=""
             #startAt="ngModel"/>
@@ -44,6 +47,7 @@ Found {{logs.length}} logs for {{userName}}
             matInput
             type="time"
             name="breakIn"
+            placeholder='Break Time'
             [ngModel]='log.breakIn'
             value=""
             #startAt="ngModel"/>
@@ -54,6 +58,7 @@ Found {{logs.length}} logs for {{userName}}
             matInput
             type="time"
             name="endAt"
+            placeholder='End Time'
             [ngModel]='log.endAt'
             value=""
             #startAt="ngModel"/>

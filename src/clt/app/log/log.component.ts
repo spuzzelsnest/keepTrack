@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
 import { RestService } from '../rest.service';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
+
+import * as moment from 'moment';
 
 import { logModel } from '../logModel';
 import { logitemModel } from '../logitemModel';
@@ -16,9 +19,9 @@ export class LogComponent {
     private mode = 'logout';
     private key: string;
     private userId: number;
-    private startAt: number;
+    public startAt: string;
     public userName: string;
-
+    
     value:any;
     logs:any = [];
     
@@ -43,7 +46,7 @@ export class LogComponent {
      this.logs = [];
      this.rest.getLogs(this.key).subscribe((data: {}) => {
          this.logs=data;
-         this.startAt = this.logs[0]['Logitem'].startAt;
+         this.startAt = moment(this.logs[0]['Logitem'].startAt, "HH:mm").format("HH:mm");
          this.userName = this.logs[0]['User'].name;
          console.log(this.logs[0]['User'].name);
          console.log(typeof this.startAt);
