@@ -65,7 +65,9 @@ class LogicController{
         });
     }
 
-    editLog(req, res){}
+    editLog(req, res){
+        
+    }
 }
 
 const logicController = new LogicController();
