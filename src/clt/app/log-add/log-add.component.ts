@@ -17,25 +17,26 @@ export class LogAddComponent implements OnInit {
     private mode = 'add';
     private key: string;
     private logId: string;
-    private timelog: logModel[] = [];
-    logitem: logitemModel[] = [];
+    timelog:any = [];
     value:any;
 
   constructor(public rest:RestService, public route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap : ParamMap) =>{
-        if (paramMap.has('logId')){
+        if (paramMap.has('logid')){
             this.mode = 'edit';
             this.key = paramMap.get('key');
-            this.logId = paramMap.get('logId');
-            console.log(this.key);
-            console.log(this.logId);
+            this.logId = paramMap.get('logid');
             this.timelog = this.rest.getLog(this.key,this.logId);
+          
         }else{
           this.mode = 'add';
           this.logId = null;
         }
+        
+          console.log(this.mode);
+          console.log(this.timelog)
     });
   }
 

@@ -1,23 +1,15 @@
 <app-header></app-header>
 <mat-card>
     <form (submit)="onAddLog(addLogForm)" #addLogForm="ngForm">
-    <mat-form-field>
-    <input
-        matInput
-        [matDatepicker]="picker" 
-        name="day"
-        [ngModel]="day"
-        placeholder="Log Date"/>
-   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+
+   Date: {{day}}
         <br>
   <mat-form-field>
       <input 
             matInput
             type="time"
             name="startAt"
-            [ngModel]='startAt'
+            [ngModel]='timelog.startAt'
             value=""
             #startAt="ngModel"/>
    <!--   <mat-error *ngIf="startAt.invalid">Start Time</mat-error> -->
