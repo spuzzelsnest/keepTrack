@@ -1,6 +1,6 @@
 <mat-card>
 <br>
-Found {{logs.length}} logs for UserId {{key}}
+Found {{logs.length}} logs for {{userName}}
 <mat-accordion *ngIf="logs.length >0 ">
     <mat-expansion-panel *ngFor="let log of logs; let i=index;">
     <mat-expansion-panel-header>
