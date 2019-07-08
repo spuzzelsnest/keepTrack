@@ -15,6 +15,7 @@ import { logitemModel } from '../logitemModel';
 export class LogAddComponent implements OnInit {
     
     private mode = 'create';
+    private key: string;
     private logId: string;
     log: logModel[] = [];
     logitem: logitemModel[] = [];
@@ -26,7 +27,9 @@ export class LogAddComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap : ParamMap) =>{
         if (paramMap.has('logId')){
             this.mode = 'edit';
+            this.key = paramMap.get('key');
             this.logId = paramMap.get('logId');
+            console.log(this.key);
             console.log(this.logId);
             //this.log = this.rest.getLog(this.logId);
         }else{
@@ -41,7 +44,7 @@ export class LogAddComponent implements OnInit {
           return;
       }
     this.rest.storeLog(form.value).subscribe((result) => {
-      this.router.navigate(['/logs/']);
+      this.router.navigate([this.key+'/logs/']);
         console.log(result);
     }, (err) => {
       console.log(err);

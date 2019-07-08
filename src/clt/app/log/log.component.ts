@@ -16,7 +16,9 @@ export class LogComponent {
     private mode = 'logout';
     private key: string;
     private userId: number;
+    private startAt: number;
     public userName: string;
+
     value:any;
     logs:any = [];
     
@@ -41,8 +43,10 @@ export class LogComponent {
      this.logs = [];
      this.rest.getLogs(this.key).subscribe((data: {}) => {
          this.logs=data;
+         this.startAt = this.logs[0]['Logitem'].startAt;
          this.userName = this.logs[0]['User'].name;
          console.log(this.logs[0]['User'].name);
+         console.log(typeof this.startAt);
          console.log(JSON.stringify(this.logs, null, 4));
      });
  }

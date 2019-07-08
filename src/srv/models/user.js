@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 
 user.associate = models => {
     user.belongsToMany (models.Logitem, {
-        through: 'Logs'
+        through: 'Logs',
     }),
     user.hasMany (models.Log, {
         foreignKey: 'userId'

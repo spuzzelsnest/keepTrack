@@ -19,12 +19,13 @@ Found {{logs.length}} logs for {{userName}}
         </span>
     </mat-expansion-panel-header>
        <mat-form-field>
+           {{this.logs[i]['Logitem'].startAt}}
       <input
             matInput
             type="time"
             name="startAt"
             [ngModel]='log.startAt'
-            value=""
+            value="{{this.logs[i]['Logitem'].startAt}}"
             #startAt="ngModel"/>
    <!--   <mat-error *ngIf="startAt.invalid">Start Time</mat-error> -->
   </mat-form-field>

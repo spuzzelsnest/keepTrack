@@ -3,12 +3,15 @@ import models from '../models';
 class LogicController{
 
     start(req, res){
-      return;
+      return res.status(200).send({
+            success: 'true',
+            message: 'lets Go!',
+      });
     }
     
     getLogin(req, res, next){
         if (!req.params.key){
-            return res.status(400).send({
+            return res.status(404).send({
                 success: 'false',
                 message: 'Key is required',
             });
@@ -17,7 +20,7 @@ class LogicController{
              where: {key: req.params.key},
         })
             .then(userLogin => res.status(200).send({
-                succes: 'true',
+                success: 'true',
                 message: `Key found =${userLogin.key}`,
                 userLogin
             }));
@@ -28,7 +31,8 @@ class LogicController{
         
         models.Log.findAll({
             include: [{
-                model: models.Logitem,
+                model: models.Logitem
+            },{
                 model: models.User
             }],
              where: {'$User.key$': req.params.key},
@@ -47,7 +51,10 @@ class LogicController{
         }
         const log = {
             day: req.body.day,
-            userId: req.body.userId,
+            startAt: req.body.startAt,
+            breakOut: req.body.breakOut,
+            breakIn: req.body.breakIn,
+            endAt: req.body.endAt,
         };
         models.Log.create(log).then((log)=>{
             return res.status(201).send({

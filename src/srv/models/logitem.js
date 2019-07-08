@@ -16,6 +16,7 @@ logitem.associate = models => {
     logitem.belongsTo(models.Log,{
         foreignKey: 'logId'
     })
+    
   };
   return logitem;
 };
