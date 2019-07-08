@@ -14,7 +14,7 @@ import { logitemModel } from '../logitemModel';
 
 export class LogAddComponent implements OnInit {
     
-    private mode = 'create';
+    private mode = 'add';
     private key: string;
     private logId: string;
     log: logModel[] = [];
@@ -43,7 +43,7 @@ export class LogAddComponent implements OnInit {
       if (form.invalid) {
           return;
       }
-    this.rest.storeLog(form.value).subscribe((result) => {
+    this.rest.storeLog(this.key, form.value).subscribe((result) => {
       this.router.navigate([this.key+'/logs/']);
         console.log(result);
     }, (err) => {

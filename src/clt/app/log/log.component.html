@@ -18,52 +18,25 @@ Found {{logs.length}} logs for {{userName}}
             </mat-form-field>
         </span>
     </mat-expansion-panel-header>
-       <mat-form-field>
 
-           {{logs[i]['Logitem'].startAt}}
-      <input
-            matInput
-            type="time"
-            name="startAt"
-            [ngModel]='log.startAt'
-            placeholder='Start Time'
-            value="{{logs[i]['Logitem'].startAt}}"
-            #startAt="ngModel"/>
-   <!--   <mat-error *ngIf="startAt.invalid">Start Time</mat-error> -->
-  </mat-form-field>
-  <mat-form-field>
-      <input 
-            matInput
-            type="time"
-            name="breakOut"
-            placeholder='Break Time'
-            [ngModel]='log.breakOut'
-            value=""
-            #startAt="ngModel"/>
-   <!--  <mat-error *ngIf="breakOut.invalid">Break</mat-error> -->
-  </mat-form-field>
-          <mat-form-field>
-      <input 
-            matInput
-            type="time"
-            name="breakIn"
-            placeholder='Break Time'
-            [ngModel]='log.breakIn'
-            value=""
-            #startAt="ngModel"/>
- <!--    <mat-error *ngIf="breakIn.invalid">Break</mat-error> -->
-  </mat-form-field>
-          <mat-form-field>
-      <input 
-            matInput
-            type="time"
-            name="endAt"
-            placeholder='End Time'
-            [ngModel]='log.endAt'
-            value=""
-            #startAt="ngModel"/>
-   <!--   <mat-error *ngIf="endAt.invalid">End At</mat-error> -->
-  </mat-form-field>
+          <!-- Start At Column -->
+            {{logs[i]['Logitem'].startAt}}
+
+
+          <!-- Break At Column -->
+            {{logs[i]['Logitem'].breakOut}}
+
+          <!-- Break IN Column -->
+            {{logs[i]['Logitem'].breakIn}}
+
+        <!-- End AT Column -->
+            {{logs[i]['Logitem'].endAt}}
+          
+           
+           
+           
+           
+      
         <mat-action-row>
             <a mat-button color="primary" routerLink="{{log.id}}">Edit</a>
         </mat-action-row>

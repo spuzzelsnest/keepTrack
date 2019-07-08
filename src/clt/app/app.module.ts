@@ -11,7 +11,8 @@ import { MatToolbarModule,
          MatButtonModule,
          MatExpansionModule,
          MatDatepickerModule,
-         MatNativeDateModule
+         MatNativeDateModule,
+         MatTableModule
        } from '@angular/material';
 
 
@@ -45,7 +46,8 @@ import { LogAddComponent } from './log-add/log-add.component';
     MatButtonModule,
     MatExpansionModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTableModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
