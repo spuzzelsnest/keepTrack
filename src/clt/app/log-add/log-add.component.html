@@ -6,7 +6,7 @@
         matInput
         [matDatepicker]="picker" 
         name="day"
-        [ngModel]="log.day"
+        [ngModel]="day"
         placeholder="Log Date"/>
    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
@@ -17,7 +17,7 @@
             matInput
             type="time"
             name="startAt"
-            [ngModel]='log.startAt'
+            [ngModel]='startAt'
             value=""
             #startAt="ngModel"/>
    <!--   <mat-error *ngIf="startAt.invalid">Start Time</mat-error> -->
@@ -27,7 +27,7 @@
             matInput
             type="time"
             name="breakOut"
-            [ngModel]='log.breakOut'
+            [ngModel]='breakOut'
             value=""
             #startAt="ngModel"/>
    <!--  <mat-error *ngIf="breakOut.invalid">Break</mat-error> -->
@@ -37,7 +37,7 @@
             matInput
             type="time"
             name="breakIn"
-            [ngModel]='log.breakIn'
+            [ngModel]='breakIn'
             value=""
             #startAt="ngModel"/>
  <!--    <mat-error *ngIf="breakIn.invalid">Break</mat-error> -->
@@ -47,7 +47,7 @@
             matInput
             type="time"
             name="endAt"
-            [ngModel]='log.endAt'
+            [ngModel]='endAt'
             value=""
             #startAt="ngModel"/>
    <!--   <mat-error *ngIf="endAt.invalid">End At</mat-error> -->

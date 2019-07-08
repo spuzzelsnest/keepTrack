@@ -38,7 +38,7 @@ Found {{logs.length}} logs for {{userName}}
            
       
         <mat-action-row>
-            <a mat-button color="primary" routerLink="{{log.id}}">Edit</a>
+            <a mat-button color="primary" [routerLink]="['/',key,'logs',log.id]">Edit</a>
         </mat-action-row>
         
 </mat-expansion-panel>

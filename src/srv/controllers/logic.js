@@ -42,6 +42,23 @@ class LogicController{
         }));
     }
     
+    getLog(req, res){
+        models.Log.findOne({
+            include: [{
+                model: models.Logitem
+            },{
+                model: models.User
+            }],
+             where: {
+                '$User.key$': req.params.key,
+                id: req.params.logid
+        }})
+        .then(log => res.status(200).send({
+            log,
+    
+        }));
+    }
+    
     addLog(req, res){
         if (!req.body.day){
             return res.status(400).send({

@@ -58,12 +58,12 @@ export class RestService {
    );
 }
 
-  getLog(id: number): Observable<logModel[]> {
-    return this.http.get<logModel[]>(endpoint + 'log/'+id)
+  getLog(key: string, logid: string): Observable<logModel[]> {
+    return this.http.get<logModel[]>(endpoint + key +'/logs/'+logid)
       .pipe(
-   //   filter(l => l.id === id),
-        tap(_ => console.log(`fetched logs id=${id}`)),
-        catchError(this.handleError<any>(`getLog id=${id}`)),
+   //   filter(l => l.id === logid),
+        tap(_ => console.log(`fetched logs id=${logid}`)),
+        catchError(this.handleError<any>(`getLog id=${logid}`)),
       //takeUntil(this.unsubscribe$)
     //  .subscribe(logs => this.log = logs));
 )}

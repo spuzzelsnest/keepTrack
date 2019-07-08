@@ -17,7 +17,7 @@ export class LogAddComponent implements OnInit {
     private mode = 'add';
     private key: string;
     private logId: string;
-    log: logModel[] = [];
+    private timelog: logModel[] = [];
     logitem: logitemModel[] = [];
     value:any;
 
@@ -31,7 +31,7 @@ export class LogAddComponent implements OnInit {
             this.logId = paramMap.get('logId');
             console.log(this.key);
             console.log(this.logId);
-            //this.log = this.rest.getLog(this.logId);
+            this.timelog = this.rest.getLog(this.key,this.logId);
         }else{
           this.mode = 'add';
           this.logId = null;
