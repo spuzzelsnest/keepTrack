@@ -58,14 +58,12 @@ export class RestService {
    );
 }
 
-  getLog(key: string, logid: string): Observable<logModel[]> {
-    return this.http.get<logModel[]>(endpoint + key +'/logs/'+logid)
+  getLog(key: string, logId: string): Observable<logModel[]> {
+    return this.http.get<logModel[]>(endpoint + key +'/logs/'+logId)
       .pipe(
-   //   filter(l => l.id === logid),
-        tap(_ => console.log(`fetched logs id=${logid}`)),
-        catchError(this.handleError<any>(`getLog id=${logid}`)),
-      //takeUntil(this.unsubscribe$)
-    //  .subscribe(logs => this.log = logs));
+        tap(_ => console.log(`fetched logs w/id=${logId}`)),
+        catchError(this.handleError<any>(`getLog id=${logId}`)),
+        map(this.extractData)
 )}
     
   storeLog(key: string, log): Observable<logModel> {
@@ -75,9 +73,9 @@ export class RestService {
   );
 }
 
-  updateLog(id, log): Observable<any> {
-  return this.http.put(endpoint + 'log/' + id, JSON.stringify(log), httpOptions).pipe(
-    tap(_ => console.log(`updated log id=${id}`)),
+  updateLog(key:string, logid:string, timelog): Observable<any> {
+  return this.http.put(endpoint + key+'/logs/' + logid, JSON.stringify(timelog), httpOptions).pipe(
+    tap(_ => console.log(`updated log id=${logid}`)),
     catchError(this.handleError<any>('updateLog'))
   );
 }

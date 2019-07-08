@@ -29,14 +29,11 @@ export class LogAddComponent implements OnInit {
             this.key = paramMap.get('key');
             this.logId = paramMap.get('logid');
             this.timelog = this.rest.getLog(this.key,this.logId);
-          
         }else{
           this.mode = 'add';
           this.logId = null;
         }
-        
           console.log(this.mode);
-          console.log(this.timelog)
     });
   }
 

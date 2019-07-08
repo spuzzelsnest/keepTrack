@@ -10,6 +10,7 @@ class LogicController{
     }
     
     getLogin(req, res, next){
+        
         if (!req.params.key){
             return res.status(404).send({
                 success: 'false',
@@ -42,7 +43,7 @@ class LogicController{
         }));
     }
     
-    getLog(req, res){
+    getLog(req, res, next){
         models.Log.findOne({
             include: [{
                 model: models.Logitem
@@ -53,10 +54,30 @@ class LogicController{
                 '$User.key$': req.params.key,
                 id: req.params.logid
         }})
-        .then(log => res.status(200).send({
-            log,
+        .then(timelog => res.status(200).send({
+            timelog,
     
         }));
+    }
+    
+    userDate(req, res, next){
+        
+        models.Log.findOne({
+            include: [{
+                model: models.Logitem
+            },{
+                model: models.User
+            }],
+             where: {
+                '$User.key$': req.params.key,
+            
+            }
+        })
+        .then(date => res.status(200).send({
+                success: 'true',
+                message: `Key found =${date.day}`,
+                date
+            }));
     }
     
     addLog(req, res){
@@ -77,13 +98,15 @@ class LogicController{
             return res.status(201).send({
                 succes: 'true',
                 message: 'Log added succesfully',
-                log,
+                timelog,
             });
         });
     }
 
-    editLog(req, res){
-        
+    editLog(req, res, next){
+        models.Log.find(
+            { where:{ id: req.params.logid}}
+        )
     }
 }
 
