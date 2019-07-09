@@ -22,6 +22,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { ClockComponent } from './clock/clock.component';
+import { HeadComponent } from './log/head/head.component';
 import { LogComponent } from './log/log.component';
 import { LogAddComponent } from './log-add/log-add.component';
 
@@ -32,6 +33,7 @@ import { LogAddComponent } from './log-add/log-add.component';
     HeaderComponent,
     LoginComponent,
     ClockComponent,
+    HeadComponent,
     LogComponent,
     LogAddComponent
   ],

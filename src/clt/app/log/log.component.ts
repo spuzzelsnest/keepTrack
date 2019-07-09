@@ -15,7 +15,7 @@ import { logitemModel } from '../logitemModel';
 })
 
 export class LogComponent {
-    
+   
     private mode = 'logout';
     private key: string;
     private userId: number;

@@ -1,46 +1,54 @@
-<app-header></app-header>
+<app-head></app-head>
 <mat-card>
     <form (submit)="onAddLog(addLogForm)" #addLogForm="ngForm">
 
-   Date: {{day}}
+   Date: [day] {{day}}
         <br>
   <mat-form-field>
+      [startAt]
       <input 
             matInput
             type="time"
             name="startAt"
             [ngModel]='timelog.startAt'
             value=""
+            placeholder="Start Time"
             #startAt="ngModel"/>
    <!--   <mat-error *ngIf="startAt.invalid">Start Time</mat-error> -->
   </mat-form-field>
   <mat-form-field>
+        [breakOut]
       <input 
             matInput
             type="time"
             name="breakOut"
             [ngModel]='breakOut'
             value=""
+            placeholder="Break Out Time"
             #startAt="ngModel"/>
    <!--  <mat-error *ngIf="breakOut.invalid">Break</mat-error> -->
   </mat-form-field>
-          <mat-form-field>
+  <mat-form-field>
+        [breakIn]
       <input 
             matInput
             type="time"
             name="breakIn"
             [ngModel]='breakIn'
             value=""
+            placeholder="Break in Time"
             #startAt="ngModel"/>
  <!--    <mat-error *ngIf="breakIn.invalid">Break</mat-error> -->
   </mat-form-field>
-          <mat-form-field>
+  <mat-form-field>
+        [endAt]
       <input 
             matInput
             type="time"
             name="endAt"
             [ngModel]='endAt'
             value=""
+            placeholder="End Time"
             #startAt="ngModel"/>
    <!--   <mat-error *ngIf="endAt.invalid">End At</mat-error> -->
   </mat-form-field>

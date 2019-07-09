@@ -1,14 +1,15 @@
 import {Component, OnInit, Input} from "@angular/core";
-import { RestService } from '../rest.service';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
 
+import { RestService } from '../../rest.service';
+
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css']
+    selector: 'app-head',
+    templateUrl: './head.component.html',
+    styleUrls: ['./head.component.css']
 })
 
-export class HeaderComponent {
+export class HeadComponent {
     
     @Input() userName: string;
     
@@ -21,10 +22,10 @@ export class HeaderComponent {
              if (params['key']) {
                 
                 this.key = params.key;
-                console.log('KEY from header '+ this.key);
+                console.log('KEY from head '+ this.key);
                  
              }else{
-                console.log('No Key found in Header');
+                console.log('No Key found');
              }
         });
     }

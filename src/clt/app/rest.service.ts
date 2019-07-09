@@ -43,8 +43,8 @@ export class RestService {
   checkLogin(key: string): Observable<userModel> {
   return this.http.get(endpoint + 'login/' + key)
     .pipe(
-        tap(_ => console.log(`user with key=${key}`)),
-        catchError(this.handleError(`User failed`)),
+        tap(_ => console.log(`Check login for ${key}`)),
+        catchError(this.handleError(`Failed to Get user`)),
         map(this.userLogin)
     );
 }
@@ -52,7 +52,7 @@ export class RestService {
   getLogs(key:string): Observable<logModel[]> {
   return this.http.get<logModel[]>(endpoint + key+'/logs')
     .pipe(
-        tap(_ => console.log(`user with key=${key}`)),
+        tap(_ => console.log(`get logs for ${key}`)),
         catchError(this.handleError(`getLogs failed`)),
         map(this.extractData)
    );
@@ -92,13 +92,10 @@ deleteLog(id): Observable<logModel> {
  private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
-    // TODO: send the error to remote logging infrastructure
     console.error(error); // log to console instead
 
-    // TODO: better job of transforming error for user consumption
     console.log(`${operation} failed: ${error.message}`);
 
-    // Let the app keep running by returning an empty result.
     return of(result as T);
   };
 }
