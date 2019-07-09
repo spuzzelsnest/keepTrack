@@ -9,7 +9,7 @@ import { logModel } from '../logModel';
 import { logitemModel } from '../logitemModel';
 
 export interface timeTable {
-  startAt: strin;
+  startAt: string;
   breakOut: string;
   breakIn: string;
   endAt: string;
