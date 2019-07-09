@@ -11,7 +11,7 @@ import { RestService } from '../../rest.service';
 
 export class HeadComponent {
     
-    @Input() userName: string;
+    @Input() userBlock: any[];
     
     private key: string;
     
@@ -20,10 +20,8 @@ export class HeadComponent {
     ngOnInit(){
         this.route.params.subscribe(params => {
              if (params['key']) {
-                
                 this.key = params.key;
-                console.log('KEY from head '+ this.key);
-                 
+
              }else{
                 console.log('No Key found');
              }

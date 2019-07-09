@@ -2,11 +2,18 @@ import { Component, OnInit } from '@angular/core';
 
 import { RestService } from '../rest.service';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
-
 import * as moment from 'moment';
 
+import { userModel } from '../userModel';
 import { logModel } from '../logModel';
 import { logitemModel } from '../logitemModel';
+
+export interface timeTable {
+  startAt: string;
+  breakOut: string;
+  breakIn: string;
+  endAt: string;
+}
 
 @Component({
   selector: 'app-log',
@@ -17,13 +24,15 @@ import { logitemModel } from '../logitemModel';
 export class LogComponent {
    
     private mode = 'logout';
-    private key: string;
-    private userId: number;
     public startAt: string;
-    public userName: string;
-    
-    value:any;
+    name: string;
+    email: string;
+    key: string;
+    points: number;
+    userInfo:Array<userModel> = [];
     logs:any = [];
+    
+    displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
     
     constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {}
     
@@ -46,11 +55,18 @@ export class LogComponent {
      this.logs = [];
      this.rest.getLogs(this.key).subscribe((data: {}) => {
          this.logs=data;
+        
          this.startAt = moment(this.logs[0]['Logitem'].startAt, "HH:mm").format("HH:mm");
-         this.userName = this.logs[0]['User'].name;
-         console.log(JSON.stringify(this.logs, null, 4));
+         this.name = this.logs[0]['User'].name;
+         this.email = this.logs[0]['User'].email;
+         this.points = this.logs[0]['User'].points;
+         this.key = this.logs[0]['User'].key;
+         
+         
+         console.log(JSON.stringify(data, null, 4));
      });
- }
+       
+}
 
     addLog() {
     this.router.navigate(['/add']);

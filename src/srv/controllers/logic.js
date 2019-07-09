@@ -32,7 +32,9 @@ class LogicController{
         
         models.Log.findAll({
             include: [{
-                model: models.Logitem
+                model: models.Logitem ,
+                attributes: ['id', 'startAt', 'breakOut', 'breakIn', 'endAt','logId'],
+                required: true
             },{
                 model: models.User
             }],
@@ -46,7 +48,9 @@ class LogicController{
     getLog(req, res, next){
         models.Log.findOne({
             include: [{
-                model: models.Logitem
+                model: models.Logitem ,
+                attributes: ['id', 'startAt', 'breakOut', 'breakIn', 'endAt','logId'],
+                required: true
             },{
                 model: models.User
             }],

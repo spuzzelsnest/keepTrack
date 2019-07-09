@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { filter } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import * as moment from 'moment';
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     
     ngOnInit(){}
 
-    onLogin(form: NgForm){
+    onLogin(form: NgForm):void{
         if (form.invalid){
             return;
         }
@@ -37,25 +37,25 @@ export class LoginComponent implements OnInit {
         const inputKey = form.value.key;
         this.rest.checkLogin(inputKey)
         .subscribe((result) =>{
+        
+            const dialogRef = this.dialog.open(LoginComponent, {
+             height: '400px',
+             width: '600px',
+             data: {key: inputKey}
+            });
+
+            dialogRef.afterClosed().subscribe(result => {
+                console.log('The dialog was closed'); 
+                this.router.navigate(['/'+inputKey+'/logs']);
+            });
             
         },(err)=>{
             console.log(err);
         });
+
+
             form.resetForm();
    }
-   
-     openDialog(): void {
-        const dialogRef = this.dialog.open(Dialog, {
-         height: '400px',
-         width: '600px',
-         data: {key: this.key}
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
-            this.key = result;
-        });
-    }
    
 }
 

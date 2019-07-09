@@ -37,6 +37,9 @@ import { LogAddComponent } from './log-add/log-add.component';
     LogComponent,
     LogAddComponent
   ],
+  entryComponents: [
+    LoginComponent
+  ],
   imports: [
     FormsModule,
     BrowserModule,
@@ -53,7 +56,6 @@ import { LogAddComponent } from './log-add/log-add.component';
     MatTableModule,
     MatDialogModule
   ],
-  entryComponents: [LoginComponent],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
