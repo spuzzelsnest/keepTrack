@@ -8,6 +8,13 @@ import { userModel } from '../userModel';
 import { logModel } from '../logModel';
 import { logitemModel } from '../logitemModel';
 
+export interface timeTable {
+  startAt: strin;
+  breakOut: string;
+  breakIn: string;
+  endAt: string;
+}
+
 @Component({
   selector: 'app-log',
   templateUrl: './log.component.html',
@@ -25,6 +32,8 @@ export class LogComponent {
     userInfo:Array<userModel> = [];
     logs:any = [];
     
+    displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
+    
     constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {}
     
     ngOnInit(){
@@ -41,8 +50,6 @@ export class LogComponent {
       }
     });
     }
-    
-    
 
     onGetLogs(key: string){
      this.logs = [];
@@ -60,8 +67,6 @@ export class LogComponent {
      });
        
 }
- 
-
 
     addLog() {
     this.router.navigate(['/add']);

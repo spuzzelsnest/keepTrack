@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const logitem = sequelize.define('Logitem', {
-    startAt: DataTypes.TIME
+    startAt: DataTypes.STRING
   },{
-    breakOut: DataTypes.TIME
+    breakOut: DataTypes.STRING
   },{
-    breakIn: DataTypes.TIME
+    breakIn: DataTypes.STRING
   },{
-    endAt: DataTypes.TIME
+    endAt: DataTypes.STRING
   },{
     logId: DataTypes.NUMMERIC
   },{});

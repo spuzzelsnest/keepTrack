@@ -1,46 +1,41 @@
 <app-head [userBlock]="getUser"></app-head>
 <mat-card>
 <br>
-Found {{logs.length}} logs for {{name}} 
+Found {{logs.length}}
 <mat-accordion *ngIf="logs.length >0 ">
     <mat-expansion-panel *ngFor="let log of logs; let i=index;">
     <mat-expansion-panel-header>
         <span class="badge">
-            <mat-form-field>
-                <input
-                    matInput
-                    value="{{log.day}}"
-                    [matDatepicker]="picker" 
-                    name="day"
-                    [ngModel]="log.day"/>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+           Dia: {{log.day}}
         </span>
     </mat-expansion-panel-header>
-
-          <!-- Start At Column {{logs[i]['Logitem'].startAt}} -->
-            
-
-
-          <!-- Break At Column {{logs[i]['Logitem'].breakOut}} -->
-            
-
-          <!-- Break IN Column {{logs[i]['Logitem'].breakIn}}-->
-            
-
-        <!-- End AT Column {{logs[i]['Logitem'].endAt}} -->
-            
-          
-           
-           
-           
-           
-      
-        <mat-action-row>
-            <a mat-button color="primary" [routerLink]="['/',key,'logs',log.id]">Edit</a>
-        </mat-action-row>
-        
+<table mat-table class="mat-elevation-z8">
+  <!-- Start At Column {{log['Logitem'].startAt}} -->
+    <ng-container matColumnDef="startAt">
+        <th mat-header-cell *matHeaderCellDef>Started At</th>
+        <td mat-cell>{{log['Logitem'].startAt}}</td>
+    </ng-container>
+  <!-- Break At Column {{log['Logitem'].breakOut}} -->
+    <ng-container matColumnDef="breakOut">
+        <th mat-header-cell *matHeaderCellDef>Break At</th>
+        <td mat-cell>{{log['Logitem'].breakOut}}</td>
+    </ng-container>
+  <!-- Break IN Column {{log['Logitem'].breakIn}}-->
+    <ng-container matColumnDef="breakIn">
+        <th mat-header-cell *matHeaderCellDef>Came Back</th>
+        <td mat-cell>{{log['Logitem'].breakIn}}</td>
+    </ng-container>
+  <!-- End AT Column {{{log['Logitem'].endAt}} -->
+    <ng-container matColumnDef="endAt">
+        <th mat-header-cell *matHeaderCellDef>Left The Office</th>
+       <td mat-cell>{{log['Logitem'].endAt}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-action-row>
+    <a mat-button color="primary" [routerLink]="['/',key,'logs',log.id]">Edit</a>
+</mat-action-row>
 </mat-expansion-panel>
 </mat-accordion>
     
