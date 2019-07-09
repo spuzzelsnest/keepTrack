@@ -1,7 +1,7 @@
-<app-head></app-head>
+<app-head [userBlock]="getUser"></app-head>
 <mat-card>
 <br>
-Found {{logs.length}} logs for {{userName}} 
+Found {{logs.length}} logs for {{name}} 
 <mat-accordion *ngIf="logs.length >0 ">
     <mat-expansion-panel *ngFor="let log of logs; let i=index;">
     <mat-expansion-panel-header>
@@ -19,18 +19,18 @@ Found {{logs.length}} logs for {{userName}}
         </span>
     </mat-expansion-panel-header>
 
-          <!-- Start At Column -->
-            {{logs[i]['Logitem'].startAt}}
+          <!-- Start At Column {{logs[i]['Logitem'].startAt}} -->
+            
 
 
-          <!-- Break At Column -->
-            {{logs[i]['Logitem'].breakOut}}
+          <!-- Break At Column {{logs[i]['Logitem'].breakOut}} -->
+            
 
-          <!-- Break IN Column -->
-            {{logs[i]['Logitem'].breakIn}}
+          <!-- Break IN Column {{logs[i]['Logitem'].breakIn}}-->
+            
 
-        <!-- End AT Column -->
-            {{logs[i]['Logitem'].endAt}}
+        <!-- End AT Column {{logs[i]['Logitem'].endAt}} -->
+            
           
            
            

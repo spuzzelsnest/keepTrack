@@ -2,7 +2,7 @@ export class userModel {
   id: number;
   name: string;
   email: string;
-  key: number;
+  key: string;
   points: number;
   active: boolean;
   createdAt: Date;
