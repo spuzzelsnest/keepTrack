@@ -40,9 +40,9 @@ import { LogAddComponent } from './log-add/log-add.component';
   imports: [
     FormsModule,
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     MatToolbarModule,
     MatInputModule,
     MatCardModule,
@@ -53,6 +53,7 @@ import { LogAddComponent } from './log-add/log-add.component';
     MatTableModule,
     MatDialogModule
   ],
+  entryComponents: [LoginComponent],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
