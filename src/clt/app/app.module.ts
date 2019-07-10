@@ -25,6 +25,7 @@ import { ClockComponent } from './clock/clock.component';
 import { HeadComponent } from './log/head/head.component';
 import { LogComponent } from './log/log.component';
 import { LogAddComponent } from './log-add/log-add.component';
+import { UserComponent } from './login/user/user.component';
 
 
 @NgModule({
@@ -35,10 +36,11 @@ import { LogAddComponent } from './log-add/log-add.component';
     ClockComponent,
     HeadComponent,
     LogComponent,
-    LogAddComponent
+    LogAddComponent,
+    UserComponent
   ],
   entryComponents: [
-    LoginComponent
+    UserComponent
   ],
   imports: [
     FormsModule,

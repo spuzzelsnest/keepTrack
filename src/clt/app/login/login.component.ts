@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import * as moment from 'moment';
 
 import { RestService } from '../rest.service';
+import { UserComponent } from './user/user.component';
 import { logModel } from '../logModel';
 
 export interface DialogData {
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.rest.checkLogin(inputKey)
         .subscribe((result) =>{
         
-            const dialogRef = this.dialog.open(LoginComponent, {
+            const dialogRef = this.dialog.open(UserComponent, {
              height: '400px',
              width: '600px',
              data: {key: inputKey}
@@ -48,32 +49,10 @@ export class LoginComponent implements OnInit {
                 console.log('The dialog was closed'); 
                 this.router.navigate(['/'+inputKey+'/logs']);
             });
-            
         },(err)=>{
             console.log(err);
         });
-
-
             form.resetForm();
    }
    
-}
-
-@Component({
-  selector: 'dialog',
-  templateUrl: 'dialog.component.html',
-})
-
-export class Dialog{
-
-  constructor(
-    public rest:RestService, private route: ActivatedRoute, private router: Router,
-    public dialogRef: MatDialogRef<LoginComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-    this.router.navigate([this.data.key+'/logs']);
-  }
-
 }
