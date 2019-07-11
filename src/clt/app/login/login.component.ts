@@ -20,7 +20,8 @@ export interface DialogData {
 })
 
 export class LoginComponent implements OnInit {
-
+    
+   
     private key: string;
     private userId: number;
     today: string = moment().format('D MMM YYYY');
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
             const dialogRef = this.dialog.open(UserComponent, {
              height: '400px',
              width: '600px',
-             data: {key: inputKey}
+             data: {dateSet: inputKey}
             });
 
             dialogRef.afterClosed().subscribe(result => {
