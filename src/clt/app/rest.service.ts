@@ -35,13 +35,13 @@ export class RestService {
   }
 
   private userLogin(res: Response) {
-      const users = [];
+      const userBlock = [];
       let body = Object(res['key']);
       return body || { }; 
   }
 
-  checkLogin(key: string): Observable<userModel> {
-  return this.http.get(endpoint + 'login/' + key)
+    checkLogin(key:string): Observable<userModel[]> {
+    return this.http.get<userModel[]>(endpoint + 'login/' + key)
     .pipe(
         tap(_ => console.log(`Check login for ${key}`)),
         catchError(this.handleError(`Failed to Get user`)),

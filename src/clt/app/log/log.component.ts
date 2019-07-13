@@ -66,20 +66,5 @@ export class LogComponent {
          console.log(JSON.stringify(data, null, 4));
      });
        
-}
-
-    addLog() {
-    this.router.navigate(['/add']);
-  }
-/*
-    delete(id) {
-        this.rest.deleteLog(id)
-          .subscribe(res => {
-              this.getLogs();
-            }, (err) => {
-              console.log(err);
-            }
-          );
-      }
-  */
+    }
 }

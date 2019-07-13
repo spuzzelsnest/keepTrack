@@ -1,6 +1,9 @@
+<mat-dialog-content>
+HIGH {{userName}}<br>
 {{today}}, <app-clock></app-clock>
-HIGH {{key}} ,
-  <span class="spacer">
-    <ul><li>Points: [points]</li></ul>
-  <p *ngIf="!dateSet">Welcome Back!</p>
-  <p *ngIf="dataSet">[TODAY]</p>
+<img src="assets/test.jpg" height="42" width="42">
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="next()">next</button>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+</mat-dialog-actions>
