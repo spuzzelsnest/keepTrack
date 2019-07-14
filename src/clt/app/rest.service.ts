@@ -66,8 +66,8 @@ getLogs(key:string): Observable<logModel[]> {
         map(this.extractData)
 )}
     
-  storeLog(key: string, log): Observable<logModel> {
-  return this.http.post<logModel>(endpoint +key+'/add', JSON.stringify(log), httpOptions).pipe(
+  storeLog(key: string, log): Observable<any> {
+  return this.http.post<any>(endpoint +key+'/add', JSON.stringify(log), httpOptions).pipe(
     tap((log) => console.log(`added log w/ id=${log.id}`)),
     catchError(this.handleError<any>('storeLog'))
   );

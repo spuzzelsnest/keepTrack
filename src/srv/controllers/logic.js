@@ -93,18 +93,20 @@ class LogicController{
         }
         const log = {
             day: req.body.day,
-            startAt: req.body.startAt,
-            breakOut: req.body.breakOut,
-            breakIn: req.body.breakIn,
-            endAt: req.body.endAt,
+            userId: req.body.userId,
         };
-        models.Log.create(log).then((log)=>{
-            return res.status(201).send({
-                succes: 'true',
-                message: 'Log added succesfully',
-                timelog,
-            });
-        });
+        
+         models.Log.findOrCreate({
+            where: {
+                day: req.body.day,
+                userId: req.body.userId}
+         })
+            .spread(function(day, created) {
+                console.log(day.get({
+                    plain: true
+                }));
+                console.log(created)
+            })
     }
 
     editLog(req, res, next){

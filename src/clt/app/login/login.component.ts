@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.userLogin = [];
         const inputKey = form.value.key;
         this.rest.checkLogin(inputKey).subscribe((data: {}) => {
-            this.userLogin =data;
+            this.userLogin = data;
             console.log();
             const dialogConfig = new MatDialogConfig();
             dialogConfig.width = '600px';
@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
             dialogConfig.data ={
                 day: this.today,
                 key: inputKey,
-                userName: this.userLogin.name
+                userName: this.userLogin.name,
+                userId: this.userLogin.id
             }
             this.dialog.open(UserComponent, dialogConfig);
             console.log(JSON.stringify(data, null, 4));

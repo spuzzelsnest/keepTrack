@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
     today: string;
     key: string;
     userName: string;
+    userId: number;
     
     constructor(
         public rest:RestService,
@@ -24,9 +25,16 @@ export class UserComponent implements OnInit {
             this.today = data.day;
             this.key = data.key;
             this.userName = data.userName;
+            this.userId = data.userId;
         }
 
-    ngOnInit() {}
+    ngOnInit() {
+        const log = {
+            day: this.today,
+            userId: this.userId
+        };
+        this.rest.storeLog(this.key, log).subscribe((res: Response)=> res.json());
+    }
 
     next(){
         this.dialogRef.close(); this.router.navigate(['/'+this.key+'/logs']);
