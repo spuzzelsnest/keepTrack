@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     public key: string;
     public userName: string;
     public today: string = moment().format('D MMM YYYY');
-    userLogin:[];
+    userLogin:any = [];
 
     constructor(
         public rest:RestService,
@@ -35,26 +35,27 @@ export class LoginComponent implements OnInit {
         if (form.invalid){
             return;
         }
-        
+        this.userLogin = [];
         const inputKey = form.value.key;
         this.rest.checkLogin(inputKey).subscribe((data: {}) => {
-        console.log(JSON.stringify(data, null, 4));
-        
+            this.userLogin =data;
+            console.log();
             const dialogConfig = new MatDialogConfig();
+            dialogConfig.width = '600px';
             dialogConfig.disableClose = true;
             dialogConfig.autoFocus = true;
             dialogConfig.data ={
                 day: this.today,
                 key: inputKey,
-                userName: 'Dolly'
+                userName: this.userLogin.name
             }
             this.dialog.open(UserComponent, dialogConfig);
-        
-    
+            console.log(JSON.stringify(data, null, 4));
         }),(err)=>{
             console.log(err);
         };
-            form.resetForm();
+        
+        form.resetForm();
    }
    
 }

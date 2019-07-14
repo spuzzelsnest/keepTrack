@@ -36,11 +36,11 @@ export class RestService {
 
   private userLogin(res: Response) {
       const userBlock = [];
-      let body = Object(res['key']);
+      let body = Object(res['userLogin']);
       return body || { }; 
   }
 
-    checkLogin(key:string): Observable<userModel[]> {
+checkLogin(key:string): Observable<userModel[]> {
     return this.http.get<userModel[]>(endpoint + 'login/' + key)
     .pipe(
         tap(_ => console.log(`Check login for ${key}`)),
@@ -49,7 +49,7 @@ export class RestService {
     );
 }
 
-  getLogs(key:string): Observable<logModel[]> {
+getLogs(key:string): Observable<logModel[]> {
   return this.http.get<logModel[]>(endpoint + key+'/logs')
     .pipe(
         tap(_ => console.log(`get logs for ${key}`)),
