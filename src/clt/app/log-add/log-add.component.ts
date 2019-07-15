@@ -49,4 +49,7 @@ export class LogAddComponent implements OnInit {
     });
   }
 
+    back(){
+        this.router.navigate(['/'+this.key+'/logs']);
+    }
 }
