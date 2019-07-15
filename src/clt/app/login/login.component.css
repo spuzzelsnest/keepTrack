@@ -1,3 +1,6 @@
 mat-card{
-    text-align: center;
+  position: fixed;
+  top: 45%;
+  left: 45%;
+  text-align: center;
 }
