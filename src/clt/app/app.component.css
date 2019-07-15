@@ -3,3 +3,8 @@ main{
     margin-top: 1rem;
     margin: auto;
 }
+.spacer{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
