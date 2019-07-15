@@ -1,0 +1,12 @@
+.header{
+    top:45%;
+    text-align: center;
+}
+.message{
+        text-align: center;
+}
+.spacer{
+    flex: 1 1 auto;
+    position: absolute;
+    top:75%
+}

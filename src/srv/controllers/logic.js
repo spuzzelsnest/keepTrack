@@ -64,26 +64,6 @@ class LogicController{
         }));
     }
     
-    userDate(req, res, next){
-        
-        models.Log.findOne({
-            include: [{
-                model: models.Logitem
-            },{
-                model: models.User
-            }],
-             where: {
-                '$User.key$': req.params.key,
-            
-            }
-        })
-        .then(date => res.status(200).send({
-                success: 'true',
-                message: `Key found =${date.day}`,
-                date
-            }));
-    }
-    
     addLog(req, res){
         if (!req.body.day){
             return res.status(400).send({
@@ -101,8 +81,8 @@ class LogicController{
                 day: req.body.day,
                 userId: req.body.userId}
          })
-            .spread(function(day, created) {
-                console.log(day.get({
+            .spread(function(log, created) {
+                console.log(log.get({
                     plain: true
                 }));
                 console.log(created)

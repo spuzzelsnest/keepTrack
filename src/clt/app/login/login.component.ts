@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit {
             console.log();
             const dialogConfig = new MatDialogConfig();
             dialogConfig.width = '600px';
+            dialogConfig.height = '400px';
+            
             dialogConfig.disableClose = true;
             dialogConfig.autoFocus = true;
             dialogConfig.data ={
