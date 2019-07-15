@@ -1,17 +1,12 @@
 <mat-dialog-content>
-<img src="assets/test.jpg" height="42" width="42" class="rounded-circle">
-<div class="header">HIGH {{userName}}</div>
+<img src="assets/test.jpg" height="120" width="120" class="rounded-circle">
+    <div class="header"><h1>HIGH {{userName}}</h1></div>
 <hr>
 {{today}}, 
 <app-clock></app-clock>
-<div class="message"><><h2>You Logged in At: [StartedAt]</h2></div>
+<div class="message"><h2>You Logged in At: [StartedAt]</h2></div>
 </mat-dialog-content>
-
-<span class="spacer">
-    <hr>
-    <mat-dialog-actions>
+<mat-dialog-actions>
         <button class="mat-raised-button"(click)="next()">View Logs</button>
-      
         <button class="mat-raised-button"(click)="close()">Close</button>
-    </mat-dialog-actions>
-</span>
+</mat-dialog-actions>
