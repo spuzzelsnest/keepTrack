@@ -61,9 +61,8 @@ export class LogComponent {
          this.email = this.logs[0]['User'].email;
          this.points = this.logs[0]['User'].points;
          this.key = this.logs[0]['User'].key;
-         
-         
-         console.log(JSON.stringify(data, null, 4));
+
+         //console.log(JSON.stringify(data, null, 4));
      });
        
     }

@@ -20,10 +20,8 @@ export class HeaderComponent {
              if (paramMap.has('key')) {
                 this.mode = true;
                 this.key = paramMap.get('key');
-                console.log('Logged in');
              }else{
                  this.mode = false;
-                console.log('No Key found in Header');
              }
         });
     }

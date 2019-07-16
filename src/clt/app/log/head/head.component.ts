@@ -21,9 +21,6 @@ export class HeadComponent {
         this.route.params.subscribe(params => {
              if (params['key']) {
                 this.key = params.key;
-
-             }else{
-                console.log('No Key found');
              }
         });
     }

@@ -33,7 +33,6 @@ export class LogAddComponent implements OnInit {
           this.mode = 'add';
           this.logId = null;
         }
-          console.log(this.mode);
     });
   }
 
@@ -43,7 +42,6 @@ export class LogAddComponent implements OnInit {
       }
     this.rest.storeLog(this.key, form.value).subscribe((result) => {
       this.router.navigate([this.key+'/logs/']);
-        console.log(result);
     }, (err) => {
       console.log(err);
     });
