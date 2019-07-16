@@ -88,8 +88,15 @@ class LogicController{
                 console.log(created)
             })
     }
+    
+    createTimelog(req, res){
+        models.Logitem.create({
+            logId: req.body.logId,
+            startedAt: req.body.startedAt
+        })
+    }
 
-    editLog(req, res, next){
+    updateTimelog(req, res, next){
         models.Log.find(
             { where:{ id: req.params.logid}}
         )

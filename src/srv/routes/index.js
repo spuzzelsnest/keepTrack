@@ -6,7 +6,8 @@ router.get('/api/login/', LogicController.start);
 router.get('/api/login/:key', LogicController.getLogin);
 router.get('/api/:key/logs', LogicController.getLogs);
 router.post('/api/:key/add', LogicController.addLog);
-router.put('/api/:key/logs/:logid', LogicController.editLog);
+router.post('/api/:key/logs/:logid', LogicController.createTimelog);
+router.put('/api/:key/logs/:logid', LogicController.updateTimelog);
 router.get('/api/:key/logs/:logid', LogicController.getLog);
 
 export default router;
