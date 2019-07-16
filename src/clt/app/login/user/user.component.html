@@ -6,7 +6,10 @@
 <hr>
 {{displayToday}}, 
 <app-clock></app-clock>
-<div class="message"><h2>You Logged in At: [StartedAt]</h2></div>
+  <div class="message">
+    <button mat-raised-button color="primary" (click)="storeLogitem()">Clock In</button>
+<!--<h2>You Logged in At: [StartedAt]</h2> -->
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions  style="text-align: center">
         <button class="mat-raised-button"(click)="next()">View Logs</button>

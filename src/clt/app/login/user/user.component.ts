@@ -15,6 +15,9 @@ export class UserComponent implements OnInit {
     key: string;
     userName: string;
     userId: number;
+    logId: number;
+    startedAt: string;
+    logitem =[];
     
     constructor(
         public rest:RestService,
@@ -36,6 +39,15 @@ export class UserComponent implements OnInit {
             userId: this.userId
         };
         this.rest.storeLog(this.key, log).subscribe((res: Response)=> res.json());
+    }
+    
+    onCreate(){
+        const logitem = {
+            logId: this.logId,
+            startedAt: this.startedAt
+        }
+        this.rest.storeLogitem(this.key, this.logId, logitem).subscribe((res: Response)=>
+        res.json());
     }
 
     next(){

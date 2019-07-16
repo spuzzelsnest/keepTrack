@@ -19,7 +19,7 @@ const routes: Routes = [
   },{
     path: ':key/add',
     component: LogAddComponent
-  },{ 
+  },{
     path: '',
     redirectTo: '/login',
     pathMatch: 'full'
