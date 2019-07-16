@@ -11,6 +11,7 @@ import { RestService } from '../../rest.service';
 export class UserComponent implements OnInit {
     
     today: string;
+    displayToday: string;
     key: string;
     userName: string;
     userId: number;
@@ -23,6 +24,7 @@ export class UserComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) data) {
             
             this.today = data.day;
+            this.displayToday = data.display;
             this.key = data.key;
             this.userName = data.userName;
             this.userId = data.userId;

@@ -24,7 +24,7 @@ export interface timeTable {
 export class LogComponent {
    
     private mode = 'logout';
-    public startAt: string;
+    startAt: string;
     name: string;
     email: string;
     key: string;

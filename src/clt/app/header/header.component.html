@@ -1,4 +1,5 @@
 <mat-toolbar color="primary">
+    <div *ngIf="mode" color="primary">
   <span class="spacer"></span>
   <ul>
     <li>
@@ -8,4 +9,8 @@
     </a>
     </li>
   </ul>
+    </div>
+    <div *ngIf="!mode" class="logo">
+    <img src="assets/logo/corpEng.jpg">
+    </div>
 </mat-toolbar>

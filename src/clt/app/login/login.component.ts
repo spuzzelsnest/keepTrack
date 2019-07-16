@@ -18,16 +18,17 @@ import { logModel } from '../logModel';
 export class LoginComponent implements OnInit {
     
     
-    public key: string;
-    public userName: string;
-    public today: string = moment().format('D MMM YYYY');
+    key: string;
+    userName: string;
+    today: string = moment().format('YYYY-MM-DD');
+    displayToday: string = moment().format('D MMM YYYY');
     userLogin:any = [];
 
     constructor(
         public rest:RestService,
+        public dialog: MatDialog,
         private route: ActivatedRoute,
-        private router: Router,
-        public dialog: MatDialog) {}
+        private router: Router) {}
     
     ngOnInit(){}
 
@@ -48,6 +49,7 @@ export class LoginComponent implements OnInit {
             dialogConfig.autoFocus = true;
             dialogConfig.data ={
                 day: this.today,
+                display: this.displayToday,
                 key: inputKey,
                 userName: this.userLogin.name,
                 userId: this.userLogin.id

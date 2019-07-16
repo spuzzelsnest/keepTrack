@@ -1,8 +1,10 @@
 <mat-dialog-content>
-<img src="assets/test.jpg" height="120" width="120" class="rounded-circle">
+<div *ngIf="!avatar">
+<img src="assets/users/none.png" height="120" width="120" class="rounded-circle">
+</div>
     <div class="header"><h1>HIGH {{userName}}</h1></div>
 <hr>
-{{today}}, 
+{{displayToday}}, 
 <app-clock></app-clock>
 <div class="message"><h2>You Logged in At: [StartedAt]</h2></div>
 </mat-dialog-content>

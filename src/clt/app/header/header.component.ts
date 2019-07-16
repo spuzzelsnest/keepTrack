@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import { RestService } from '../rest.service';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
 
@@ -10,20 +10,19 @@ import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular
 
 export class HeaderComponent {
     
-    @Input() userName: string;
-    
-    private key: string;
+   private mode: boolean;
+   private key: string;
     
     constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {}
     
     ngOnInit(){
-        this.route.params.subscribe(params => {
-             if (params['key']) {
-                
-                this.key = params.key;
-                console.log('KEY from header '+ this.key);
-                 
+        this.route.paramMap.subscribe((paramMap: ParamMap) => {
+             if (paramMap.has('key')) {
+                this.mode = true;
+                this.key = paramMap.get('key');
+                console.log('Logged in');
              }else{
+                 this.mode = false;
                 console.log('No Key found in Header');
              }
         });
