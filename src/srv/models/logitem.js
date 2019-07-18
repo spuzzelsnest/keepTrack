@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const logitem = sequelize.define('Logitem', {
+id:{ type: DataTypes.INTEGER,
+     primaryKey: true,
+     autoIncrement: true 
+  }},{
     startAt: DataTypes.STRING
   },{
     breakOut: DataTypes.STRING
@@ -8,8 +12,11 @@ module.exports = (sequelize, DataTypes) => {
   },{
     endAt: DataTypes.STRING
   },{
-    logId: DataTypes.NUMMERIC
-  },{});
+    logId:{
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    unique: true
+}},{});
 
 logitem.associate = models => {
 
