@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
     userId: number;
     logId: number;
     startedAt: string;
+    getlog = [];
     logitem =[];
     
     constructor(
@@ -38,17 +39,24 @@ export class UserComponent implements OnInit {
             day: this.today,
             userId: this.userId
         };
-        this.rest.storeLog(this.key, log).subscribe((res: Response)=> res.json());
+        this.rest.storeLog(this.key, log).subscribe((res: Response)=>{
+           res.json()
+        });
     }
     
-    onCreate(){
+    onCreate(log){
+        console.log(this.logId)
         const logitem = {
             logId: this.logId,
             startedAt: this.startedAt
         }
-        this.rest.storeLogitem(this.key, this.logId, logitem).subscribe((res: Response)=>
-        res.json());
-    }
+        this.rest.storeLogitem(this.key, this.logId, logitem).subscribe( res =>{
+            console.log(logitem);
+            res.json();
+        }, (err)=>{
+            console.log(err);
+            }
+      )}
 
     next(){
         this.dialogRef.close(); this.router.navigate(['/'+this.key+'/logs']);

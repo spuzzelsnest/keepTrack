@@ -82,18 +82,33 @@ class LogicController{
                 userId: req.body.userId}
          })
             .spread(function(log, created) {
-                console.log(log.get({
-                    plain: true
-                }));
+                console.log(log.get({plain: true}));
+                console.log('logid'+log.id);
                 console.log(created)
             })
     }
     
     createTimelog(req, res){
-        models.Logitem.create({
+        if (!req.body.logId){
+            return res.status(400).send({
+                success: 'false',
+                message: 'logId is required',
+            });
+        }
+        const logitem ={
             logId: req.body.logId,
             startedAt: req.body.startedAt
+        };
+        models.Logitem.findOrCreate({
+            where: {
+            logId: req.body.logId}
         })
+        .spread(function(logitem, created){
+                console.log(logitem.get({
+                    plain: true
+                }));
+                console.log(created)
+            })
     }
 
     updateTimelog(req, res, next){

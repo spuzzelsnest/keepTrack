@@ -72,10 +72,10 @@ getLogs(key:string): Observable<logModel[]> {
     catchError(this.handleError<any>('storeLog'))
   );
 }
-  storeLogitem(key:string, logId: number, logitem): Observable<any>{
+  storeLogitem(key:string, logId: number, logitem): Observable<any> {
       return this.http.post<any>(endpoint +key+'/logs/'+logId, JSON.stringify(logitem), httpOptions).pipe(
-        tap((log) => console.log(`added log w/ id=${log.id}`)),
-        catchError(this.handleError<any>('storeLog'))
+        tap((logitem) => console.log(`added log w/ id=${logitem.id}`)),
+        catchError(this.handleError<any>('storeLogitem'))
       );
   }
 
