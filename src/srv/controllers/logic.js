@@ -103,10 +103,8 @@ class LogicController{
             logId: req.body.logId}
         })
         .spread(function(logitem, created){
-                console.log(logitem.get({
-                    plain: true
-                }));
-                console.log(created)
+                console.log(created);
+                return res.status(200).send({ logitem });
             })
     }
 

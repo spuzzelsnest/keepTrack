@@ -47,7 +47,7 @@ export class UserComponent implements OnInit {
     }
     
     onCreate(log){
-        console.log(this.fetchedId);
+        console.log('log from: '+this.fetchedId);
         const logitem = {
             logId: this.fetchedId,
             startAt: '10:00'
