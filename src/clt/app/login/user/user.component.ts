@@ -43,11 +43,13 @@ export class UserComponent implements OnInit {
         
         this.rest.storeLog(this.key, log).subscribe(res =>{
             this.fetchedId = res.log.id;
+            this.startAt = res.log.createdAt;
         });
     }
     
     onCreate(log){
         console.log('log from: '+this.fetchedId);
+        console.log('time from: '+(new Date(this.startAt)).getUTCHours());
         const logitem = {
             logId: this.fetchedId,
             startAt: '10:00'
