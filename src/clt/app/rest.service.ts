@@ -30,13 +30,13 @@ export class RestService {
     
   private extractData(res: Response) {
       const logs = [];
-      let body = Object(res['logs']);
+      const body = Object(res['logs']);
       return body || { }; 
   }
 
   private userLogin(res: Response) {
       const userBlock = [];
-      let body = Object(res['userLogin']);
+      const body = Object(res['userLogin']);
       return body || { }; 
   }
 
@@ -58,7 +58,7 @@ getLogs(key:string): Observable<logModel[]> {
    );
 }
 
-  getLog(key: string, logId: string): Observable<logModel[]> {
+getLog(key: string, logId: string): Observable<logModel[]> {
     return this.http.get<logModel[]>(endpoint + key +'/logs/'+logId)
       .pipe(
         tap(_ => console.log(`fetched logs w/id=${logId}`)),
@@ -66,20 +66,23 @@ getLogs(key:string): Observable<logModel[]> {
         map(this.extractData)
 )}
     
-  storeLog(key: string, log): Observable<any> {
-  return this.http.post<any>(endpoint +key+'/add', JSON.stringify(log), httpOptions).pipe(
-    tap((log) => console.log(`added log w/ id=${log.id}`)),
-    catchError(this.handleError<any>('storeLog'))
-  );
+storeLog(key: string, log): Observable<any> {
+  return this.http.post<any>(endpoint +key+'/add', JSON.stringify(log), httpOptions)
+    .pipe(
+        tap((log) => console.log(`found log w/ id=${log.log['id']}`)),
+        catchError(this.handleError<any>('storeLog')),
+    )
 }
-  storeLogitem(key:string, logId: number, logitem): Observable<any> {
-      return this.http.post<any>(endpoint +key+'/logs/'+logId, JSON.stringify(logitem), httpOptions).pipe(
+
+storeLogitem(key:string, logId: number, logitem): Observable<any> {
+      return this.http.post<any>(endpoint +key+'/logs/'+logId, JSON.stringify(logitem), httpOptions)
+    .pipe(
         tap((logitem) => console.log(`added log w/ id=${logitem.id}`)),
         catchError(this.handleError<any>('storeLogitem'))
-      );
-  }
+    );
+}
 
-  updateLog(key:string, logid:string, timelog): Observable<any> {
+updateLog(key:string, logid:string, timelog): Observable<any> {
   return this.http.put(endpoint + key+'/logs/' + logid, JSON.stringify(timelog), httpOptions).pipe(
     tap(_ => console.log(`updated log id=${logid}`)),
     catchError(this.handleError<any>('updateLog'))
@@ -98,7 +101,7 @@ deleteLog(id): Observable<logModel> {
  private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 
-    console.error(error); // log to console instead
+    console.error(error);
 
     console.log(`${operation} failed: ${error.message}`);
 

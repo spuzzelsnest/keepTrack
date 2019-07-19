@@ -16,9 +16,9 @@ export class UserComponent implements OnInit {
     userName: string;
     userId: number;
     logId: number;
-    startedAt: string;
-    getlog = [];
-    logitem =[];
+    startAt: string;
+    fetchedId: number;
+    fetchedLogitem =[];
     
     constructor(
         public rest:RestService,
@@ -35,24 +35,27 @@ export class UserComponent implements OnInit {
         }
 
     ngOnInit() {
+  
         const log = {
             day: this.today,
             userId: this.userId
         };
-        this.rest.storeLog(this.key, log).subscribe((res: Response)=>{
-           res.json()
+        
+        this.rest.storeLog(this.key, log).subscribe(res =>{
+            this.fetchedId = res.log.id;
         });
     }
     
     onCreate(log){
-        console.log(this.logId)
+        console.log(this.fetchedId);
         const logitem = {
-            logId: this.logId,
-            startedAt: this.startedAt
+            logId: this.fetchedId,
+            startAt: '10:00'
         }
-        this.rest.storeLogitem(this.key, this.logId, logitem).subscribe( res =>{
-            console.log(logitem);
-            res.json();
+        this.rest.storeLogitem(this.key, this.fetchedId, logitem)
+            .subscribe( res => {
+                this.fetchedLogitem = res;
+                console.log('fetchedLogitem', res);
         }, (err)=>{
             console.log(err);
             }

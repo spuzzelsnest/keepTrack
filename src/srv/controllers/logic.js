@@ -64,7 +64,7 @@ class LogicController{
         }));
     }
     
-    addLog(req, res){
+    createLog(req, res){
         if (!req.body.day){
             return res.status(400).send({
                 success: 'false',
@@ -81,10 +81,9 @@ class LogicController{
                 day: req.body.day,
                 userId: req.body.userId}
          })
-            .spread(function(log, created) {
-                console.log(log.get({plain: true}));
-                console.log('logid'+log.id);
-                console.log(created)
+            .spread((log, created)=>{
+                console.log(created);
+                return res.status(200).send({ log });
             })
     }
     
