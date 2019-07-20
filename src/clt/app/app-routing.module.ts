@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
-import { LogComponent } from './log/log.component';
+import { OverviewComponent } from './overview/overview.component';
 import { LogAddComponent } from './log-add/log-add.component';
 
 
@@ -12,7 +12,7 @@ const routes: Routes = [
     component: LoginComponent
   },{
     path: ':key/logs',
-    component: LogComponent
+    component: OverviewComponent
   },{
     path: ':key/logs/:logid',
     component: LogAddComponent
