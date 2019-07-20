@@ -2,19 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-import { RestService } from '../rest.service';
-import { logModel } from '../logModel';
-import { logitemModel } from '../logitemModel';
+import { RestService } from '../../rest.service';
+import { logModel } from '../../logModel';
+import { logitemModel } from '../../logitemModel';
 
 @Component({
-  selector: 'app-log-add',
-  templateUrl: './log-add.component.html',
-  styleUrls: ['./log-add.component.css']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
+export class EditComponent implements OnInit {
 
-export class LogAddComponent implements OnInit {
-    
-    private mode = 'add';
+  private mode = 'add';
     private key: string;
     private logId: string;
     timelog:any = [];

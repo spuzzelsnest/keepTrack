@@ -22,9 +22,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { ClockComponent } from './clock/clock.component';
-import { LogAddComponent } from './log-add/log-add.component';
 import { UserComponent } from './login/user/user.component';
 import { OverviewComponent } from './overview/overview.component';
+import { EditComponent } from './overview/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +32,9 @@ import { OverviewComponent } from './overview/overview.component';
     HeaderComponent,
     LoginComponent,
     ClockComponent,
-    LogAddComponent,
     UserComponent,
-    OverviewComponent
+    OverviewComponent,
+    EditComponent
   ],
   entryComponents: [
     UserComponent

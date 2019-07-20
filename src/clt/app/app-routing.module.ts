@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { OverviewComponent } from './overview/overview.component';
-import { LogAddComponent } from './log-add/log-add.component';
+import { EditComponent } from './overview/edit/edit.component';
+
 
 
 const routes: Routes = [
@@ -15,10 +16,10 @@ const routes: Routes = [
     component: OverviewComponent
   },{
     path: ':key/logs/:logid',
-    component: LogAddComponent
+    component: EditComponent
   },{
     path: ':key/add',
-    component: LogAddComponent
+    component: EditComponent
   },{
     path: '',
     redirectTo: '/login',
