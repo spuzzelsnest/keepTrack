@@ -28,7 +28,6 @@ export class UserComponent implements OnInit {
         private router: Router,
         private dialogRef: MatDialogRef<UserComponent>, 
         @Inject(MAT_DIALOG_DATA) data) {
-            
             this.today = data.day;
             this.displayToday = data.display;
             this.key = data.key;
@@ -63,6 +62,7 @@ export class UserComponent implements OnInit {
     }
     
     onCheck(log){
+    // Display create time from Log 
        this.loginTime = (new Date(this.startAt)).getHours()+':'+(new Date(this.startAt)).getMinutes();
     }
 
