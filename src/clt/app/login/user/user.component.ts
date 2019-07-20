@@ -8,6 +8,7 @@ import { RestService } from '../../rest.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+
 export class UserComponent implements OnInit {
     
     today: string;
@@ -17,6 +18,7 @@ export class UserComponent implements OnInit {
     userId: number;
     logId: number;
     startAt: string;
+    loginTime: string;
     fetchedId: number;
     fetchedLogitem =[];
     
@@ -35,24 +37,21 @@ export class UserComponent implements OnInit {
         }
 
     ngOnInit() {
-  
+    
+    //Find or Create Today's Login Time
         const log = {
             day: this.today,
             userId: this.userId
         };
-        
         this.rest.storeLog(this.key, log).subscribe(res =>{
             this.fetchedId = res.log.id;
             this.startAt = res.log.createdAt;
         });
-    }
-    
-    onCreate(log){
-        console.log('log from: '+this.fetchedId);
-        console.log('time from: '+(new Date(this.startAt)).getUTCHours());
+
+    //Find or Create LOGITEM
         const logitem = {
             logId: this.fetchedId,
-            startAt: '10:00'
+            startAt: this.startAt
         }
         this.rest.storeLogitem(this.key, this.fetchedId, logitem)
             .subscribe( res => {
@@ -60,8 +59,12 @@ export class UserComponent implements OnInit {
                 console.log('fetchedLogitem', res);
         }, (err)=>{
             console.log(err);
-            }
-      )}
+            });
+    }
+    
+    onCheck(log){
+       this.loginTime = (new Date(this.startAt)).getHours()+':'+(new Date(this.startAt)).getMinutes();
+    }
 
     next(){
         this.dialogRef.close(); this.router.navigate(['/'+this.key+'/logs']);

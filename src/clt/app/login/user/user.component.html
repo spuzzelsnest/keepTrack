@@ -7,11 +7,16 @@
 {{displayToday}}, 
 <app-clock></app-clock>
   <div class="message">
-    <button mat-raised-button color="primary" (click)="onCreate()">Clock In</button>
-<!--<h2>You Logged in At: [StartedAt]</h2> -->
+    <div class="state">
+        <button mat-raised-button color="primary" (click)="onCheck()">Check Login Time</button>
+    </div>
+      <div class="state">
+        <h2>Start registered at: {{loginTime}}</h2><br>
+          
+      </div>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions  style="text-align: center">
-        <button class="mat-raised-button"(click)="next()">View Logs</button>
-        <button class="mat-raised-button"(click)="close()">Close</button>
+        <button class="mat-raised-button"(click)="next()" color="primary">View Logs</button>
+        <button class="mat-raised-button"(click)="close()" color="primary">Close</button>
 </mat-dialog-actions>
