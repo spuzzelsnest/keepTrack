@@ -60,7 +60,7 @@ export class OverviewComponent implements OnInit {
       
     const logItemPopup = new MatDialogConfig();
         logItemPopup.width = '600px';
-        logItemPopup.height = '400px';
+        logItemPopup.height = '450px';
         logItemPopup.disableClose = true;
         logItemPopup.autoFocus = true;
         logItemPopup.data ={
