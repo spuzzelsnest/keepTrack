@@ -99,6 +99,7 @@ class LogicController{
             startedAt: req.body.startedAt
         };
         models.Logitem.findOrCreate({
+            attributes: ['id', 'startAt', 'breakOut', 'breakIn', 'endAt','logId'],
             where: {
             logId: req.body.logId}
         })

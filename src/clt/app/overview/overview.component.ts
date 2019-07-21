@@ -45,26 +45,27 @@ export class OverviewComponent implements OnInit {
   }
 
   onGetLogs(key: string){
-        this.logs = [];
-        this.isLoading = true;
-        this.rest.getLogs(this.key).subscribe((lBlock: {}) => {
+    this.logs = [];
+    //Loading Spinner
+    this.isLoading = true;
+    this.rest.getLogs(this.key).subscribe((lBlock: {}) => {
         this.isLoading = false;
         this.logs=lBlock;
     });
   }
 
   onEdit(form: NgForm){
-      this.logitem =[]
-      this.logId = form.value.logId;
+    this.logitem =[]
+    this.logId = form.value.logId;
       
-      const logItemPopup = new MatDialogConfig();
-      logItemPopup.width = '600px';
-      logItemPopup.height = '400px';
-      logItemPopup.disableClose = true;
-      logItemPopup.autoFocus = true;
-      logItemPopup.data ={
-          logId: '2'
-      }
+    const logItemPopup = new MatDialogConfig();
+        logItemPopup.width = '600px';
+        logItemPopup.height = '400px';
+        logItemPopup.disableClose = true;
+        logItemPopup.autoFocus = true;
+        logItemPopup.data ={
+            logId: '2'
+        }
       this.dialog.open(EditComponent, logItemPopup);
       
   }    

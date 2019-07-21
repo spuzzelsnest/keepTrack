@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
             this.userLogin = uBlock;
             const userPopup = new MatDialogConfig();
             userPopup.width = '600px';
-            userPopup.height = '400px';
+            userPopup.height = '450px';
             
             userPopup.disableClose = true;
             userPopup.autoFocus = true;
