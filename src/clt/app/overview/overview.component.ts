@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { RestService } from '../rest.service';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { NgForm } from '@angular/forms';
 
+import { RestService } from '../rest.service';
+import { EditComponent } from './edit/edit.component';
 import { userModel } from '../userModel';
 import { logModel } from '../logModel';
 import { logitemModel } from '../logitemModel';
@@ -12,33 +15,54 @@ import { logitemModel } from '../logitemModel';
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
+
 export class OverviewComponent implements OnInit {
     
     key: string;
     logs:any = [];
+    logId: string;
+    logitem:any = [];
     
     displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
 
-  constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    public rest:RestService,
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router) {}
 
   ngOnInit() {
   //Get the userLogin from Key  
     this.route.params.subscribe(params => {
       if (params['key']) {
-    
         this.key = params.key;
         this.onGetLogs(this.key);
-        
       }else{
          this.key = null;
       }
     });
   }
 
-    onGetLogs(key: string){
+  onGetLogs(key: string){
         this.logs = [];
-        this.rest.getLogs(this.key).subscribe((data: {}) => {
-        this.logs=data;
-    })}
-    
+        this.rest.getLogs(this.key).subscribe((lBlock: {}) => {
+        this.logs=lBlock;
+    });
+  }
+
+  onEdit(form: NgForm){
+      this.logitem =[]
+      this.logId = form.value.logId;
+      
+      const logItemPopup = new MatDialogConfig();
+      logItemPopup.width = '600px';
+      logItemPopup.height = '400px';
+      logItemPopup.disableClose = true;
+      logItemPopup.autoFocus = true;
+      logItemPopup.data ={
+          logId: '2'
+      }
+      this.dialog.open(EditComponent, logItemPopup);
+      
+  }    
 }

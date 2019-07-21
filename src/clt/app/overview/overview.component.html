@@ -9,6 +9,7 @@ Found {{logs.length}}
            Dia: {{log.day}}
         </span>
     </mat-expansion-panel-header>
+<form (submit)="onEdit(editForm)" #editForm="ngForm">
 <table mat-table class="mat-elevation-z8">
   <!-- Start At Column {{log['Logitem'].startAt}} -->
     <ng-container matColumnDef="startAt">
@@ -34,8 +35,14 @@ Found {{logs.length}}
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <mat-action-row>
-    <a mat-button color="primary" [routerLink]="['/',key,'logs',log.id]">Edit</a>
+<!--    <a mat-button color="primary" [routerLink]="['/',key,'logs',log.id]">Edit</a> -->
+       <button 
+        mat-raised-button 
+        color="primary"
+        type="submit">Edit</button> 
+    
 </mat-action-row>
+</form>
 </mat-expansion-panel>
 </mat-accordion>
     

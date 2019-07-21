@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { RestService } from '../../rest.service';
 
 @Component({
@@ -27,12 +27,12 @@ export class UserComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private dialogRef: MatDialogRef<UserComponent>, 
-        @Inject(MAT_DIALOG_DATA) data) {
-            this.today = data.day;
-            this.displayToday = data.display;
-            this.key = data.key;
-            this.userName = data.userName;
-            this.userId = data.userId;
+        @Inject(MAT_DIALOG_DATA) uBlock) {
+            this.today = uBlock.day;
+            this.displayToday = uBlock.display;
+            this.key = uBlock.key;
+            this.userName = uBlock.userName;
+            this.userId = uBlock.userId;
         }
 
     ngOnInit() {
@@ -66,11 +66,12 @@ export class UserComponent implements OnInit {
        this.loginTime = (new Date(this.startAt)).getHours()+':'+(new Date(this.startAt)).getMinutes();
     }
 
-    next(){
-        this.dialogRef.close(); this.router.navigate(['/'+this.key+'/logs']);
+    viewLogs(){
+        this.dialogRef.close(); 
+        this.router.navigate(['/'+this.key+'/logs']);
         }
     
-    close(){
+    closeUser(){
         this.dialogRef.close();
     }
 }

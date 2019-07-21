@@ -1,9 +1,7 @@
-<app-header></app-header>
+<mat-dialog-content>
 <mat-card>
-    <form (submit)="onAddLog(addLogForm)" #addLogForm="ngForm">
-
-   Date: {{day}}
-        <br>
+  <form (submit)="onAddLog(addLogForm)" #addLogForm="ngForm">
+<h2>Date: {{day}}</h2><br>
   <mat-form-field>
       [startAt]
       <input 
@@ -53,21 +51,17 @@
             #startAt="ngModel"/>
    <!--   <mat-error *ngIf="endAt.invalid">End At</mat-error> -->
   </mat-form-field>
-    <br>
-    <button
-        mat-raised-button
-        color='primary'
-        class="mat-raised-button"(click)="back()">
-    BACK
-    </button>
-        <span class="spacer"></span>
+    </form>
+
+<mat-dialog-actions  style="text-align: center">
+        
     <button 
         mat-raised-button
         color='primary'
         type="submit">
     Save
-    </button>
-    
-    </form>
-  
+    </button><span class="spacer"></span>
+    <button class="mat-raised-button" (click)="closeEdit()" color="primary">Close</button>
+</mat-dialog-actions>
 </mat-card>
+</mat-dialog-content>

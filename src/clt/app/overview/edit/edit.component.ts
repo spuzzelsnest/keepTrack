@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
 
 import { RestService } from '../../rest.service';
-import { logModel } from '../../logModel';
-import { logitemModel } from '../../logitemModel';
 
 @Component({
   selector: 'app-edit',
@@ -13,23 +12,24 @@ import { logitemModel } from '../../logitemModel';
 })
 export class EditComponent implements OnInit {
 
-  private mode = 'add';
-    private key: string;
-    private logId: string;
+    key: string;
+    logId: string;
     timelog:any = [];
     value:any;
 
-  constructor(public rest:RestService, public route: ActivatedRoute, private router: Router) {}
+  constructor(
+        public rest:RestService,
+        public route: ActivatedRoute,
+        private dialogRef: MatDialogRef<EditComponent>, 
+        private router: Router) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap : ParamMap) =>{
         if (paramMap.has('logid')){
-            this.mode = 'edit';
             this.key = paramMap.get('key');
             this.logId = paramMap.get('logid');
             this.timelog = this.rest.getLog(this.key,this.logId);
         }else{
-          this.mode = 'add';
           this.logId = null;
         }
     });
@@ -45,8 +45,7 @@ export class EditComponent implements OnInit {
       console.log(err);
     });
   }
-
-    back(){
-        this.router.navigate(['/'+this.key+'/logs']);
+  closeEdit(){
+        this.dialogRef.close();
     }
 }
