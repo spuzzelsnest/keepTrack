@@ -49,8 +49,9 @@ export class OverviewComponent implements OnInit {
     //Loading Spinner
     this.isLoading = true;
     this.rest.getLogs(this.key).subscribe((lBlock: {}) => {
-        this.isLoading = false;
+        this.isLoading = false; //stop spinner
         this.logs=lBlock;
+        console.log(this.logs);
     });
   }
 

@@ -11,7 +11,7 @@ Found {{logs.length}}
         </span>
     </mat-expansion-panel-header>
 <form (submit)="onEdit(editForm)" #editForm="ngForm" *ngIf="!isLoading">
-<table mat-table class="mat-elevation-z8">
+<table mat-table class="mat-elevation-z8" [dataSource]=logitem>
   <!-- Start At Column {{log['Logitem'].startAt}} -->
     <ng-container matColumnDef="startAt">
         <th mat-header-cell *matHeaderCellDef>Started At</th>
