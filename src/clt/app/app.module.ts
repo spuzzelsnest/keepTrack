@@ -13,6 +13,7 @@ import { MatToolbarModule,
          MatDatepickerModule,
          MatNativeDateModule,
          MatTableModule,
+         MatProgressSpinnerModule,
          MatDialogModule
        } from '@angular/material';
 
@@ -53,6 +54,7 @@ import { EditComponent } from './overview/edit/edit.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
+    MatProgressSpinnerModule,
     MatDialogModule
   ],
   providers: [MatDatepickerModule],

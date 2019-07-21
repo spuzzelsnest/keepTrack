@@ -22,6 +22,7 @@ export class OverviewComponent implements OnInit {
     logs:any = [];
     logId: string;
     logitem:any = [];
+    isLoading = false;
     
     displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
 
@@ -45,7 +46,9 @@ export class OverviewComponent implements OnInit {
 
   onGetLogs(key: string){
         this.logs = [];
+        this.isLoading = true;
         this.rest.getLogs(this.key).subscribe((lBlock: {}) => {
+        this.isLoading = false;
         this.logs=lBlock;
     });
   }

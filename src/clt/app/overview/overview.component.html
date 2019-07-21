@@ -1,5 +1,6 @@
 <app-header></app-header>
 <mat-card>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
 <br>
 Found {{logs.length}}
 <mat-accordion *ngIf="logs.length >0 ">
@@ -9,7 +10,7 @@ Found {{logs.length}}
            Dia: {{log.day}}
         </span>
     </mat-expansion-panel-header>
-<form (submit)="onEdit(editForm)" #editForm="ngForm">
+<form (submit)="onEdit(editForm)" #editForm="ngForm" *ngIf="!isLoading">
 <table mat-table class="mat-elevation-z8">
   <!-- Start At Column {{log['Logitem'].startAt}} -->
     <ng-container matColumnDef="startAt">
