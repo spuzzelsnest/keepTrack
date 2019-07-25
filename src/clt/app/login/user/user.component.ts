@@ -51,7 +51,7 @@ export class UserComponent implements OnInit {
 
     setStartTime(){
     //Find or Create LOGITEM
-        this.loginTime = (new Date(this.startAt)).getHours()+':'+(new Date(this.startAt)).getMinutes();
+        this.loginTime = new Date(this.startAt).getHours()+ ':'+ (new Date(this.startAt).getMinutes() < 10 ? "0" : "")+ (new Date(this.startAt).getMinutes());
         const logitem = {
             logId: this.fetchedId,
             startAt: this.loginTime
@@ -59,17 +59,13 @@ export class UserComponent implements OnInit {
         this.rest.storeLogitem(this.key, this.fetchedId, logitem).subscribe( res => {
                 this.fetchedLogitem = res;
                 console.log('fetchedLogitem', res);
-        }, (err)=>{
-            console.log(err);
-            });
-        
-        
+            }, (err)=>{ console.log(err); }
+        );
     }
     
     onCheck(log){
     // Display create time from Log 
        this.loginTime = (new Date(this.startAt)).getHours()+':'+(new Date(this.startAt)).getMinutes();
-
     }
 
     viewLogs(){

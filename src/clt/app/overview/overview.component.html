@@ -1,50 +1,19 @@
 <app-header></app-header>
 <mat-card>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-<br>
-Found {{logs.length}}
+<p>Found {{logs.length}}</p>
 <mat-accordion *ngIf="logs.length >0 ">
-    <mat-expansion-panel *ngFor="let log of logs; let i=index;">
-    <mat-expansion-panel-header>
-        <span class="badge">
-           Dia: {{log.day}}
-        </span>
-    </mat-expansion-panel-header>
-<form (submit)="onEdit(editForm)" #editForm="ngForm" *ngIf="!isLoading">
-<table mat-table class="mat-elevation-z8" [dataSource]=logitem>
-  <!-- Start At Column {{log['Logitem'].startAt}} -->
-    <ng-container matColumnDef="startAt">
-        <th mat-header-cell *matHeaderCellDef>Started At</th>
-        <td mat-cell>{{log['Logitem'].startAt}}</td>
-    </ng-container>
-  <!-- Break At Column {{log['Logitem'].breakOut}} -->
-    <ng-container matColumnDef="breakOut">
-        <th mat-header-cell *matHeaderCellDef>Break At</th>
-        <td mat-cell>{{log['Logitem'].breakOut}}</td>
-    </ng-container>
-  <!-- Break IN Column {{log['Logitem'].breakIn}}-->
-    <ng-container matColumnDef="breakIn">
-        <th mat-header-cell *matHeaderCellDef>Came Back</th>
-        <td mat-cell>{{log['Logitem'].breakIn}}</td>
-    </ng-container>
-  <!-- End AT Column {{{log['Logitem'].endAt}} -->
-    <ng-container matColumnDef="endAt">
-        <th mat-header-cell *matHeaderCellDef>Left The Office</th>
-       <td mat-cell>{{log['Logitem'].endAt}}</td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-<mat-action-row>
-<!--    <a mat-button color="primary" [routerLink]="['/',key,'logs',log.id]">Edit</a> -->
-       <button 
-        mat-raised-button 
-        color="primary"
-        type="submit">Edit</button> 
-    
-</mat-action-row>
-</form>
-</mat-expansion-panel>
+    <form (submit)="onEdit(editForm)" #editForm="ngForm" *ngIf="!isLoading">
+        <mat-expansion-panel *ngFor="let log of logs; let i=index;">
+            <mat-expansion-panel-header>
+                <span class="badge">Dia: {{log.day}}</span>
+            </mat-expansion-panel-header>
+            <p> {{log['Logitem'].startAt}} - {{log['Logitem'].breakOut}} - {{log['Logitem'].breakIn}} - {{log['Logitem'].endAt}}</p>
+            <mat-action-row>
+                <button mat-raised-button color="primary" type="submit">Edit</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </form>
 </mat-accordion>
     
 <p class="info-text mat-body-1" *ngIf="logs.length <= 0">No Acces recorded yet for user </p>

@@ -48,10 +48,13 @@ export class OverviewComponent implements OnInit {
     this.logs = [];
     //Loading Spinner
     this.isLoading = true;
-    this.rest.getLogs(this.key).subscribe((lBlock: {}) => {
+    this.rest.getLogs(this.key).subscribe((lBlocks: {}) => {
         this.isLoading = false; //stop spinner
-        this.logs=lBlock;
-        console.log(this.logs);
+        //set logs to lBlocks
+        this.logs = lBlocks;
+       // dataSource = lBlocks;
+        //console.log(this.logs[0].Logitem);
+        //console.log(lBlock);
     });
   }
 
@@ -64,6 +67,7 @@ export class OverviewComponent implements OnInit {
         logItemPopup.height = '450px';
         logItemPopup.disableClose = true;
         logItemPopup.autoFocus = true;
+        //still had to set logId to the selected
         logItemPopup.data ={
             logId: '2'
         }
