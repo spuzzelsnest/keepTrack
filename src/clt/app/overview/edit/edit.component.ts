@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
@@ -20,8 +20,9 @@ export class EditComponent implements OnInit {
   constructor(
         public rest:RestService,
         public route: ActivatedRoute,
+        private router: Router,
         private dialogRef: MatDialogRef<EditComponent>, 
-        private router: Router) {}
+        @Inject(MAT_DIALOG_DATA) lBlock) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap : ParamMap) =>{
@@ -33,6 +34,7 @@ export class EditComponent implements OnInit {
           this.logId = null;
         }
     });
+       console.log("LOGID: "+this.logId);
   }
 
   onAddLog(form: NgForm) {

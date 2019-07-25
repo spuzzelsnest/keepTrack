@@ -24,7 +24,7 @@ export class OverviewComponent implements OnInit {
     logitem:any = [];
     isLoading = false;
     
-    displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
+  //  displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
 
   constructor(
     public rest:RestService,
@@ -67,6 +67,7 @@ export class OverviewComponent implements OnInit {
         logItemPopup.height = '450px';
         logItemPopup.disableClose = true;
         logItemPopup.autoFocus = true;
+        console.log('logId: ');
         //still had to set logId to the selected
         logItemPopup.data ={
             logId: '2'
