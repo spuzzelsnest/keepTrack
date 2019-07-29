@@ -58,10 +58,10 @@ getLogs(key:string): Observable<logModel[]> {
    );
 }
 
-getLog(key: string, logId: string): Observable<logModel[]> {
+getLog(key: string, logId: number): Observable<logModel[]> {
     return this.http.get<logModel[]>(endpoint + key +'/logs/'+logId)
       .pipe(
-        tap(_ => console.log(`fetched logs w/id=${logId}`)),
+        tap(_ => console.log(`fetched timelog w/id=${logId}`)),
         catchError(this.handleError<any>(`getLog id=${logId}`)),
         map(this.extractData)
 )}
@@ -91,7 +91,7 @@ updateLog(key:string, logid:string, timelog): Observable<any> {
 
   /*
 deleteLog(id): Observable<logModel> {
-  return this.http.delete<logModel>(endpoint + 'log/' + id, httpOptions).pipe(
+  return this.http.delete<logModel>(endpoint + key+'/logs/' + id, httpOptions).pipe(
     tap(_ => console.log(`deleted log id=${id}`)),
     catchError(this.handleError<any>('deleteLog'))
   );

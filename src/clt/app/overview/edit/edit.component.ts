@@ -24,12 +24,11 @@ export class EditComponent implements OnInit {
         private router: Router,
         private dialogRef: MatDialogRef<EditComponent>, 
         @Inject(MAT_DIALOG_DATA) lBlock) {
-            this.logId = lBlock.logId;
+            this.timelog = lBlock;
         }
 
   ngOnInit() {
-      
-      console.log('PopupId: ' + this.logId);
+      console.log(JSON.stringify(this.timelog, null, 4));
   }
     
   onAddLog(form: NgForm) {
@@ -37,7 +36,7 @@ export class EditComponent implements OnInit {
           return;
       }
     this.rest.storeLog(this.key, form.value).subscribe((result) => {
-      this.router.navigate([this.key+'/logs/']);
+      this.router.navigate([this.timelog.key+'/logs/']);
     }, (err) => {
       console.log(err);
     });

@@ -19,7 +19,7 @@ export class OverviewComponent implements OnInit {
     
     key: string;
     logs:any = [];
-    logId: string;
+    logId: number;
     logitem:any = [];
     isLoading = false;
     
@@ -44,34 +44,31 @@ export class OverviewComponent implements OnInit {
   }
 
   onGetLogs(key: string){
-    this.logs = [];
     this.isLoading = true; //Loading Spinner
     this.rest.getLogs(this.key).subscribe((lBlocks: {}) => {
         this.isLoading = false; //stop spinner
         this.logs = lBlocks;
-        //console.log(this.logs);
+        console.log(JSON.stringify(lBlocks, null, 4));
     });
   }
 
-  onEdit(form: NgForm):void{
-    console.log(form);
-    this.logitem = [];
-    this.logId = '40';
+  onEdit(form: NgForm){
+
+    this.logId = 50;
    
     this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
         this.logitem = lBlock;
+        console.log('lblock: '+ JSON.stringify(lBlock, null, 4));
     
     const logItemPopup = new MatDialogConfig();
         logItemPopup.width = '600px';
         logItemPopup.height = '450px';
         logItemPopup.disableClose = true;
         logItemPopup.autoFocus = true;
-        console.log('logId 1: '+ this.logId);
-      
-      
-        //still had to set logId to the selected
         logItemPopup.data ={
-            logId: this.logId
+            key: this.key,
+            logId: this.logId,
+            logitem: this.logitem
         }
         this.dialog.open(EditComponent, logItemPopup);
         }),(err)=>{console.log(err);};
