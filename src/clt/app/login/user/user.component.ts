@@ -45,20 +45,23 @@ export class UserComponent implements OnInit {
         this.rest.storeLog(this.key, log).subscribe(res =>{
             this.fetchedId = res.log.id;
             this.startAt = res.log.createdAt;
-            this.setStartTime();
+            this.setStartTime(this.fetchedId);
         });
+         
     }
 
-    setStartTime(){
+    setStartTime(fetchedId){
     //Find or Create LOGITEM
+        //console.log('passed ID: ' +fetchedId);
         this.loginTime = new Date(this.startAt).getHours()+ ':'+ (new Date(this.startAt).getMinutes() < 10 ? "0" : "")+ (new Date(this.startAt).getMinutes());
         const logitem = {
             logId: this.fetchedId,
             startAt: this.loginTime
         }
-        this.rest.storeLogitem(this.key, this.fetchedId, logitem).subscribe( res => {
-                this.fetchedLogitem = res;
-                console.log('fetchedLogitem', res);
+        //console.log(logitem);
+        this.rest.storeLogitem(this.key, this.fetchedId, logitem).subscribe(res => {
+                this.fetchedLogitem = res.logitem.id;
+                console.log('fetchedLogitem: ' + res.logitem.id);
             }, (err)=>{ console.log(err); }
         );
     }

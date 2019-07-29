@@ -82,12 +82,12 @@ class LogicController{
                 userId: req.body.userId}
          })
             .spread((log, created)=>{
-                console.log(created);
+                console.log('Log created: '+created);
                 return res.status(200).send({ log });
             })
     }
     
-    createTimelog(req, res){
+    createStartlog(req, res){
         if (!req.body.logId){
             return res.status(400).send({
                 success: 'false',
@@ -96,17 +96,17 @@ class LogicController{
         }
         const logitem ={
             logId: req.body.logId,
-            startedAt: req.body.startedAt
+            startAt: req.body.startAt
         };
+       
         models.Logitem.findOrCreate({
-            attributes: ['id', 'startAt', 'breakOut', 'breakIn', 'endAt','logId'],
             where: {
-            logId: req.body.logId}
+                logId: req.body.logId}
         })
         .spread(function(logitem, created){
-                console.log(created);
-                return res.status(200).send({ logitem });
-            })
+            console.log('StartTime created: '+created);    
+            return res.status(200).send({ logitem });
+        })
     }
 
     updateTimelog(req, res, next){
