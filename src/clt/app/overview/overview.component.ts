@@ -56,7 +56,7 @@ export class OverviewComponent implements OnInit {
 
     this.logId = 50;
       //console.log('form: '+ JSON.stringify(form, null, 4));
-      //console.log(NgForm.button);
+      console.log(this.logId);
     this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
         this.logitem = lBlock;
         console.log('lblock: '+ JSON.stringify(lBlock, null, 4));

@@ -4,7 +4,7 @@
 <form (submit)="onEdit(editForm)" #editForm="ngForm">
 <p>Found {{logs.length}}</p>
 <mat-accordion *ngIf="logs.length >0 ">
-    <form (submit)="onEdit(editForm)" #editForm="ngForm" *ngIf="!isLoading">
+    <form #editForm="ngForm" (ngSubmit)="onEdit(editForm)" *ngIf="!isLoading">
         <mat-expansion-panel *ngFor="let log of logs; let i=index;">
             <mat-expansion-panel-header>
                 <span class="badge">Dia: {{log.day}}</span>
