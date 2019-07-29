@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
   const log = sequelize.define('Log',{
     id: {   type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true },
+            autoIncrement: true 
+    },
     day: DataTypes.STRING,
     userId: DataTypes.NUMERIC
   },{});

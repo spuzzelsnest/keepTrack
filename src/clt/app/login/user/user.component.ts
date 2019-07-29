@@ -20,6 +20,7 @@ export class UserComponent implements OnInit {
     startAt: string;
     loginTime: string;
     fetchedId: number;
+    fetchedLogitemId : number;
     fetchedLogitem =[];
     
     constructor(
@@ -45,25 +46,29 @@ export class UserComponent implements OnInit {
         this.rest.storeLog(this.key, log).subscribe(res =>{
             this.fetchedId = res.log.id;
             this.startAt = res.log.createdAt;
-            this.setStartTime(this.fetchedId);
+            this.setStartTime( this.fetchedId, this.startAt);
         });
          
     }
 
-    setStartTime(fetchedId){
+    setStartTime(fetchedId, startAt){
     //Find or Create LOGITEM
-        //console.log('passed ID: ' +fetchedId);
+        //console.log('passed ID: ' +fetchedId+ ' and '+ startAt);
         this.loginTime = new Date(this.startAt).getHours()+ ':'+ (new Date(this.startAt).getMinutes() < 10 ? "0" : "")+ (new Date(this.startAt).getMinutes());
+        //console.log('time: '+this.loginTime);
         const logitem = {
             logId: this.fetchedId,
             startAt: this.loginTime
         }
         //console.log(logitem);
         this.rest.storeLogitem(this.key, this.fetchedId, logitem).subscribe(res => {
-                this.fetchedLogitem = res.logitem.id;
-                console.log('fetchedLogitem: ' + res.logitem.id);
-            }, (err)=>{ console.log(err); }
+                this.fetchedLogitemId = res.logitem.id;
+                this.startAt = res.logitem.startAt;
+        
+        }, (err)=>{ console.log(err); }
         );
+        //this.rest.getLog()
+        //console.log('fetchedLogitem: ' +this.key+ ' and '+  logId);
     }
     
     onCheck(log){
