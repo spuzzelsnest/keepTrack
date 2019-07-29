@@ -28,7 +28,7 @@ export class EditComponent implements OnInit {
         }
 
   ngOnInit() {
-      console.log(JSON.stringify(this.timelog, null, 4));
+      console.log('timeLog: '+ JSON.stringify(this.timelog, null, 4));
   }
     
   onAddLog(form: NgForm) {

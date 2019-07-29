@@ -52,12 +52,11 @@ export class LoginComponent implements OnInit {
                 userId: this.userLogin.id
             }
             this.dialog.open(UserComponent, userPopup);
-            console.log(JSON.stringify(uBlock, null, 4));
+            //console.log(JSON.stringify(uBlock, null, 4));
         }),(err)=>{
             console.log(err);
         };
         
         form.resetForm();
    }
-   
 }
