@@ -28,12 +28,17 @@ export class RestService {
  
   constructor(private http: HttpClient) { }
     
-  private extractData(res: Response) {
+  private extractLogs(res: Response) {
       const logs = [];
       const body = Object(res['logs']);
       return body || { }; 
   }
 
+    private extractLog(res: Response) {
+      const logs = [];
+      const body = Object(res['timelog']);
+      return body || { }; 
+  }
   private userLogin(res: Response) {
       const userBlock = [];
       const body = Object(res['userLogin']);
@@ -54,7 +59,7 @@ getLogs(key:string): Observable<logModel[]> {
     .pipe(
         tap(_ => console.log(`get logs for ${key}`)),
         catchError(this.handleError(`getLogs failed`)),
-        map(this.extractData)
+        map(this.extractLogs)
    );
 }
 
@@ -63,7 +68,7 @@ getLog(key: string, logId: number): Observable<logModel[]> {
       .pipe(
         tap(_ => console.log(`fetched timelog w/id=${logId}`)),
         catchError(this.handleError<any>(`getLog id=${logId}`)),
-        map(this.extractData)
+        map(this.extractLog)
 )}
     
 storeLog(key: string, log): Observable<any> {

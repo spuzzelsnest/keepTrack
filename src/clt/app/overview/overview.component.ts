@@ -55,7 +55,7 @@ export class OverviewComponent implements OnInit {
   onEdit(form: NgForm){
 
     this.logId = 50;
-   
+    console.log('http://localhost:1945/api/'+this.key +'/logs/'+this.logId);
     this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
         this.logitem = lBlock;
         console.log('lblock: '+ JSON.stringify(lBlock, null, 4));
