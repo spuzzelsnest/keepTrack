@@ -1,6 +1,7 @@
 <app-header></app-header>
 <mat-card>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
+<form (submit)="onEdit(editForm)" #editForm="ngForm">
 <p>Found {{logs.length}}</p>
 <mat-accordion *ngIf="logs.length >0 ">
     <form (submit)="onEdit(editForm)" #editForm="ngForm" *ngIf="!isLoading">
@@ -10,11 +11,11 @@
             </mat-expansion-panel-header>
             <p> {{log['Logitem'].startAt}} - {{log['Logitem'].breakOut}} - {{log['Logitem'].breakIn}} - {{log['Logitem'].endAt}}</p>
             <mat-action-row>
-                <button mat-raised-button color="primary" type="submit">Edit</button>
+                <button mat-raised-button color="primary" type="submit" id="{{log['Logitem'].id}}">Edit</button>
             </mat-action-row>
         </mat-expansion-panel>
     </form>
 </mat-accordion>
-    
+</form>
 <p class="info-text mat-body-1" *ngIf="logs.length <= 0">No Acces recorded yet for user </p>
 </mat-card>

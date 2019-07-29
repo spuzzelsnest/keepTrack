@@ -10,6 +10,7 @@ import { RestService } from '../../rest.service';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css']
 })
+
 export class EditComponent implements OnInit {
 
     key: string;
@@ -22,20 +23,12 @@ export class EditComponent implements OnInit {
         public route: ActivatedRoute,
         private router: Router,
         private dialogRef: MatDialogRef<EditComponent>, 
-        @Inject(MAT_DIALOG_DATA) lBlock) {}
-
-  ngOnInit() {
-    this.route.paramMap.subscribe((paramMap : ParamMap) =>{
-        if (paramMap.has('logid')){
-            this.key = paramMap.get('key');
-            this.logId = paramMap.get('logid');
-            this.timelog = this.rest.getLog(this.key,this.logId);
-        }else{
-          this.logId = null;
+        @Inject(MAT_DIALOG_DATA) lBlock) {
+            
+            
         }
-    });
-       console.log("LOGID: "+this.logId);
-  }
+
+  ngOnInit() {}
 
   onAddLog(form: NgForm) {
       if (form.invalid) {

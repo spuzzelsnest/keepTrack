@@ -60,8 +60,8 @@ class LogicController{
         }})
         .then(timelog => res.status(200).send({
             timelog,
-    
         }));
+
     }
     
     createLog(req, res){

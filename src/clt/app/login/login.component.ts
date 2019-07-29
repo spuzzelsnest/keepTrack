@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { filter } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import * as moment from 'moment';
 
