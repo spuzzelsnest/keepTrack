@@ -17,8 +17,11 @@ export class UserComponent implements OnInit {
     userName: string;
     userId: number;
     logId: number;
-    startAt: string;
     createdAt: string;
+    startAt: string;
+    breakOut: string;
+    breakIn: string;
+    endAt: string;
     loginTime: string;
     fetchedId: number;
     fetchedLogitemId : number;
@@ -64,8 +67,9 @@ export class UserComponent implements OnInit {
         this.rest.storeLogitem(this.key, this.fetchedId, logitem).subscribe(res => {
                 this.fetchedLogitemId = res.logitem.id;
                 this.startAt = res.logitem.startAt;
-                console.log('startAt: '+this.startAt);
-        
+                this.breakOut = res.logitem.breakOut;
+                this.breakIn = res.logitem.breakIn;
+                this.endAt = res.logitem.endAt;
         }, (err)=>{ console.log(err); }
         );
         
