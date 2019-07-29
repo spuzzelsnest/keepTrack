@@ -55,20 +55,20 @@ export class OverviewComponent implements OnInit {
   onEdit(form: NgForm):void{
 
     this.logId = 50;
-      console.log('form: '+ JSON.stringify(form, null, 4));
-
+      //console.log('form: '+ JSON.stringify(form, null, 4));
+      //console.log(NgForm.button);
     this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
         this.logitem = lBlock;
-        //console.log('lblock: '+ JSON.stringify(lBlock, null, 4));
+        console.log('lblock: '+ JSON.stringify(lBlock, null, 4));
     
     const logItemPopup = new MatDialogConfig();
-        logItemPopup.width = '600px';
-        logItemPopup.height = '450px';
-        logItemPopup.disableClose = true;
-        logItemPopup.autoFocus = true;
-        logItemPopup.data ={
-            logitem: this.logitem
-        }
+          logItemPopup.width = '600px';
+          logItemPopup.height = '450px';
+          logItemPopup.disableClose = true;
+          logItemPopup.autoFocus = true;
+          logItemPopup.data ={
+             logitem: this.logitem
+          }
         this.dialog.open(EditComponent, logItemPopup);
         }),(err)=>{console.log(err);};
   }

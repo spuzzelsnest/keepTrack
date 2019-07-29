@@ -1,10 +1,19 @@
 <mat-dialog-content>
 <mat-card>
-<h1>{{timelog.logId}}</h1>
+<h1>{{timelog['logitem'].day}}</h1>
+<form>
+  <p>
+    <li>{{timelog['logitem']['Logitem'].startAt}}</li>
+    <li>{{timelog['logitem']['Logitem'].breakOut}}</li>
+    <li>{{timelog['logitem']['Logitem'].breakIn}}</li>
+    <li>{{timelog['logitem']['Logitem'].endAt}}</li>
+  </p>  
 <mat-dialog-actions>
     <button mat-raised-button color="primary" type="submit">Save</button>
         <span class="spacer"></span>
     <button class="mat-raised-button" (click)="closeEdit()" color="primary">Close</button>
+
 </mat-dialog-actions>
+</form>
 </mat-card>
 </mat-dialog-content>
