@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { NgForm } from '@angular/forms';
 
 import { RestService } from '../rest.service';
 import { EditComponent } from './edit/edit.component';
@@ -48,15 +47,16 @@ export class OverviewComponent implements OnInit {
     this.rest.getLogs(this.key).subscribe((lBlocks: {}) => {
         this.isLoading = false; //stop spinner
         this.logs = lBlocks;
-        console.log(JSON.stringify(lBlocks, null, 4));
+        //console.log(JSON.stringify(lBlocks, null, 4));
     });
   }
 
-  onEdit(form: NgForm):void{
-
-    this.logId = 50;
+  onEdit(event){
+    const target = event.target || event.srcElement || event.currentTarget;
+    this.logId = target.attributes.id.nodeValue;
+    console.log(this.logId)
       //console.log('form: '+ JSON.stringify(form, null, 4));
-      console.log(this.logId);
+      
     this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
         this.logitem = lBlock;
         console.log('lblock: '+ JSON.stringify(lBlock, null, 4));
