@@ -102,8 +102,6 @@ class LogicController{
         models.Logitem.findOrCreate({
             where: {
                 logId: req.body.logId},
-            attributes:['id', 'startAt', 'breakOut', 'breakIn', 'endAt','logId'],
-            required: true,
             defaults: {startAt: req.body.startAt}})
         .spread(function(logitem, created){
             console.log('StartTime created: '+created);

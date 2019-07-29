@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
     userId: number;
     logId: number;
     startAt: string;
+    createdAt: string;
     loginTime: string;
     fetchedId: number;
     fetchedLogitemId : number;
@@ -45,17 +46,16 @@ export class UserComponent implements OnInit {
         };
         this.rest.storeLog(this.key, log).subscribe(res =>{
             this.fetchedId = res.log.id;
-            this.startAt = res.log.createdAt;
-            this.setStartTime( this.fetchedId, this.startAt);
+            this.createdAt = res.log.createdAt;
+            this.setStartTime( this.fetchedId, this.createdAt);
         });
          
     }
 
-    setStartTime(fetchedId, startAt){
+    setStartTime(fetchedId, createdAt){
     //Find or Create LOGITEM
-        //console.log('passed ID: ' +fetchedId+ ' and '+ startAt);
-        this.loginTime = new Date(this.startAt).getHours()+ ':'+ (new Date(this.startAt).getMinutes() < 10 ? "0" : "")+ (new Date(this.startAt).getMinutes());
-        //console.log('time: '+this.loginTime);
+        this.loginTime = new Date(createdAt).getHours()+ ':'+ (new Date(createdAt).getMinutes() < 10 ? "0" : "")+ (new Date(createdAt).getMinutes());
+        console.log('passed ID: ' +fetchedId+ ' and '+ this.loginTime);
         const logitem = {
             logId: this.fetchedId,
             startAt: this.loginTime
@@ -64,9 +64,11 @@ export class UserComponent implements OnInit {
         this.rest.storeLogitem(this.key, this.fetchedId, logitem).subscribe(res => {
                 this.fetchedLogitemId = res.logitem.id;
                 this.startAt = res.logitem.startAt;
+                console.log('startAt: '+this.startAt);
         
         }, (err)=>{ console.log(err); }
         );
+        
         //this.rest.getLog()
         //console.log('fetchedLogitem: ' +this.key+ ' and '+  logId);
     }
