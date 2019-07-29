@@ -1,14 +1,9 @@
 <mat-dialog-content>
 <mat-card>
-
+<h1>{{logId}}</h1>
 <mat-dialog-actions>
-        
-    <button 
-        mat-raised-button
-        color='primary'
-        type="submit">
-    Save
-    </button><span class="spacer"></span>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+        <span class="spacer"></span>
     <button class="mat-raised-button" (click)="closeEdit()" color="primary">Close</button>
 </mat-dialog-actions>
 </mat-card>

@@ -24,12 +24,14 @@ export class EditComponent implements OnInit {
         private router: Router,
         private dialogRef: MatDialogRef<EditComponent>, 
         @Inject(MAT_DIALOG_DATA) lBlock) {
-            
-            
+            this.logId = lBlock.logId;
         }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+      
+      console.log('PopupId: ' + this.logId);
+  }
+    
   onAddLog(form: NgForm) {
       if (form.invalid) {
           return;
