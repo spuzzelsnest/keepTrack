@@ -59,7 +59,7 @@ export class OverviewComponent implements OnInit {
       
     this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
         this.logitem = lBlock;
-        console.log('lblock: '+ JSON.stringify(lBlock, null, 4));
+        //console.log('lblock: '+ JSON.stringify(lBlock, null, 4));
     
     const logItemPopup = new MatDialogConfig();
           logItemPopup.width = '600px';

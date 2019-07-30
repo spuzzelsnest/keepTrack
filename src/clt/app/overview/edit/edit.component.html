@@ -3,10 +3,13 @@
 <h1>{{timelog['logitem'].day}}</h1>
 <form #editLog="ngForm" (ngSubmit)="onSave(editLog)" >
   <p>
-    <li>{{timelog['logitem']['Logitem'].startAt}}</li>
-    <li>{{timelog['logitem']['Logitem'].breakOut}}</li>
-    <li>{{timelog['logitem']['Logitem'].breakIn}}</li>
-    <li>{{timelog['logitem']['Logitem'].endAt}}</li>
+    <label for="startAt">Start time: </label><input type="time" id="startAt" value="{{timelog['logitem']['Logitem'].startAt}}">
+ 
+    <label for="breakOut">Break Out: </label><input type="time" id="breakOut" value="{{timelog['logitem']['Logitem'].breakOut}}">
+       <br>
+    <label for="breakIn">Break In: </label><input type="time" id="breakIn" value="{{timelog['logitem']['Logitem'].breakIn}}">
+ 
+    <label for="endAt">End time: </label><input type="time" id="endAt" value="{{timelog['logitem']['Logitem'].endAt}}">
   </p>  
     <mat-dialog-actions>
         <button mat-raised-button color="primary" type="submit">Save</button>
