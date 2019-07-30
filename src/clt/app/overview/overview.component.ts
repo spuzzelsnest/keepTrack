@@ -52,8 +52,8 @@ export class OverviewComponent implements OnInit {
   }
 
   onEdit(event){
-    const target = event.target || event.srcElement || event.currentTarget;
-    this.logId = target.attributes.id.nodeValue;
+      
+    this.logId = event.currentTarget.getAttribute('id');
     console.log(this.logId)
       //console.log('form: '+ JSON.stringify(form, null, 4));
       
