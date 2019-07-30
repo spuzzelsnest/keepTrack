@@ -14,8 +14,9 @@ import { RestService } from '../../rest.service';
 export class EditComponent implements OnInit {
 
     key: string;
-    logId: string;
+    logId: number;
     timelog:any = [];
+    formData:any = [];
     value:any;
 
   constructor(
@@ -28,19 +29,23 @@ export class EditComponent implements OnInit {
         }
 
   ngOnInit() {
-      //console.log('timeLog: '+ JSON.stringify(this.timelog, null, 4));
+    //console.log('timeLog: '+ JSON.stringify(this.timelog, null, 4));
+    this.key = this.timelog.key;
+    this.logId = this.timelog.logId;
+  }
+
+  onSave(form: NgForm){
+    if (form.invalid) {
+          return;
+    }
+
+    this.rest.updateLog(this.key, this.logId, this.timelog).subscribe(res =>{
+        const id = res['id'];    
+    },(err) => {
+        console.log(err);}
+    );
   }
     
-  onAddLog(form: NgForm) {
-      if (form.invalid) {
-          return;
-      }
-    this.rest.storeLog(this.key, form.value).subscribe((result) => {
-      this.router.navigate([this.timelog.key+'/logs/']);
-    }, (err) => {
-      console.log(err);
-    });
-  }
   closeEdit(){
         this.dialogRef.close();
     }

@@ -34,11 +34,12 @@ export class RestService {
       return body || { }; 
   }
 
-    private extractLog(res: Response) {
+  private extractLog(res: Response) {
       const logs = [];
       const body = Object(res['timelog']);
       return body || { }; 
   }
+
   private userLogin(res: Response) {
       const userBlock = [];
       const body = Object(res['userLogin']);
@@ -87,7 +88,7 @@ storeLogitem(key:string, logId: number, logitem): Observable<any> {
     );
 }
 
-updateLog(key:string, logid:string, timelog): Observable<any> {
+updateLog(key:string, logid:number, timelog): Observable<any> {
   return this.http.put(endpoint + key+'/logs/' + logid, JSON.stringify(timelog), httpOptions).pipe(
     tap(_ => console.log(`updated log id=${logid}`)),
     catchError(this.handleError<any>('updateLog'))

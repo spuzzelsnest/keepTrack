@@ -67,6 +67,8 @@ export class OverviewComponent implements OnInit {
           logItemPopup.disableClose = true;
           logItemPopup.autoFocus = true;
           logItemPopup.data ={
+             key: this.key,
+             logId: this.logId, 
              logitem: this.logitem
           }
         this.dialog.open(EditComponent, logItemPopup);
