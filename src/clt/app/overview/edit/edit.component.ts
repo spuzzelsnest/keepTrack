@@ -50,13 +50,14 @@ export class EditComponent implements OnInit {
   }
 
   onSave(form: NgForm){
-
+      
     this.rest.updateLog(this.key, this.logId, this.editLog.value).subscribe(res =>{
         console.log(res);
     },(err) => {
         console.log(err);
         this.isLoadingResults = false;
     });
+    this.dialogRef.close();
   }
     
   closeEdit(){
