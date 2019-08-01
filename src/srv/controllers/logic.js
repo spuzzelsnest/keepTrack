@@ -109,9 +109,12 @@ class LogicController{
     }
 
     updateTimelog(req, res, next){
-        models.Log.find(
-            { where:{ id: req.params.logid}}
-        )
+        models.Logitem.findOne({
+            where:{logId: req.params.logid}
+        })
+        .then((timelog) =>{
+            return timelog.update(req.body);
+        })
     }
 }
 
