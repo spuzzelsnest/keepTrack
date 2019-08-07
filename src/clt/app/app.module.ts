@@ -14,7 +14,8 @@ import { MatToolbarModule,
          MatNativeDateModule,
          MatTableModule,
          MatProgressSpinnerModule,
-         MatDialogModule
+         MatDialogModule,
+         MatPaginatorModule
        } from '@angular/material';
 
 
@@ -55,7 +56,8 @@ import { EditComponent } from './overview/edit/edit.component';
     MatNativeDateModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

@@ -1,12 +1,15 @@
 mat-form-field{
-width: 100%   
+  width: 100%   
 }
 table {
   width: 100%;
 }
 .info-text{
-    text-align: center;
+  text-align: center;
 }
 mat-spinner{
-    margin: auto;
+  margin: auto;
+}
+mat-paginator{
+  margin-top: 1rem;
 }

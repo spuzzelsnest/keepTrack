@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, PageEvent } from '@angular/material';
 
 import { RestService } from '../rest.service';
 import { EditComponent } from './edit/edit.component';
-//import { userModel } from '../userModel';
-//import { logModel } from '../logModel';
-//import { logitemModel } from '../logitemModel';
 
 @Component({
   selector: 'app-overview',
@@ -15,12 +12,16 @@ import { EditComponent } from './edit/edit.component';
 })
 
 export class OverviewComponent implements OnInit {
-    
+    userName: string;
     key: string;
     logs:any = [];
     logId: number;
     logitem:any = [];
     isLoading = false;
+    logsPerPage = 2;
+    currentPage = 1;
+    allLogs: number;
+    
     
   //  displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
 
@@ -31,24 +32,23 @@ export class OverviewComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
-  //Get the userLogin from Key
+    console.log('Start Loading');
+    this.isLoading = true; //Loading Spinner
+    
     this.route.params.subscribe(params => {
       if (params['key']) {
         this.key = params.key;
-        this.onGetLogs(this.key);
-      }else{
-         this.key = null;
       }
     });
-  }
-
-  onGetLogs(key: string){
-    this.isLoading = true; //Loading Spinner
-    this.rest.getLogs(this.key).subscribe((lBlocks: {}) => {
-        this.isLoading = false; //stop spinner
-        this.logs = lBlocks;
-        //console.log(JSON.stringify(lBlocks, null, 4));
-    });
+    this.rest.getLogs(this.key, this.logsPerPage, this.currentPage)
+      .subscribe((lBlocks: {}) => {
+            this.isLoading = false; //stop spinner
+            console.log('Stopped Loading');
+            this.logs = lBlocks["rows"];
+            this.allLogs = lBlocks["count"];
+            this.userName = this.logs[0].User.name;
+            //console.log(JSON.stringify(lBlocks["count"], null, 4));
+        });
   }
 
   onEdit(event){
@@ -73,5 +73,15 @@ export class OverviewComponent implements OnInit {
           }
         this.dialog.open(EditComponent, logItemPopup);
         }),(err)=>{console.log(err);};
+  }
+
+  onChangedPage(pageData: PageEvent){
+    console.log('Reloading ' + this.key)
+    this.isLoading = true; //Loading Spinner
+      
+    this.currentPage = pageData.pageIndex + 1;
+    this.logsPerPage = pageData.pageSize;
+    console.log(this.currentPage)
+    this.rest.getLogs(this.key, this.logsPerPage, this.currentPage);
   }
 }

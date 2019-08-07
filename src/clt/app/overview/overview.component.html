@@ -1,8 +1,8 @@
 <app-header></app-header>
 <mat-card>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-<p>Found {{logs.length}} Logs</p>
-<mat-accordion *ngIf="logs.length >0 ">
+<p>{{userName}}, showing {{logs.length}} of {{allLogs}} Logs.</p>
+<mat-accordion multi="true" *ngIf="allLogs > 0 && !isLoading">
         <mat-expansion-panel *ngFor="let log of logs; let i=index;">
                 <mat-expansion-panel-header>
                     <span class="badge">Day: {{log.day}}</span>
@@ -14,5 +14,6 @@
                 </mat-action-row>
         </mat-expansion-panel>
 </mat-accordion>
-<p class="info-text mat-body-1" *ngIf="logs.length <= 0">No Acces recorded yet for user </p>
+<mat-paginator [length]="allLogs" [pageSize]="logsPerPage" (page)="onChangedPage($event)" *ngIf="allLogs > logsPerPage"></mat-paginator>
+<p class="info-text mat-body-1" *ngIf="allLogs <= 0">Sorry, no logs found!</p>
 </mat-card>

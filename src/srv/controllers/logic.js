@@ -29,23 +29,35 @@ class LogicController{
     }
     
     getLogs(req, res, next){
-        
-        models.Log.findAll({
+        let fetshedPosts;
+        const pageSize = +req.query.pagesize;
+        const currentPage = +req.query.page;
+        const offset = (pageSize * (currentPage - 1));
+        const limit = offset + pageSize;
+     
+        models.Log.findAndCountAll({
             include: [{
                 model: models.Logitem ,
                 attributes: ['id', 'startAt', 'breakOut', 'breakIn', 'endAt','logId'],
                 required: true
-            },{
+            },
+                      {
                 model: models.User
             }],
-             where: {'$User.key$': req.params.key},
+            limit,
+            offset,
+            where: {'$User.key$': req.params.key},
         })
-        .then(logs => res.status(200).send({
-            logs,
-        }));
+        .then(logs => {
+            fetshedPosts = logs;
+        }).then(count => {
+            res.status(200).send({
+            fetshedPosts
+        })});
     }
     
     getLog(req, res, next){
+
         models.Log.findOne({
             include: [{
                 model: models.Logitem
@@ -59,7 +71,6 @@ class LogicController{
         .then(timelog => res.status(200).send({
             timelog,
         }));
-
     }
     
     createLog(req, res){

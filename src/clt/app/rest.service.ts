@@ -30,7 +30,7 @@ export class RestService {
     
   private extractLogs(res: Response) {
       const logs = [];
-      const body = Object(res['logs']);
+      const body = Object(res['fetshedPosts']);
       return body || { }; 
   }
 
@@ -55,8 +55,9 @@ checkLogin(key:string): Observable<userModel[]> {
     );
 }
 
-getLogs(key:string): Observable<logModel[]> {
-  return this.http.get<logModel[]>(endpoint + key+'/logs')
+getLogs(key:string, logsPerPage: number, currentPage: number): Observable<logModel[]> {
+  const queryParams = `?pagesize=${logsPerPage}&page=${currentPage}`;
+  return this.http.get<logModel[]>(endpoint + key+'/logs' + queryParams)
     .pipe(
         tap(_ => console.log(`get logs for ${key}`)),
         catchError(this.handleError(`getLogs failed`)),
@@ -65,15 +66,15 @@ getLogs(key:string): Observable<logModel[]> {
 }
 
 getLog(key: string, logId: number): Observable<logModel[]> {
-    return this.http.get<logModel[]>(endpoint + key +'/logs/'+logId)
-      .pipe(
+ return this.http.get<logModel[]>(endpoint + key +'/logs/'+logId)
+    .pipe(
         tap(_ => console.log(`fetched timelog w/id=${logId}`)),
         catchError(this.handleError<any>(`getLog id=${logId}`)),
         map(this.extractLog)
 )}
     
 storeLog(key: string, log): Observable<any> {
-  return this.http.post<any>(endpoint +key+'/add', JSON.stringify(log), httpOptions)
+   return this.http.post<any>(endpoint +key+'/add', JSON.stringify(log), httpOptions)
     .pipe(
         tap((log) => console.log(`found log w/ id=${log.log['id']}`)),
         catchError(this.handleError<any>('storeLog')),
