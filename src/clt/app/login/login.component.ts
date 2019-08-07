@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 
 import { RestService } from '../rest.service';
@@ -16,6 +16,7 @@ import { logModel } from '../logModel';
 
 export class LoginComponent implements OnInit {
 
+    form: FormGroup;
     key: string;
     userName: string;
     today: string = moment().format('YYYY-MM-DD');
@@ -28,14 +29,18 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router) {}
     
-    ngOnInit(){}
+    ngOnInit(){
+        this.form = new FormGroup({
+            key: new FormControl(null, {validators: [Validators.required]})
+        })
+    }
 
-    onLogin(form: NgForm):void{
-        if (form.invalid){
+    onLogin(){
+        if (this.form.invalid){
             return;
         }
         this.userLogin = [];
-        const inputKey = form.value.key;
+        const inputKey = this.form.value.key;
         this.rest.checkLogin(inputKey).subscribe((uBlock: {}) => {
             this.userLogin = uBlock;
             const userPopup = new MatDialogConfig();
@@ -57,6 +62,6 @@ export class LoginComponent implements OnInit {
             console.log(err);
         };
         
-        form.resetForm();
+        this.form.reset();
    }
 }
