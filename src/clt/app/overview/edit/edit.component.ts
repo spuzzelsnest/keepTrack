@@ -40,10 +40,10 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     //console.log('timeLog: '+ JSON.stringify(this.timelog, null, 4));
     this.editLog = new FormGroup({
-        startAt: [null],
-        breakOut: [null],
-        breakIn: [null],
-        endAt: [null]
+        startAt: new FormControl(null),
+        breakOut: new FormControl(null),
+        breakIn: new FormControl(null),
+        endAt: new FormControl(null)
   });
     this.key = this.timelog.key;
     this.logId = this.timelog.logId;
