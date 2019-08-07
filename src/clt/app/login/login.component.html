@@ -1,6 +1,6 @@
 <app-header></app-header>
 <mat-card color="primary">
-<form [formGroup]="form" (submit)="onLogin()">
+<form [formGroup]="form" (ngSubmit)="onLogin()">
     <mat-form-field>
         <input matInput 
            type="password"

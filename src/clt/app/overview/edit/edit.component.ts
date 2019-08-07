@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroupDirective, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { RestService } from '../../rest.service';
 
@@ -39,7 +39,7 @@ export class EditComponent implements OnInit {
 
   ngOnInit() {
     //console.log('timeLog: '+ JSON.stringify(this.timelog, null, 4));
-    this.editLog = this.formBuilder.group({
+    this.editLog = new FormGroup({
         startAt: [null],
         breakOut: [null],
         breakIn: [null],
@@ -49,7 +49,7 @@ export class EditComponent implements OnInit {
     this.logId = this.timelog.logId;
   }
 
-  onSave(form: NgForm){
+  onSave(){
       
     this.rest.updateLog(this.key, this.logId, this.editLog.value).subscribe(res =>{
         console.log(res);

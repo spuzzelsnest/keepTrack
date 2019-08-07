@@ -3,7 +3,8 @@
 <h1>{{timelog['logitem'].day}}</h1>
 <form [formGroup]="editLog" (ngSubmit)="onSave()" >
     <mat-form-field>
-        <input matInput placeholder="Start time:" type="time" formControlName="startAt" value="{{timelog['logitem']['Logitem'].startAt}}">
+        <input matInput 
+               placeholder="Start time:" type="time" formControlName="startAt" value="{{timelog['logitem']['Logitem'].startAt}}">
     </mat-form-field>
     <mat-form-field>
         <input matInput placeholder="Break Out:" type="time" formControlName="breakOut" value="{{timelog['logitem']['Logitem'].breakOut}}">
