@@ -18,7 +18,7 @@ export class OverviewComponent implements OnInit {
     logId: number;
     logitem:any = [];
     isLoading = false;
-    logsPerPage = 2;
+    logsPerPage = 5;
     currentPage = 1;
     allLogs: number;
     
@@ -38,9 +38,15 @@ export class OverviewComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['key']) {
         this.key = params.key;
+        this.onGetLogs(this.key, this.logsPerPage, this.currentPage);
       }
+    
     });
-    this.rest.getLogs(this.key, this.logsPerPage, this.currentPage)
+  }
+
+  onGetLogs(key: string, logsPerPage: number, currentPage: number){
+      console.log(this.currentPage)
+      this.rest.getLogs(this.key, this.logsPerPage, this.currentPage)
       .subscribe((lBlocks: {}) => {
             this.isLoading = false; //stop spinner
             console.log('Stopped Loading');
@@ -49,8 +55,9 @@ export class OverviewComponent implements OnInit {
             this.userName = this.logs[0].User.name;
             //console.log(JSON.stringify(lBlocks["count"], null, 4));
         });
+      
   }
-
+    
   onEdit(event){
       
     this.logId = event.currentTarget.getAttribute('id');
@@ -76,12 +83,13 @@ export class OverviewComponent implements OnInit {
   }
 
   onChangedPage(pageData: PageEvent){
-    console.log('Reloading ' + this.key)
+    console.log('Reloading ' + this.key);
+    console.log('lblock: '+ JSON.stringify(pageData, null, 4));
     this.isLoading = true; //Loading Spinner
       
     this.currentPage = pageData.pageIndex + 1;
     this.logsPerPage = pageData.pageSize;
-    console.log(this.currentPage)
-    this.rest.getLogs(this.key, this.logsPerPage, this.currentPage);
+   
+    this.onGetLogs(this.key, this.logsPerPage, this.currentPage);
   }
 }
