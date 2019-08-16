@@ -38,13 +38,15 @@ export class EditComponent implements OnInit {
     
 
   ngOnInit() {
-    //console.log('timeLog: '+ JSON.stringify(this.timelog, null, 4));
+    console.log('timeLog: '+ JSON.stringify(this.timelog, null, 4));
+    console.log(JSON.stringify(this.timelog.logitem.Logitem, null, 4));
     this.editLog = new FormGroup({
-        startAt: new FormControl(null),
-        breakOut: new FormControl(null),
-        breakIn: new FormControl(null),
-        endAt: new FormControl(null)
+        startAt: new FormControl(this.timelog.logitem.Logitem.startAt),
+        breakOut: new FormControl(this.timelog.logitem.Logitem.breakOut),
+        breakIn: new FormControl(this.timelog.logitem.Logitem.breakIn),
+        endAt: new FormControl(this.timelog.logitem.Logitem.endAt)
   });
+    console.log(this.editLog.value);
     this.key = this.timelog.key;
     this.logId = this.timelog.logId;
   }
@@ -57,7 +59,8 @@ export class EditComponent implements OnInit {
         console.log(err);
         this.isLoadingResults = false;
     });
-    this.dialogRef.close();
+      this.dialogRef.close();
+ 
   }
     
   closeEdit(){

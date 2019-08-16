@@ -21,8 +21,7 @@ export class OverviewComponent implements OnInit {
     logsPerPage = 5;
     currentPage = 1;
     allLogs: number;
-    
-    
+
   //  displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
 
   constructor(
@@ -45,11 +44,11 @@ export class OverviewComponent implements OnInit {
   }
 
   onGetLogs(key: string, logsPerPage: number, currentPage: number){
-      console.log(this.currentPage)
+      //console.log(this.currentPage)
       this.rest.getLogs(this.key, this.logsPerPage, this.currentPage)
       .subscribe((lBlocks: {}) => {
             this.isLoading = false; //stop spinner
-            console.log('Stopped Loading');
+            //console.log('Stopped Loading');
             this.logs = lBlocks["rows"];
             this.allLogs = lBlocks["count"];
             this.userName = this.logs[0].User.name;
@@ -61,7 +60,7 @@ export class OverviewComponent implements OnInit {
   onEdit(event){
       
     this.logId = event.currentTarget.getAttribute('id');
-    console.log(this.logId)
+      //console.log(this.logId)
       //console.log('form: '+ JSON.stringify(form, null, 4));
       
     this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
@@ -78,13 +77,13 @@ export class OverviewComponent implements OnInit {
              logId: this.logId, 
              logitem: this.logitem
           }
-        this.dialog.open(EditComponent, logItemPopup);
-        }),(err)=>{console.log(err);};
+    this.dialog.open(EditComponent, logItemPopup);
+        }),(err)=>{console.log(err);}
   }
 
   onChangedPage(pageData: PageEvent){
-    console.log('Reloading ' + this.key);
-    console.log('lblock: '+ JSON.stringify(pageData, null, 4));
+    //console.log('Reloading ' + this.key);
+    //console.log('lblock: '+ JSON.stringify(pageData, null, 4));
     this.isLoading = true; //Loading Spinner
       
     this.currentPage = pageData.pageIndex + 1;
