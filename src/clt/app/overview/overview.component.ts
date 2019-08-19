@@ -21,7 +21,8 @@ export class OverviewComponent implements OnInit {
     logsPerPage = 5;
     currentPage = 1;
     allLogs: number;
-
+    
+    
   //  displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
 
   constructor(
@@ -31,7 +32,7 @@ export class OverviewComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
-    console.log('Start Loading');
+    //console.log('Start Loading');
     this.isLoading = true; //Loading Spinner
     
     this.route.params.subscribe(params => {
@@ -60,35 +61,37 @@ export class OverviewComponent implements OnInit {
   onEdit(event){
       
     this.logId = event.currentTarget.getAttribute('id');
-      //console.log(this.logId)
+    console.log(this.logId)
       //console.log('form: '+ JSON.stringify(form, null, 4));
       
     this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
         this.logitem = lBlock;
         //console.log('lblock: '+ JSON.stringify(lBlock, null, 4));
     
-    const logItemPopup = new MatDialogConfig();
-          logItemPopup.width = '600px';
-          logItemPopup.height = '450px';
-          logItemPopup.disableClose = true;
-          logItemPopup.autoFocus = true;
-          logItemPopup.data ={
-             key: this.key,
-             logId: this.logId, 
-             logitem: this.logitem
-          }
-    this.dialog.open(EditComponent, logItemPopup);
-        }),(err)=>{console.log(err);}
+        const logItemPopup = new MatDialogConfig();
+              logItemPopup.width = '600px';
+              logItemPopup.height = '450px';
+              logItemPopup.disableClose = true;
+              logItemPopup.autoFocus = true;
+              logItemPopup.data ={
+                 key: this.key,
+                 logId: this.logId, 
+                 logitem: this.logitem
+              }
+            const dialogRef = this.dialog.open(EditComponent, logItemPopup)
+            .afterClosed().subscribe(result => {
+                console.log('The dialog was closed');
+            })
+    }),(err)=>{console.log(err);}
+
   }
 
   onChangedPage(pageData: PageEvent){
     //console.log('Reloading ' + this.key);
     //console.log('lblock: '+ JSON.stringify(pageData, null, 4));
     this.isLoading = true; //Loading Spinner
-      
     this.currentPage = pageData.pageIndex + 1;
     this.logsPerPage = pageData.pageSize;
-   
     this.onGetLogs(this.key, this.logsPerPage, this.currentPage);
   }
 }
