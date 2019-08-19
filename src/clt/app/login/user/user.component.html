@@ -13,11 +13,11 @@
       <div class="state">
         <h2>Start registered at: {{startAt}}</h2><br>
           <span *ngIf="breakOut">Break between {{breakOut}}</span>
-          <button *ngIf="!breakOut" mat-raised-button color="primary" (click)="onCheck()">Break Out</button>
+          <button *ngIf="!breakOut" mat-raised-button color="primary" (click)="setBreakOut()">Break Out</button>
           <span *ngIf="breakIn"> - {{breakIn}}</span>
-          <button *ngIf="!breakIn" mat-raised-button color="primary" (click)="onCheck()">Break In</button>
+          <button *ngIf="!breakIn" mat-raised-button color="primary" (click)="setBreakIn()">Break In</button>
           <span *ngIf="endAt"><br>End at: {{endAt}}</span>
-          <button *ngIf="!endAt" mat-raised-button color="primary" (click)="onCheck()">End At</button>
+          <button *ngIf="!endAt" mat-raised-button color="primary" (click)="setEndAt()">End At</button>
       </div>
   </div>
 </mat-dialog-content>

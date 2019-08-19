@@ -68,9 +68,6 @@ export class UserComponent implements OnInit {
         this.rest.storeLogitem(this.key, this.fetchedId, logitem).subscribe(res => {
                 this.fetchedLogitemId = res.logitem.id;
                 this.startAt = res.logitem.startAt;
-                this.breakOut = res.logitem.breakOut;
-                this.breakIn = res.logitem.breakIn;
-                this.endAt = res.logitem.endAt;
         }, (err)=>{ console.log(err); }
         );
         //console.log('fetchedLogitem: ' +this.key+ ' and '+  logId);
@@ -88,5 +85,11 @@ export class UserComponent implements OnInit {
     
     closeUser(){
         this.dialogRef.close();
+    }
+    
+    setBreakOut(){
+        
+        console.log()
+        
     }
 }

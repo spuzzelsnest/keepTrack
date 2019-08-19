@@ -81,6 +81,7 @@ export class OverviewComponent implements OnInit {
             const dialogRef = this.dialog.open(EditComponent, logItemPopup)
             .afterClosed().subscribe(result => {
                 console.log('The dialog was closed');
+                this.ngOnInit();
             })
     }),(err)=>{console.log(err);}
 
