@@ -27,6 +27,8 @@ export class UserComponent implements OnInit {
     fetchedId: number;
     fetchedLogitemId : number;
     fetchedLogitem =[];
+    buttonId:string;
+    clockTime:string;
     
     constructor(
         public rest:RestService,
@@ -73,9 +75,11 @@ export class UserComponent implements OnInit {
         //console.log('fetchedLogitem: ' +this.key+ ' and '+  logId);
     }
     
-    onCheck(log){
-    // Display create time from Log 
-       this.loginTime = (new Date(this.startAt)).getHours()+':'+(new Date(this.startAt)).getMinutes();
+    setClockTime(event){
+        this.clockTime = new Date().getHours()+ ':'+ (new Date().getMinutes() < 10 ? "0" : "")+ (new Date().getMinutes());
+        this.buttonId = event.currentTarget.getAttribute('id');
+        console.log('Clicked on ' + this.buttonId + ' at '+ this.clockTime);
+        this.ngOnInit();
     }
 
     viewLogs(){
@@ -87,9 +91,5 @@ export class UserComponent implements OnInit {
         this.dialogRef.close();
     }
     
-    setBreakOut(){
-        
-        console.log()
-        
-    }
+
 }

@@ -7,8 +7,7 @@
                 <mat-expansion-panel-header>
                     <span class="badge">Day: {{log.day}}</span>
                 </mat-expansion-panel-header>
-                <p> {{log['Logitem'].startAt}} - {{log['Logitem'].breakOut}} - {{log['Logitem'].breakIn}} - {{log['Logitem'].endAt}}
-                </p>
+                <p>{{log['Logitem'].startAt}} - {{log['Logitem'].breakOut}} - {{log['Logitem'].breakIn}} - {{log['Logitem'].endAt}}</p>
                 <mat-action-row>
                     <button mat-raised-button color="primary" (click)="onEdit($event)" type="submit" id="{{log.id}}">Edit</button>
                 </mat-action-row>
