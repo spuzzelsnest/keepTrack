@@ -47,6 +47,7 @@ class LogicController{
             limit,
             offset,
             where: {'$User.key$': req.params.key},
+            order: [['day', 'DESC'],]
         })
         .then(logs => {
             fetshedPosts = logs;
