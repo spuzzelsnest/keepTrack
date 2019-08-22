@@ -49,7 +49,7 @@ export class RestService {
 checkLogin(key:string): Observable<userModel[]> {
     return this.http.get<userModel[]>(endpoint + 'login/' + key)
     .pipe(
-        tap(_ => console.log(`Check login for ${key}`)),
+        //tap(_ => console.log(`Check login for ${key}`)),
         catchError(this.handleError(`Failed to Get user`)),
         map(this.userLogin)
     );
@@ -59,7 +59,7 @@ getLogs(key:string, logsPerPage: number, currentPage: number): Observable<logMod
   const queryParams = `?pagesize=${logsPerPage}&page=${currentPage}`;
   return this.http.get<logModel[]>(endpoint + key+'/logs' + queryParams)
     .pipe(
-        tap(_ => console.log(`get logs for ${key}`)),
+        //tap(_ => console.log(`get logs for ${key}`)),
         catchError(this.handleError(`getLogs failed`)),
         map(this.extractLogs)
    );
@@ -68,7 +68,7 @@ getLogs(key:string, logsPerPage: number, currentPage: number): Observable<logMod
 getLog(key: string, logId: number): Observable<logModel[]> {
  return this.http.get<logModel[]>(endpoint + key +'/logs/'+logId)
     .pipe(
-        tap(_ => console.log(`fetched timelog w/id=${logId}`)),
+        //tap(_ => console.log(`fetched timelog w/id=${logId}`)),
         catchError(this.handleError<any>(`getLog id=${logId}`)),
         map(this.extractLog)
 )}
@@ -76,7 +76,7 @@ getLog(key: string, logId: number): Observable<logModel[]> {
 storeLog(key: string, log): Observable<any> {
    return this.http.post<any>(endpoint +key+'/add', JSON.stringify(log), httpOptions)
     .pipe(
-        tap((log) => console.log(`found log w/ id=${log.log['id']}`)),
+        //tap((log) => console.log(`found log w/ id=${log.log['id']}`)),
         catchError(this.handleError<any>('storeLog')),
     )
 }
@@ -84,14 +84,14 @@ storeLog(key: string, log): Observable<any> {
 storeLogitem(key:string, logId: number, logitem): Observable<any> {
       return this.http.post<any>(endpoint +key+'/logs/'+logId, JSON.stringify(logitem), httpOptions)
     .pipe(
-        tap((logitem) => console.log(`found logitem w/ id=${logitem.logitem['id']}`)),
+        //tap((logitem) => console.log(`found logitem w/ id=${logitem.logitem['id']}`)),
         catchError(this.handleError<any>('storeLogitem'))
     );
 }
 
 updateLog(key:string, logid:number, timelog): Observable<any> {
   return this.http.put(endpoint + key+'/logs/' + logid, JSON.stringify(timelog), httpOptions).pipe(
-    tap(_ => console.log(`updated log id=${logid}`)),
+    //tap(_ => console.log(`updated log id=${logid}`)),
     catchError(this.handleError<any>('updateLog'))
   );
 }

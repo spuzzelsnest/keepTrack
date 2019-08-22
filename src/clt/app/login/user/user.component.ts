@@ -50,12 +50,12 @@ export class UserComponent implements OnInit {
             day: this.today,
             userId: this.userId
         };
+        
         this.rest.storeLog(this.key, log).subscribe(res =>{
             this.fetchedId = res.log.id;
             this.createdAt = res.log.createdAt;
             this.setStartTime( this.fetchedId, this.createdAt);
         });
-         
     }
 
     setStartTime(fetchedId, createdAt){
@@ -66,20 +66,42 @@ export class UserComponent implements OnInit {
             logId: this.fetchedId,
             startAt: this.loginTime
         }
-        //console.log(logitem);
+
         this.rest.storeLogitem(this.key, this.fetchedId, logitem).subscribe(res => {
                 this.fetchedLogitemId = res.logitem.id;
                 this.startAt = res.logitem.startAt;
-        }, (err)=>{ console.log(err); }
-        );
-        //console.log('fetchedLogitem: ' +this.key+ ' and '+  logId);
+                this.breakOut = res.logitem.breakOut;
+                this.breakIn = res.logitem.breakIn;
+                this.endAt = res.logitem.endAt;
+            }, (err)=>{ console.log(err);
+        });
+        console.log('fetchedLogitem: ' +this.key+ ' and '+  this.fetchedId);
     }
     
     setClockTime(event){
+        
         this.clockTime = new Date().getHours()+ ':'+ (new Date().getMinutes() < 10 ? "0" : "")+ (new Date().getMinutes());
         this.buttonId = event.currentTarget.getAttribute('id');
-        console.log('Clicked on ' + this.buttonId + ' at '+ this.clockTime);
-        this.ngOnInit();
+        console.log('Clicked on ' + this.buttonId + ' at '+ this.clockTime + ' id '+ this.fetchedId + ' for '+ this.key);
+        
+        const breakOutlog ={
+            logId: this.logId,
+            breakOut: this.clockTime
+        }
+        
+        const breakInlog ={
+            logId: this.logId,
+            breakIn: this.clockTime
+        }
+        
+        const endAtlog ={
+            logId: this.logId,
+            endAt: this.clockTime
+        }
+        this.rest.updateLog(this.key, this.fetchedId, breakOutlog).subscribe(res =>{
+            //console.log('timeLog: '+ JSON.stringify(res, null, 4));
+           }, (err)=>{ console.log(err); 
+       });
     }
 
     viewLogs(){
@@ -90,6 +112,5 @@ export class UserComponent implements OnInit {
     closeUser(){
         this.dialogRef.close();
     }
-    
 
 }
