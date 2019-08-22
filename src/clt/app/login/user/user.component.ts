@@ -84,24 +84,43 @@ export class UserComponent implements OnInit {
         this.buttonId = event.currentTarget.getAttribute('id');
         console.log('Clicked on ' + this.buttonId + ' at '+ this.clockTime + ' id '+ this.fetchedId + ' for '+ this.key);
         
-        const breakOutlog ={
+      if(this.buttonId == '1'){
+        const clockLog ={
             logId: this.logId,
             breakOut: this.clockTime
         }
+        this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
+            console.log(res);
+        }, (err)=>{ console.log(err); 
+       });
         
-        const breakInlog ={
+    }
+    
+    if(this.buttonId == '2'){
+        const clockLog ={
             logId: this.logId,
             breakIn: this.clockTime
         }
+        this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
+            console.log(res);
+        }, (err)=>{ console.log(err); 
+       });
         
-        const endAtlog ={
+    }
+        
+      if(this.buttonId == '3'){
+        const clockLog ={
             logId: this.logId,
             endAt: this.clockTime
         }
-        this.rest.updateLog(this.key, this.fetchedId, breakOutlog).subscribe(res =>{
-            //console.log('timeLog: '+ JSON.stringify(res, null, 4));
-           }, (err)=>{ console.log(err); 
+        this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
+            console.log(res);
+        }, (err)=>{ console.log(err); 
        });
+             
+    }    
+    
+     
     }
 
     viewLogs(){
