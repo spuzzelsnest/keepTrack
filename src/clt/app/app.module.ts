@@ -5,20 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import * as moment from 'moment';
 
-import { MatToolbarModule,
-         MatInputModule,
-         MatCardModule,
-         MatButtonModule,
-         MatExpansionModule,
-         MatDatepickerModule,
-         MatNativeDateModule,
-         MatTableModule,
-         MatProgressSpinnerModule,
-         MatDialogModule,
-         MatPaginatorModule
-       } from '@angular/material';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -27,6 +13,7 @@ import { ClockComponent } from './clock/clock.component';
 import { UserComponent } from './login/user/user.component';
 import { OverviewComponent } from './overview/overview.component';
 import { EditComponent } from './overview/edit/edit.component';
+import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
   declarations: [
@@ -47,19 +34,9 @@ import { EditComponent } from './overview/edit/edit.component';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatExpansionModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatTableModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatPaginatorModule
+    AngularMaterialModule
   ],
-  providers: [MatDatepickerModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

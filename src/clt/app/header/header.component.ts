@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RestService } from '../rest.service';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular
 
 export class HeaderComponent {
     
-   private mode: boolean;
+   mode: boolean;
    private key: string;
     
     constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {}
