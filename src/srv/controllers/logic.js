@@ -1,13 +1,12 @@
+import path from 'path';
+
 import models from '../models';
 
 class LogicController{
 
-    start(req, res){
-      return res.status(200).send({
-            success: 'true',
-            message: 'lets Go!',
-      });
-    }
+    start(req, res, next){
+      res.sendFile(path.join(__dirname, '../_frontend', 'index.html'));
+    };
     
     getLogin(req, res, next){
         
