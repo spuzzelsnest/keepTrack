@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 
 import { RestService } from '../rest.service';
+import { environment } from '../../environments/environment';
 import { UserComponent } from './user/user.component';
 import { logModel } from '../logModel';
 
@@ -22,6 +23,8 @@ export class LoginComponent implements OnInit {
     today: string = moment().format('YYYY-MM-DD');
     displayToday: string = moment().format('D MMM YYYY');
     userLogin:any = [];
+    
+    env = environment;
 
     constructor(
         public rest:RestService,
@@ -57,6 +60,7 @@ export class LoginComponent implements OnInit {
                 userId: this.userLogin.id
             }
             this.dialog.open(UserComponent, userPopup);
+            
             //console.log(JSON.stringify(uBlock, null, 4));
         }),(err)=>{
             console.log(err);

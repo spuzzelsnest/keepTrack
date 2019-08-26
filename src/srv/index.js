@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
 app.use(router);
+app.use(express.static(path.join(__dirname,"public")));
 
 //app.use(function (req, res, next){
 //	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');

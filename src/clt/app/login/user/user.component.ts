@@ -84,43 +84,38 @@ export class UserComponent implements OnInit {
         this.buttonId = event.currentTarget.getAttribute('id');
         console.log('Clicked on ' + this.buttonId + ' at '+ this.clockTime + ' id '+ this.fetchedId + ' for '+ this.key);
         
-      if(this.buttonId == '1'){
-        const clockLog ={
-            logId: this.logId,
-            breakOut: this.clockTime
+       if(this.buttonId == '1'){
+            const clockLog ={
+                logId: this.logId,
+                breakOut: this.clockTime
+            }
+            this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
+                console.log(res);
+            }, (err)=>{ console.log(err); 
+           });
         }
-        this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
-            console.log(res);
-        }, (err)=>{ console.log(err); 
-       });
-        
-    }
-    
-    if(this.buttonId == '2'){
-        const clockLog ={
-            logId: this.logId,
-            breakIn: this.clockTime
+
+        if(this.buttonId == '2'){
+            const clockLog ={
+                logId: this.logId,
+                breakIn: this.clockTime
+            }
+            this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
+                console.log(res);
+            }, (err)=>{ console.log(err); 
+           });
         }
-        this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
-            console.log(res);
-        }, (err)=>{ console.log(err); 
-       });
-        
-    }
-        
-      if(this.buttonId == '3'){
-        const clockLog ={
-            logId: this.logId,
-            endAt: this.clockTime
+
+          if(this.buttonId == '3'){
+            const clockLog ={
+                logId: this.logId,
+                endAt: this.clockTime
+            }
+            this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
+                console.log(res);
+            }, (err)=>{ console.log(err); 
+           });        
         }
-        this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
-            console.log(res);
-        }, (err)=>{ console.log(err); 
-       });
-             
-    }    
-    
-     
     }
 
     viewLogs(){

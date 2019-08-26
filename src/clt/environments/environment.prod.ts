@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  version: 'Beta 1',
+  production: true,
+  apiUrl: 'http://10.200.02:1945/api/',
 };

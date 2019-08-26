@@ -10,8 +10,7 @@ import { logModel } from './logModel';
 import { userModel } from './userModel';
 import { logitemModel } from './logitemModel';
 
-//const endpoint = environment.apiUrl;
-const endpoint = 'http://localhost:1945/api/';
+const endpoint = environment.apiUrl;
 
 const httpOptions = {
   headers: new HttpHeaders({

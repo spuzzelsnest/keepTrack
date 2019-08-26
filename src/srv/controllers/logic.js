@@ -5,7 +5,7 @@ import models from '../models';
 class LogicController{
 
     start(req, res, next){
-      res.sendFile(path.join(__dirname, '../_frontend', 'index.html'));
+      res.sendFile(path.join(__dirname, '../public', 'index.html'));
     };
     
     getLogin(req, res, next){
