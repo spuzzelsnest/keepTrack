@@ -6,7 +6,7 @@
 <app-clock></app-clock>
   <div class="message">
         <h2>Start Day @ {{startAt}}</h2><br>
-          <p><span *ngIf="breakOut">Clock Out @ {{breakOut}}</span><span *ngIf="breakIn"> Clocked In @ {{breakIn}}</span></p>
+          <p><span *ngIf="breakOut">Clock Out @ {{breakOut}}</span><span *ngIf="breakIn"> - Clocked In @ {{breakIn}}</span></p>
           <button class="clockBtn" *ngIf="!breakOut" mat-raised-button color="primary" (click)="setClockTime($event)" id="1">Clock Out</button>
           <button class="clockBtn" *ngIf="!breakIn" mat-raised-button color="primary" (click)="setClockTime($event)" id="2">Clock In</button><br>
           <span *ngIf="endAt"><br>End Day: {{endAt}}</span>
