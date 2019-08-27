@@ -1,0 +1,25 @@
+<mat-dialog-content>
+<mat-card>
+<h1>{{timelog['logitem'].day}}</h1>
+<form [formGroup]="editLog" (ngSubmit)="onSave()" >
+    <mat-form-field>
+        <input matInput 
+               placeholder="Start time:" type="time" formControlName="startAt" value="{{timelog['logitem']['Logitem'].startAt}}">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Break Out:" type="time" formControlName="breakOut" value="{{timelog['logitem']['Logitem'].breakOut}}">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Break In:" type="time" formControlName="breakIn" value="{{timelog['logitem']['Logitem'].breakIn}}">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="End time:" type="time" formControlName="endAt" value="{{timelog['logitem']['Logitem'].endAt}}">
+    </mat-form-field>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+        <span class="spacer"></span>
+        <button mat-raised-button color="primary" (click)="closeEdit()">Close</button>
+    </mat-dialog-actions>
+</form>
+</mat-card>
+</mat-dialog-content>

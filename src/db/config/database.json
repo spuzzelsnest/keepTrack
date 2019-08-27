@@ -1,0 +1,10 @@
+{
+  "development": {
+      "use_env_variable": "DBURL_dev",
+      "dialect": "postgres"
+  },
+  "production": {
+      "use_env_variable": "DBURL",
+      "dialect": "postgres"
+  }
+}

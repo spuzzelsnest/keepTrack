@@ -1,0 +1,22 @@
+<!--meta http-equiv="refresh" content="120" -->
+<app-header></app-header>
+<mat-card color="primary">
+    <app-clock class="clock"></app-clock>
+<form [formGroup]="form" (ngSubmit)="onLogin()">
+    <mat-form-field>
+        <input matInput 
+           type="password"
+           formControlName="key"
+           placeholder="Scan Your Key" autofocus>
+        <mat-error *ngIf="form.get('key').invalid">No Key Entered</mat-error>
+    </mat-form-field>
+    <p>
+    <button 
+        mat-raised-button 
+        color="primary"
+        type="submit">Login</button>
+    </form>
+</mat-card>
+<div *ngIf="!env.production" class="footer">DEV version {{env.version}}</div>
+  <p><strong>{{idleState}}</strong></p>
+  <p *ngIf="lastPing"><small>Last keepalive ping <strong>{{lastPing | amTimeAgo}}</strong></small></p>

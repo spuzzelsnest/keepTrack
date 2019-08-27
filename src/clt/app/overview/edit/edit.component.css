@@ -1,0 +1,25 @@
+.mat-card{
+  text-align: center;
+}
+.mat-form{
+  padding: 1em;
+  margin-top: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+label{
+  display:flex;
+  flex-direction: row;
+  justify-content: left;
+}
+input {
+  padding: 0.8em;
+  align-content: center;
+}
+mat-dialog-actions{
+  text-align: center
+}
+.spacer{
+  margin-left: auto;
+}

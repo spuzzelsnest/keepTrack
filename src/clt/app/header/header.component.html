@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <div *ngIf="mode" color="primary">
+  <span class="spacer"></span>
+  <ul>
+    <li>
+      <a mat-button
+         routerLink="/">
+         Logout
+    </a>
+    </li>
+  </ul>
+    </div>
+    <div *ngIf="!mode" class="logo">
+    <img src="assets/logo/corpEng.png">
+    </div>
+</mat-toolbar>
