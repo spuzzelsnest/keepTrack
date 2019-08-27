@@ -61,7 +61,6 @@ export class UserComponent implements OnInit {
     setStartTime(fetchedId, createdAt){
     //Find or Create LOGITEM
         this.loginTime = new Date(createdAt).getHours()+ ':'+ (new Date(createdAt).getMinutes() < 10 ? "0" : "")+ (new Date(createdAt).getMinutes());
-        //console.log('passed ID: ' +fetchedId+ ' and '+ this.loginTime);
         const logitem = {
             logId: this.fetchedId,
             startAt: this.loginTime
@@ -69,7 +68,7 @@ export class UserComponent implements OnInit {
 
         this.rest.storeLogitem(this.key, this.fetchedId, logitem).subscribe(res => {
                 this.fetchedLogitemId = res.logitem.id;
-                this.startAt = res.logitem.startAt;
+                this.startAt = (res.logitem.startAt).slice(0, -3);
                 this.breakOut = res.logitem.breakOut;
                 this.breakIn = res.logitem.breakIn;
                 this.endAt = res.logitem.endAt;
@@ -82,15 +81,14 @@ export class UserComponent implements OnInit {
         
         this.clockTime = new Date().getHours()+ ':'+ (new Date().getMinutes() < 10 ? "0" : "")+ (new Date().getMinutes());
         this.buttonId = event.currentTarget.getAttribute('id');
-        console.log('Clicked on ' + this.buttonId + ' at '+ this.clockTime + ' id '+ this.fetchedId + ' for '+ this.key);
         
-       if(this.buttonId == '1'){
+        if(this.buttonId == '1'){
             const clockLog ={
                 logId: this.logId,
                 breakOut: this.clockTime
             }
             this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
-                console.log(res);
+                this.ngOnInit();
             }, (err)=>{ console.log(err); 
            });
         }
@@ -101,18 +99,18 @@ export class UserComponent implements OnInit {
                 breakIn: this.clockTime
             }
             this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
-                console.log(res);
+                this.ngOnInit();
             }, (err)=>{ console.log(err); 
            });
         }
 
-          if(this.buttonId == '3'){
+        if(this.buttonId == '3'){
             const clockLog ={
                 logId: this.logId,
                 endAt: this.clockTime
             }
             this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
-                console.log(res);
+                this.ngOnInit();
             }, (err)=>{ console.log(err); 
            });        
         }
