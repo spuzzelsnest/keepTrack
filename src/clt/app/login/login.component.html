@@ -1,8 +1,8 @@
 <!--meta http-equiv="refresh" content="120" -->
 <app-header></app-header>
 <mat-card color="primary">
-    <app-clock class="clock"></app-clock>
-<form [formGroup]="form" (ngSubmit)="onLogin()">
+  <app-clock class="clock"></app-clock>
+  <form [formGroup]="form" (ngSubmit)="onLogin()">
     <mat-form-field>
         <input matInput 
            type="password"
@@ -15,8 +15,6 @@
         mat-raised-button 
         color="primary"
         type="submit">Login</button>
-    </form>
+  </form>
 </mat-card>
 <div *ngIf="!env.production" class="footer">DEV version {{env.version}}</div>
-  <p><strong>{{idleState}}</strong></p>
-  <p *ngIf="lastPing"><small>Last keepalive ping <strong>{{lastPing | amTimeAgo}}</strong></small></p>

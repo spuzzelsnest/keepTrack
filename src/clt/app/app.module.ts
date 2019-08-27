@@ -3,8 +3,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
-import { MomentModule } from 'angular2-moment';
+//import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+//import { MomentModule } from 'angular2-moment';
 import * as moment from 'moment';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -37,8 +37,8 @@ import { AngularMaterialModule } from './angular-material.module';
     HttpClientModule,
     AppRoutingModule,
     AngularMaterialModule,
-    MomentModule,
-    NgIdleKeepaliveModule.forRoot()
+    //MomentModule,
+    //NgIdleKeepaliveModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
