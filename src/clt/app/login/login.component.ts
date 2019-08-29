@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserIdleService } from 'angular-user-idle';
 import * as moment from 'moment';
 
 import { RestService } from '../rest.service';
@@ -28,9 +29,18 @@ export class LoginComponent implements OnInit {
         public rest:RestService,
         public dialog: MatDialog,
         private route: ActivatedRoute,
-        private router: Router) {}
+        private router: Router,
+        private userIdle: UserIdleService) {}
     
     ngOnInit(){
+
+        this.userIdle.startWatching();
+        this.userIdle.onTimerStart().subscribe(count => console.log(count));
+        this.userIdle.onTimeout().subscribe(() =>{ 
+            console.log('Time is up!');
+            window.location.reload();
+        });
+        
         this.form = new FormGroup({
             key: new FormControl(null, {validators: [Validators.required]})
         })
@@ -62,4 +72,20 @@ export class LoginComponent implements OnInit {
         };
       this.form.reset();
    }
+    
+  stop() {
+    this.userIdle.stopTimer();
+  }
+ 
+  stopWatching() {
+    this.userIdle.stopWatching();
+  }
+ 
+  startWatching() {
+    this.userIdle.startWatching();
+  }
+ 
+  restart() {
+    this.userIdle.resetTimer();
+  }
 }
