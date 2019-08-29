@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit {
     form: FormGroup;
     key: string;
     userName: string;
-    today: string = moment().format('YYYY-MM-DD');
-    displayToday: string = moment().format('D MMM YYYY');
     userLogin:any = [];
     
     env = environment;
@@ -49,22 +47,19 @@ export class LoginComponent implements OnInit {
             const userPopup = new MatDialogConfig();
             userPopup.width = '600px';
             userPopup.height = '650px';
-            
             userPopup.disableClose = true;
             userPopup.autoFocus = true;
             userPopup.data ={
-                day: this.today,
-                display: this.displayToday,
+                day: moment().format('YYYY-MM-DD'),
+                display: moment().format('D MMM YYYY'),
                 key: inputKey,
                 userName: this.userLogin.name,
                 userId: this.userLogin.id
             }
             this.dialog.open(UserComponent, userPopup);
-            
-            //console.log(JSON.stringify(uBlock, null, 4));
         }),(err)=>{
             console.log(err);
         };
-        this.form.reset();
+      this.form.reset();
    }
 }
