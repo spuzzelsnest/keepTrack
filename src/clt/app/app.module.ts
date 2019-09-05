@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserIdleModule } from 'angular-user-idle';
 import * as moment from 'moment';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,8 +34,7 @@ import { AngularMaterialModule } from './angular-material.module';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    AngularMaterialModule,
-    UserIdleModule.forRoot({idle:60, timeout:30, ping: 12})
+    AngularMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

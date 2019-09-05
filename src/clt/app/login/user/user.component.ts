@@ -110,7 +110,7 @@ export class UserComponent implements OnInit {
                 endAt: this.clockTime
             }
             this.rest.updateLog(this.key, this.fetchedId, clockLog).subscribe(res =>{
-                this.ngOnInit();
+                this.dialogRef.close();
             }, (err)=>{ console.log(err); 
            });        
         }
