@@ -93,7 +93,7 @@ export class OverviewComponent implements OnInit {
               }
             this.dialogRef.open(EditComponent, logItemPopup)
             .afterClosed().subscribe(result => {
-              console.log('Bla'); 
+              this.ngOnInit();
             })
     }),(err)=>{console.log(err);}
   }
