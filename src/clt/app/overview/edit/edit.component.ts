@@ -37,7 +37,7 @@ export class EditComponent implements OnInit {
     isLoadingResults = false;
 
   ngOnInit() {
-    //console.log('timeLog: '+ JSON.stringify(this.timelog, null, 4));
+
     this.editLog = new FormGroup({
         startAt: new FormControl(this.timelog.logitem.Logitem.startAt),
         breakOut: new FormControl(this.timelog.logitem.Logitem.breakOut),

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserIdleService } from 'angular-user-idle';
 import * as moment from 'moment';
 
 import { RestService } from '../rest.service';
@@ -27,19 +26,12 @@ export class LoginComponent implements OnInit {
 
     constructor(
         public rest:RestService,
-        public dialog: MatDialog,
+        public dialogRef: MatDialog,
         private route: ActivatedRoute,
-        private router: Router,
-        private userIdle: UserIdleService) {}
+        private router: Router) {}
     
     ngOnInit(){
-
-        this.userIdle.startWatching();
-        this.userIdle.onTimerStart().subscribe(count => console.log(count));
-        this.userIdle.onTimeout().subscribe(() =>{ 
-            console.log('Time is up!');
-            window.location.reload();
-        });
+        console.log('Restarted Copmonent');
         
         this.form = new FormGroup({
             key: new FormControl(null, {validators: [Validators.required]})
@@ -66,26 +58,10 @@ export class LoginComponent implements OnInit {
                 userName: this.userLogin.name,
                 userId: this.userLogin.id
             }
-            this.dialog.open(UserComponent, userPopup);
+            this.dialogRef.open(UserComponent, userPopup);
         }),(err)=>{
             console.log(err);
         };
       this.form.reset();
    }
-    
-  stop() {
-    this.userIdle.stopTimer();
-  }
- 
-  stopWatching() {
-    this.userIdle.stopWatching();
-  }
- 
-  startWatching() {
-    this.userIdle.startWatching();
-  }
- 
-  restart() {
-    this.userIdle.resetTimer();
-  }
 }

@@ -36,7 +36,7 @@ import { AngularMaterialModule } from './angular-material.module';
     HttpClientModule,
     AppRoutingModule,
     AngularMaterialModule,
-    UserIdleModule.forRoot({idle:60, timeout:30, ping: 12})
+    UserIdleModule.forRoot({idle:10, timeout:20, ping: 12})
   ],
   providers: [],
   bootstrap: [AppComponent]

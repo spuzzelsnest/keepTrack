@@ -74,7 +74,6 @@ export class UserComponent implements OnInit {
                 this.endAt = res.logitem.endAt;
             }, (err)=>{ console.log(err);
         });
-        console.log('fetchedLogitem: ' +this.key+ ' and '+  this.fetchedId);
     }
     
     setClockTime(event){
