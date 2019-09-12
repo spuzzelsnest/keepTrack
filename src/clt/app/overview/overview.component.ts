@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig, PageEvent } from '@angular/material';
 import { UserIdleService } from 'angular-user-idle';
@@ -34,6 +34,8 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit() {
     
+    this.route.params.subscribe(console.log);
+      
     this.userIdle.startWatching();
     this.userIdle.onTimerStart().subscribe(count =>{
         var eventList= ['click', 'mouseover','keydown','DOMMouseScroll','mousewheel','mousedown','touchstart','touchmove','scroll','keyup'];
@@ -46,7 +48,8 @@ export class OverviewComponent implements OnInit {
     this.userIdle.onTimeout().subscribe(() =>{ 
         console.log('Time is up!');
         this.dialogRef.closeAll();
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
+        //this.route.parent;
     });
 
     this.isLoading = true; //Loading Spinner
@@ -74,7 +77,7 @@ export class OverviewComponent implements OnInit {
   }
     
   onEdit(event){
-    console.log('Whos the king')
+      
     this.logId = event.currentTarget.getAttribute('id');
       
     this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
@@ -121,4 +124,5 @@ export class OverviewComponent implements OnInit {
   restart() {
     this.userIdle.resetTimer();
   }
+
 }
