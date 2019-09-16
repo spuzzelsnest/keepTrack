@@ -27,7 +27,8 @@ import { AngularMaterialModule } from './angular-material.module';
     EditComponent
   ],
   entryComponents: [
-    UserComponent
+    UserComponent,
+    EditComponent
   ],
   imports: [
     ReactiveFormsModule,
