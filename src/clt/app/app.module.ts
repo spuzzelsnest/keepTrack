@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserIdleModule } from 'angular-user-idle';
 import * as moment from 'moment';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,7 +27,8 @@ import { AngularMaterialModule } from './angular-material.module';
     EditComponent
   ],
   entryComponents: [
-    UserComponent
+    UserComponent,
+    EditComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -34,7 +36,8 @@ import { AngularMaterialModule } from './angular-material.module';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    UserIdleModule.forRoot({idle:10, timeout:20, ping: 12})
   ],
   providers: [],
   bootstrap: [AppComponent]

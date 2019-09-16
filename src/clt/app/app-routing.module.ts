@@ -3,9 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { OverviewComponent } from './overview/overview.component';
-import { EditComponent } from './overview/edit/edit.component';
-
-
 
 const routes: Routes = [
   {
@@ -13,13 +10,7 @@ const routes: Routes = [
     component: LoginComponent
   },{
     path: ':key/logs',
-    component: OverviewComponent
-  },{
-    path: ':key/logs/:logid',
-    component: EditComponent
-  },{
-    path: ':key/add',
-    component: EditComponent
+    component: OverviewComponent 
   },{
     path: '',
     redirectTo: '/login',

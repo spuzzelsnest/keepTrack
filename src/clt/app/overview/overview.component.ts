@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig, PageEvent } from '@angular/material';
+import { Subscription } from 'rxjs';
+import { UserIdleService } from 'angular-user-idle';
 
 import { RestService } from '../rest.service';
 import { EditComponent } from './edit/edit.component';
@@ -11,7 +13,9 @@ import { EditComponent } from './edit/edit.component';
   styleUrls: ['./overview.component.css']
 })
 
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit, OnDestroy {
+    private subStart: Subscription;
+    private subStop: Subscription;
     userName: string;
     key: string;
     logs:any = [];
@@ -21,18 +25,36 @@ export class OverviewComponent implements OnInit {
     logsPerPage = 5;
     currentPage = 1;
     allLogs: number;
-    
-    
+
   //  displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
 
   constructor(
     public rest:RestService,
-    public dialog: MatDialog,
+    public dialogRef: MatDialog,
     private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router,
+    private userIdle: UserIdleService) {}
 
   ngOnInit() {
-    //console.log('Start Loading');
+    
+    this.userIdle.startWatching();
+    this.subStart = this.userIdle.onTimerStart().subscribe(count =>{
+        var eventList= ['click', 'mouseover','keydown','DOMMouseScroll','mousewheel','mousedown','touchstart','touchmove','scroll','keyup'];
+        for(let event of eventList){
+            document.body.addEventListener(event, () => {
+                this.userIdle.resetTimer();
+            });
+        }
+        console.log(count);
+    });
+      
+    this.subStop = this.userIdle.onTimeout().subscribe(() =>{ 
+        console.log('Time is up!');
+        this.dialogRef.closeAll();
+        stop();
+        this.router.navigate(['/','login']);
+    });
+
     this.isLoading = true; //Loading Spinner
     
     this.route.params.subscribe(params => {
@@ -40,34 +62,27 @@ export class OverviewComponent implements OnInit {
         this.key = params.key;
         this.onGetLogs(this.key, this.logsPerPage, this.currentPage);
       }
-    
     });
   }
 
   onGetLogs(key: string, logsPerPage: number, currentPage: number){
-      //console.log(this.currentPage)
+
       this.rest.getLogs(this.key, this.logsPerPage, this.currentPage)
       .subscribe((lBlocks: {}) => {
-            this.isLoading = false; //stop spinner
-            //console.log('Stopped Loading');
-            this.logs = lBlocks["rows"];
-            this.allLogs = lBlocks["count"];
-            this.userName = this.logs[0].User.name;
-            //console.log(JSON.stringify(lBlocks["count"], null, 4));
-        });
-      
+        this.isLoading = false; //stop spinner
+        this.logs = lBlocks["rows"];
+        this.allLogs = lBlocks["count"];
+        this.userName = this.logs[0].User.name;
+        //console.log(JSON.stringify(lBlocks["count"], null, 4));
+      });
   }
-    
+
   onEdit(event){
       
     this.logId = event.currentTarget.getAttribute('id');
-    console.log(this.logId)
-      //console.log('form: '+ JSON.stringify(form, null, 4));
       
     this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
-        this.logitem = lBlock;
-        //console.log('lblock: '+ JSON.stringify(lBlock, null, 4));
-    
+        this.logitem = lBlock;    
         const logItemPopup = new MatDialogConfig();
               logItemPopup.width = '600px';
               logItemPopup.height = '450px';
@@ -75,24 +90,43 @@ export class OverviewComponent implements OnInit {
               logItemPopup.autoFocus = true;
               logItemPopup.data ={
                  key: this.key,
-                 logId: this.logId, 
+                 logId: this.logId,
                  logitem: this.logitem
               }
-            const dialogRef = this.dialog.open(EditComponent, logItemPopup)
+            this.dialogRef.open(EditComponent, logItemPopup)
             .afterClosed().subscribe(result => {
-                console.log('The dialog was closed');
-                this.ngOnInit();
+              this.ngOnInit();
             })
     }),(err)=>{console.log(err);}
-
   }
 
   onChangedPage(pageData: PageEvent){
-    //console.log('Reloading ' + this.key);
-    //console.log('lblock: '+ JSON.stringify(pageData, null, 4));
     this.isLoading = true; //Loading Spinner
     this.currentPage = pageData.pageIndex + 1;
     this.logsPerPage = pageData.pageSize;
     this.onGetLogs(this.key, this.logsPerPage, this.currentPage);
+  }
+
+  stop() {
+    this.userIdle.stopTimer();
+  }
+ 
+  stopWatching() {
+    console.log('Stop Watching');
+    this.userIdle.stopWatching();
+  }
+ 
+  startWatching() {
+    console.log('Start Watching');
+    this.userIdle.startWatching();
+  }
+ 
+  restart() {
+    this.userIdle.resetTimer();
+  }
+    
+   ngOnDestroy(){
+    this.subStart.unsubscribe();
+    this.subStop.unsubscribe();
   }
 }

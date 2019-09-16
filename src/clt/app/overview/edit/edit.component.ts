@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { RestService } from '../../rest.service';
   styleUrls: ['./edit.component.css']
 })
 
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit,OnDestroy {
 
     key: string;
     logId: number;
@@ -37,7 +37,7 @@ export class EditComponent implements OnInit {
     isLoadingResults = false;
 
   ngOnInit() {
-    //console.log('timeLog: '+ JSON.stringify(this.timelog, null, 4));
+
     this.editLog = new FormGroup({
         startAt: new FormControl(this.timelog.logitem.Logitem.startAt),
         breakOut: new FormControl(this.timelog.logitem.Logitem.breakOut),
@@ -62,4 +62,7 @@ export class EditComponent implements OnInit {
   closeEdit(){
         this.dialogRef.close();
     }
+   ngOnDestroy(){
+
+  }
 }

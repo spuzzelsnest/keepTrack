@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
     constructor(
         public rest:RestService,
-        public dialog: MatDialog,
+        public dialogRef: MatDialog,
         private route: ActivatedRoute,
         private router: Router) {}
     
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
                 userName: this.userLogin.name,
                 userId: this.userLogin.id
             }
-            this.dialog.open(UserComponent, userPopup);
+            this.dialogRef.open(UserComponent, userPopup);
         }),(err)=>{
             console.log(err);
         };
