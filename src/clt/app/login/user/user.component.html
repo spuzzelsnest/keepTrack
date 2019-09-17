@@ -10,7 +10,7 @@
           <button class="clockBtn" mat-raised-button *ngIf="!breakOut" color="primary" (click)="setClockTime($event)" id="1">Clock Out</button><br>
           <button class="clockBtn" mat-raised-button [disabled]="!breakOut"*ngIf="!breakIn" color="primary" (click)="setClockTime($event)" id="2">Clock In</button><br>
           <span *ngIf="endAt"><br>End Day: {{endAt}}</span>
-          <button class="clockBtn" mat-raised-button [disabled]="!breakIn" *ngIf="!endAt" color="primary" (click)="setClockTime($event)" id="3">End Day</button>
+          <button class="clockBtn" mat-raised-button [disabled]="!startAt" *ngIf="!endAt" color="primary" (click)="setClockTime($event)" id="3">End Day</button>
   </div>
 </mat-dialog-content>
 <hr>
