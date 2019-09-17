@@ -1,5 +1,6 @@
 <mat-dialog-content>
-<img src="assets/users/none.png" height="120" width="120" class="rounded-circle">
+<img  [src]="src" (error)="onError()" height="120" width="120" class="rounded-circle"/>
+<!--img src="assets/users/none.png" height="120" width="120" class="rounded-circle" -->
     <div class="header"><h1>HIGH {{userName}}</h1></div>
 <hr>
 {{displayToday}}, 

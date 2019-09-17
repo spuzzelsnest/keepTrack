@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Directive, OnInit, Inject, Input } from '@angular/core';
 import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
@@ -9,6 +9,14 @@ import { RestService } from '../../rest.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+
+@Directive({
+    selector: 'img[src]',
+    host: {
+      '[src]': 'checkPath(src)',
+      '(error)':'onError()'
+     }
+  })
 
 export class UserComponent implements OnInit {
     
@@ -29,6 +37,8 @@ export class UserComponent implements OnInit {
     fetchedLogitem =[];
     buttonId:string;
     clockTime:string;
+    defaultImg: string = 'assets/users/none.png';
+    @Input() src:string;
     
     constructor(
         public rest:RestService,
@@ -56,6 +66,10 @@ export class UserComponent implements OnInit {
             this.createdAt = res.log.createdAt;
             this.setStartTime( this.fetchedId, this.createdAt);
         });
+    
+    //Check profile picture
+        this.src = "assets/users/"+this.userId+".jpg";
+    
     }
 
     setStartTime(fetchedId, createdAt){
@@ -120,8 +134,15 @@ export class UserComponent implements OnInit {
         this.router.navigate(['/'+this.key+'/logs']);
         }
     
+    onError() {
+        this.src = this.defaultImg;
+    }
+    
+    checkPath(src) {
+        return src ? src : this.defaultImg;
+    }
+    
     closeUser(){
         this.dialogRef.close();
     }
-
 }
