@@ -10,14 +10,6 @@ import { RestService } from '../../rest.service';
   styleUrls: ['./user.component.css']
 })
 
-@Directive({
-    selector: 'img[src]',
-    host: {
-      '[src]': 'checkPath(src)',
-      '(error)':'onError()'
-     }
-  })
-
 export class UserComponent implements OnInit {
     
     today: string;

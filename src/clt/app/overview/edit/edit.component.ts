@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Subscription, Subject } from 'rxjs';
 import { ActivatedRoute, Router, Params, ParamMap } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormControl, FormGroupDirective, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,7 +12,7 @@ import { RestService } from '../../rest.service';
   styleUrls: ['./edit.component.css']
 })
 
-export class EditComponent implements OnInit,OnDestroy {
+export class EditComponent implements OnInit, OnDestroy {
 
     key: string;
     logId: number;
@@ -37,7 +38,7 @@ export class EditComponent implements OnInit,OnDestroy {
     isLoadingResults = false;
 
   ngOnInit() {
-
+      
     this.editLog = new FormGroup({
         startAt: new FormControl(this.timelog.logitem.Logitem.startAt),
         breakOut: new FormControl(this.timelog.logitem.Logitem.breakOut),
@@ -49,7 +50,7 @@ export class EditComponent implements OnInit,OnDestroy {
   }
 
   onSave(){
-      
+
     this.rest.updateLog(this.key, this.logId, this.editLog.value).subscribe(res =>{
         console.log(res);
     },(err) => {
@@ -62,7 +63,8 @@ export class EditComponent implements OnInit,OnDestroy {
   closeEdit(){
         this.dialogRef.close();
     }
-   ngOnDestroy(){
 
+   ngOnDestroy(){
+       
   }
 }

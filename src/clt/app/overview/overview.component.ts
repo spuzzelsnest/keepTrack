@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig, PageEvent } from '@angular/material';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { UserIdleService } from 'angular-user-idle';
 
 import { RestService } from '../rest.service';
@@ -14,8 +15,8 @@ import { EditComponent } from './edit/edit.component';
 })
 
 export class OverviewComponent implements OnInit, OnDestroy {
-    private subStart: Subscription;
-    private subStop: Subscription;
+
+    private sub = new Subject();
     userName: string;
     key: string;
     logs:any = [];
@@ -38,17 +39,21 @@ export class OverviewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     
     this.userIdle.startWatching();
-    this.subStart = this.userIdle.onTimerStart().subscribe(count =>{
+    this.userIdle.onTimerStart()
+        .pipe(takeUntil(this.sub))
+        .subscribe(count =>{
         var eventList= ['click', 'mouseover','keydown','DOMMouseScroll','mousewheel','mousedown','touchstart','touchmove','scroll','keyup'];
         for(let event of eventList){
             document.body.addEventListener(event, () => {
                 this.userIdle.resetTimer();
             });
         }
-        console.log(count);
+        console.log(count); //Idle Counter
     });
       
-    this.subStop = this.userIdle.onTimeout().subscribe(() =>{ 
+   this.userIdle.onTimeout()
+       .pipe(takeUntil(this.sub))
+       .subscribe(() =>{ 
         console.log('Time is up!');
         this.dialogRef.closeAll();
         stop();
@@ -112,12 +117,10 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
  
   stopWatching() {
-    console.log('Stop Watching');
     this.userIdle.stopWatching();
   }
  
   startWatching() {
-    console.log('Start Watching');
     this.userIdle.startWatching();
   }
  
@@ -126,7 +129,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
     
    ngOnDestroy(){
-    this.subStart.unsubscribe();
-    this.subStop.unsubscribe();
+       this.sub.next();
+       this.sub.complete();
   }
 }
