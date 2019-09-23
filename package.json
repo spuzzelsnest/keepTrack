@@ -64,6 +64,7 @@
     "@types/jasmine": "^3.4.0",
     "@types/jasminewd2": "~2.0.6",
     "@types/node": "^12.7.2",
+    "@types/sequelize": "^4.28.4",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "^4.3.0",
@@ -73,6 +74,6 @@
     "karma-jasmine-html-reporter": "^1.4.2",
     "nodemon": "^1.19.1",
     "ts-node": "^8.3.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.4.5"
   }
 }
