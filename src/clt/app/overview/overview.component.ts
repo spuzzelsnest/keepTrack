@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig, PageEvent } from '@angular/material';
 import { Subscription, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, take } from 'rxjs/operators';
 import { UserIdleService } from 'angular-user-idle';
 
 import { RestService } from '../rest.service';
@@ -61,8 +61,8 @@ export class OverviewComponent implements OnInit, OnDestroy {
     });
 
     this.isLoading = true; //Loading Spinner
-    
-    this.route.params.subscribe(params => {
+
+    this.route.params.pipe(takeUntil(this.sub)).subscribe(params => {
       if (params['key']) {
         this.key = params.key;
         this.onGetLogs(this.key, this.logsPerPage, this.currentPage);
@@ -70,9 +70,9 @@ export class OverviewComponent implements OnInit, OnDestroy {
     });
   }
 
-  onGetLogs(key: string, logsPerPage: number, currentPage: number){
-
+  onGetLogs(key: string, logsPerPage: number, currentPage: number): void {
       this.rest.getLogs(this.key, this.logsPerPage, this.currentPage)
+      .pipe(takeUntil(this.sub))
       .subscribe((lBlocks: {}) => {
         this.isLoading = false; //stop spinner
         this.logs = lBlocks["rows"];
@@ -83,25 +83,31 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   onEdit(event){
-      
+
     this.logId = event.currentTarget.getAttribute('id');
-      
-    this.rest.getLog(this.key, this.logId).subscribe((lBlock: {}) => {
-        this.logitem = lBlock;    
+
+    this.rest.getLog(this.key, this.logId)
+    .pipe(takeUntil(this.sub)).subscribe((lBlock: {}) => {
+        this.logitem = lBlock;
+
         const logItemPopup = new MatDialogConfig();
-              logItemPopup.width = '600px';
-              logItemPopup.height = '450px';
-              logItemPopup.disableClose = true;
-              logItemPopup.autoFocus = true;
-              logItemPopup.data ={
-                 key: this.key,
-                 logId: this.logId,
-                 logitem: this.logitem
-              }
-            this.dialogRef.open(EditComponent, logItemPopup)
-            .afterClosed().subscribe(result => {
-              this.ngOnInit();
-            })
+        logItemPopup.width = '600px';
+        logItemPopup.height = '450px';
+        logItemPopup.disableClose = true;
+        logItemPopup.autoFocus = true;
+        logItemPopup.data ={
+            key: this.key,
+            logId: this.logId,
+            logitem: this.logitem
+        }
+
+        this.dialogRef.open(EditComponent, logItemPopup)
+        .afterClosed()
+        .pipe(take(1))
+        .subscribe(result => {
+          console.log('refetching logs');
+          this.onGetLogs(this.key, this.logsPerPage, this.currentPage)
+        })
     }),(err)=>{console.log(err);}
   }
 
