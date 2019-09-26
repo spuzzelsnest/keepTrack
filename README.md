@@ -31,3 +31,9 @@ export DBURL_dev=postgresql://[user[:password]@][netlocation][:port][/dbname]
 npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
 ```
+
+# Running The App
+
+Seeders installed default user with login key '00000000'
+
+
