@@ -1,6 +1,6 @@
 {
   "name": "keepTrack",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "premises access time",
   "main": "src/srv/index.js",
   "scripts": {
