@@ -9,16 +9,28 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       startAt: {
-        type: Sequelize.TIME
+        type: Sequelize.TIME,
+        get: function() {
+            return moment.utc(this.getDataValue('startAt')).format('hh:mm')
+        }
       },
       breakOut: {
-        type: Sequelize.TIME
+        type: Sequelize.TIME,
+        get: function() {
+            return moment.utc(this.getDataValue('breakOut')).format('hh:mm')
+        }
       },
       breakIn: {
-        type: Sequelize.TIME
+        type: Sequelize.TIME,
+        get: function() {
+            return moment.utc(this.getDataValue('breakIn')).format('hh:mm')
+        }
       },
       endAt: {
-        type: Sequelize.TIME
+        type: Sequelize.TIME,
+        get: function() {
+            return moment.utc(this.getDataValue('endAt')).format('hh:mm')
+        }
       },
       logId:{
            type: Sequelize.INTEGER,

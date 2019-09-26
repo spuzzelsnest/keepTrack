@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       day: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
        userId: {
         allowNull: false,
