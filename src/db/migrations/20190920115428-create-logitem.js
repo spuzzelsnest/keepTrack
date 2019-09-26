@@ -11,25 +11,25 @@ module.exports = {
       startAt: {
         type: Sequelize.TIME,
         get: function() {
-            return moment.utc(this.getDataValue('startAt')).format('hh:mm')
+            return moment.utc(this.getDataValue('startAt')).format('HH:MM')
         }
       },
       breakOut: {
         type: Sequelize.TIME,
         get: function() {
-            return moment.utc(this.getDataValue('breakOut')).format('hh:mm')
+            return moment.utc(this.getDataValue('breakOut')).format('HH:MM')
         }
       },
       breakIn: {
         type: Sequelize.TIME,
         get: function() {
-            return moment.utc(this.getDataValue('breakIn')).format('hh:mm')
+            return moment.utc(this.getDataValue('breakIn')).format('HH:MM')
         }
       },
       endAt: {
         type: Sequelize.TIME,
         get: function() {
-            return moment.utc(this.getDataValue('endAt')).format('hh:mm')
+            return moment.utc(this.getDataValue('endAt')).format('HH:MM')
         }
       },
       logId:{
