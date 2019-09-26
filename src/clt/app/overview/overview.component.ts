@@ -50,8 +50,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
       
    this.userIdle.onTimeout()
        .pipe(takeUntil(this.sub))
-       .subscribe(() =>{ 
-        console.log('Time is up!');
+       .subscribe(() =>{
         this.dialogRef.closeAll();
         stop();
         this.router.navigate(['/','login']);
@@ -63,7 +62,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
     .pipe(takeUntil(this.sub))
     .subscribe(params => {
       if (params['key']) {
-          console.log(this.logsPerPage);
         this.key = params.key;
         this.onGetLogs(this.key, this.logsPerPage, this.currentPage);
       }
@@ -105,14 +103,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
         .afterClosed()
         .pipe(take(1))
         .subscribe(result => {
-          console.log('refetching logs');
           this.onGetLogs(this.key, this.logsPerPage, this.currentPage)
         })
     }),(err)=>{console.log(err);}
   }
 
   onChangedPage(pageData: PageEvent){
-      console.log(pageData);
     this.isLoading = true; //Loading Spinner
     this.currentPage = pageData.pageIndex + 1;
     this.logsPerPage = pageData.pageSize;
@@ -136,7 +132,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
     
    ngOnDestroy(){
-       console.log('destroyed');
        this.sub.next();
        this.sub.complete();
   }
