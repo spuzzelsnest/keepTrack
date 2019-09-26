@@ -9,10 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       day: {
-        type: Sequelize.STRING
+        type: Sequelize.DATE
       },
        userId: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

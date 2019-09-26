@@ -9,13 +9,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       email: {
+        unique: true,
         type: Sequelize.STRING
       },
       key: {
-        type: Sequelize.NUMERIC
+        unique: true,
+        allowNull: false,
+        type: Sequelize.STRING
       },
       points:{
         type: Sequelize.NUMERIC  

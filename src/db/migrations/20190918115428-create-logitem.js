@@ -9,19 +9,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       startAt: {
-        type: Sequelize.STRING
+        type: Sequelize.TIME
       },
       breakOut: {
-        type: Sequelize.STRING
+        type: Sequelize.TIME
       },
       breakIn: {
-        type: Sequelize.STRING
+        type: Sequelize.TIME
       },
       endAt: {
-        type: Sequelize.STRING
+        type: Sequelize.TIME
       },
       logId:{
-           type: Sequelize.STRING,
+           type: Sequelize.INTEGER,
            allowNull: false,
            unique: true
       },
