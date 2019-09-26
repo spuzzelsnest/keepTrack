@@ -27,8 +27,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
     currentPage = 1;
     allLogs: number;
 
-  //  displayedColumns: string[] = ['startAt', 'breakIn', 'breakIn', 'endAt'];
-
   constructor(
     public rest:RestService,
     public dialogRef: MatDialog,
@@ -48,7 +46,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
                 this.userIdle.resetTimer();
             });
         }
-        console.log(count + ' thousand'); //Idle Counter
     });
       
    this.userIdle.onTimeout()
@@ -82,8 +79,6 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.logs = lBlocks["rows"];
         this.allLogs = lBlocks["count"];
         this.userName = this.logs[0].User.name;
-        //console.log(JSON.stringify(lBlocks["count"], null, 4));
-        //  console.log(this.logs.length);
       });
   }
 

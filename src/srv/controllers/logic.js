@@ -91,7 +91,6 @@ class LogicController{
                 userId: req.body.userId}
          })
             .spread((log, created)=>{
-                console.log('Log created: '+created);
                 return res.status(200).send({ log });
             })
     }
@@ -113,7 +112,6 @@ class LogicController{
                 logId: req.body.logId},
             defaults: {startAt: req.body.startAt}})
         .spread(function(logitem, created){
-            //console.log('StartTime created: '+created);
             return res.status(200).send({ logitem });
         })
     }
