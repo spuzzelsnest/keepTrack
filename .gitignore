@@ -1,2 +1,10 @@
-node_modules/
+.env
 package-lock.json
+api.dmp
+src/srv/public/
+src/clt/environments/environment.prod.ts
+src/db/
+node_modules/
+e2e/
+src/clt/assets/*
+src/srv/.build/
