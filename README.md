@@ -6,7 +6,7 @@ premises access time
 # Setup
 
 ```bash
-npm install
+npm i
 
 # Start frontend
 ng serve
@@ -17,11 +17,17 @@ npm start
 
 ## Database
 
+Postgres
+
 ```bash
-docker run --name keepTrack -p 6000:5432 -e POSTGRES_PASSWORD=duckTracky -e POSTGRES_DB=keepTrack -d postgres
 
 # Manually create database "keepTrack"
 # Update src/db/config/database.json
+
+export DBURL_dev=postgresql://[user[:password]@][netlocation][:port][/dbname]
+
 # Run migrations
+
 npx sequelize-cli db:migrate
+npx sequelize-cli db:seed:all
 ```
