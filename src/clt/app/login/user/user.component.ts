@@ -74,7 +74,7 @@ export class UserComponent implements OnInit {
 
         this.rest.storeLogitem(this.key, this.fetchedId, logitem).subscribe(res => {
                 this.fetchedLogitemId = res.logitem.id;
-                this.startAt = (res.logitem.startAt).slice(0, -3);
+                this.startAt = res.logitem.startAt;
                 this.breakOut = res.logitem.breakOut;
                 this.breakIn = res.logitem.breakIn;
                 this.endAt = res.logitem.endAt;
