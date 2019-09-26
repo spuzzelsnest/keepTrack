@@ -32,7 +32,7 @@ class LogicController{
         const pageSize = +req.query.pagesize;
         const currentPage = +req.query.page;
         const offset = (pageSize * (currentPage - 1));
-        const limit = offset + pageSize;
+        const limit =  pageSize;
      
         models.Log.findAndCountAll({
             include: [{

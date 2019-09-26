@@ -48,7 +48,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
                 this.userIdle.resetTimer();
             });
         }
-        console.log(count); //Idle Counter
+        console.log(count + ' thousand'); //Idle Counter
     });
       
    this.userIdle.onTimeout()
@@ -62,8 +62,11 @@ export class OverviewComponent implements OnInit, OnDestroy {
 
     this.isLoading = true; //Loading Spinner
 
-    this.route.params.pipe(takeUntil(this.sub)).subscribe(params => {
+    this.route.params
+    .pipe(takeUntil(this.sub))
+    .subscribe(params => {
       if (params['key']) {
+          console.log(this.logsPerPage);
         this.key = params.key;
         this.onGetLogs(this.key, this.logsPerPage, this.currentPage);
       }
@@ -71,6 +74,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   onGetLogs(key: string, logsPerPage: number, currentPage: number): void {
+    
       this.rest.getLogs(this.key, this.logsPerPage, this.currentPage)
       .pipe(takeUntil(this.sub))
       .subscribe((lBlocks: {}) => {
@@ -79,6 +83,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
         this.allLogs = lBlocks["count"];
         this.userName = this.logs[0].User.name;
         //console.log(JSON.stringify(lBlocks["count"], null, 4));
+        //  console.log(this.logs.length);
       });
   }
 
@@ -112,6 +117,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
 
   onChangedPage(pageData: PageEvent){
+      console.log(pageData);
     this.isLoading = true; //Loading Spinner
     this.currentPage = pageData.pageIndex + 1;
     this.logsPerPage = pageData.pageSize;
@@ -135,6 +141,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
   }
     
    ngOnDestroy(){
+       console.log('destroyed');
        this.sub.next();
        this.sub.complete();
   }
