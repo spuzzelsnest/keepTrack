@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { OverviewComponent } from './overview/overview.component';
+
+import { 
+  AuthGuardService as AuthGuard 
+} from './guards/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -10,7 +14,8 @@ const routes: Routes = [
     component: LoginComponent
   },{
     path: ':key/logs',
-    component: OverviewComponent 
+    component: OverviewComponent,
+    canActivate: [AuthGuard]
   },{
     path: '',
     redirectTo: '/login',

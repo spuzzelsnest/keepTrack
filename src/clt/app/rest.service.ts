@@ -43,7 +43,10 @@ export class RestService {
       const body = Object(res['userLogin']);
       return body || { }; 
   }
-
+authUser(key:string): Observable<boolean>{
+    return true;
+}
+    
 checkLogin(key:string): Observable<userModel[]> {
     return this.http.get<userModel[]>(endpoint + 'login/' + key)
     .pipe(

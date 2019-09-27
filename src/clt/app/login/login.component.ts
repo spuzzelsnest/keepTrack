@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { take } from 'rxjs/operators';
 import * as moment from 'moment';
 
 import { RestService } from '../rest.service';
+import { AuthGuardService } from '../guards/auth-guard.service';
 import { environment } from '../../environments/environment';
 import { UserComponent } from './user/user.component';
 import { logModel } from '../logModel';
@@ -21,11 +23,11 @@ export class LoginComponent implements OnInit {
     key: string;
     userName: string;
     userLogin:any = [];
-    
     env = environment;
 
     constructor(
         public rest:RestService,
+        private auth:AuthGuardService,
         public dialogRef: MatDialog,
         private route: ActivatedRoute,
         private router: Router) {}
@@ -41,10 +43,15 @@ export class LoginComponent implements OnInit {
         if (this.form.invalid){
             return;
         }
+
         this.userLogin = [];
         const inputKey = this.form.value.key;
-        this.rest.checkLogin(inputKey).subscribe((uBlock: {}) => {
+        
+        this.rest.checkLogin(inputKey)
+            .pipe(take(1))
+            .subscribe((uBlock: {}) => {
             this.userLogin = uBlock;
+            this.auth = true;
             const userPopup = new MatDialogConfig();
             userPopup.width = '600px';
             userPopup.height = '650px';
@@ -63,4 +70,5 @@ export class LoginComponent implements OnInit {
         };
       this.form.reset();
    }
+
 }
