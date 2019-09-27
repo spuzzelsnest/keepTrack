@@ -1,4 +1,5 @@
 .env
+.build/
 package-lock.json
 api.dmp
 src/srv/.build/
