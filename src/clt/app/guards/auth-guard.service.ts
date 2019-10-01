@@ -15,10 +15,10 @@ export class AuthGuardService {
     
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
         if (this.rest.authUser()) {
-            return true;
+
         } else {
             this.router.navigate(['/']);
-            return false;
+   
         }
     }
 }
