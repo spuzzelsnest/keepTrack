@@ -3,10 +3,11 @@ import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 
 import { RestService } from '../rest.service';
-import { AuthGuardService } from '../guards/auth-guard.service';
+//import { AuthGuardService } from '../guards/auth-guard.service';
 import { environment } from '../../environments/environment';
 import { UserComponent } from './user/user.component';
 import { logModel } from '../logModel';
@@ -19,6 +20,7 @@ import { logModel } from '../logModel';
 
 export class LoginComponent implements OnInit {
 
+    sub: Subscription;
     form: FormGroup;
     key: string;
     userName: string;
@@ -27,7 +29,7 @@ export class LoginComponent implements OnInit {
 
     constructor(
         public rest:RestService,
-        private auth:AuthGuardService,
+        //private auth:AuthGuardService,
         public dialogRef: MatDialog,
         private route: ActivatedRoute,
         private router: Router) {}
@@ -47,11 +49,11 @@ export class LoginComponent implements OnInit {
         this.userLogin = [];
         const inputKey = this.form.value.key;
         
-        this.rest.checkLogin(inputKey)
+        this.sub = this.rest.checkLogin(inputKey)
             .pipe(take(1))
             .subscribe((uBlock: {}) => {
             this.userLogin = uBlock;
-            this.auth = true;
+            //this.auth = true;
             const userPopup = new MatDialogConfig();
             userPopup.width = '600px';
             userPopup.height = '650px';
@@ -71,4 +73,7 @@ export class LoginComponent implements OnInit {
       this.form.reset();
    }
 
+  ngOnDestroy() {
+      if(this.sub) this.sub.unsubscribe();
+  }
 }
