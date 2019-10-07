@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { RestService } from '../rest.service';
+//import { RestService } from '../rest.service';
+import { AuthService } from '../auth/auth.service';
 //import { AuthGuardService } from '../guards/auth-guard.service';
 import { environment } from '../../environments/environment';
 import { UserComponent } from './user/user.component';
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
     env = environment;
 
     constructor(
-        public rest:RestService,
+        public auth:AuthService,
         //private auth:AuthGuardService,
         public dialogRef: MatDialog,
         private route: ActivatedRoute,
@@ -49,11 +50,11 @@ export class LoginComponent implements OnInit {
         this.userLogin = [];
         const inputKey = this.form.value.key;
         
-        this.sub = this.rest.checkLogin(inputKey)
+        this.sub = this.auth.checkLogin(inputKey)
             .pipe(take(1))
             .subscribe((uBlock: {}) => {
             this.userLogin = uBlock;
-            //this.auth = true;
+            //this.auth.sendToken(this.form.value.email)
             const userPopup = new MatDialogConfig();
             userPopup.width = '600px';
             userPopup.height = '650px';

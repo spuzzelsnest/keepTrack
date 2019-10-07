@@ -1,5 +1,3 @@
-//Connection to the api Server
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -7,7 +5,6 @@ import { map, catchError, filter, tap } from 'rxjs/operators';
 
 import { environment } from '../environments/environment';
 import { logModel } from './logModel';
-import { userModel } from './userModel';
 import { logitemModel } from './logitemModel';
 
 const endpoint = environment.apiUrl;
@@ -38,19 +35,6 @@ export class RestService {
       return body || { }; 
   }
 
-  private userLogin(res: Response) {
-      const userBlock = [];
-      const body = Object(res['userLogin']);
-      return body || { }; 
-  }
-    
-checkLogin(key:string): Observable<userModel[]> {
-    return this.http.get<userModel[]>(endpoint + 'login/' + key)
-    .pipe(
-        catchError(this.handleError(`Failed to Get user`)),
-        map(this.userLogin)
-    );
-}
 
 getLogs(key:string, logsPerPage: number, currentPage: number): Observable<logModel[]> {
   const queryParams = `?pagesize=${logsPerPage}&page=${currentPage}`;

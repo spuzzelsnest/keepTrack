@@ -2,8 +2,7 @@
 <img  [src]="src" (error)="onError()" height="120" width="120" class="rounded-circle"/>
     <div class="header"><h1>HIGH {{userName}}</h1></div>
 <hr>
-{{displayToday}}, 
-<app-clock></app-clock>
+{{displayToday}}, <app-clock></app-clock>
   <div class="message">
         <h2>Start Day @ {{startAt}}</h2><br>
           <p><span *ngIf="breakOut">Clock Out @ {{breakOut}}</span><span *ngIf="breakIn"> - Clocked In @ {{breakIn}}</span></p>
