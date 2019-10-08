@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { RestService } from '../rest.service';
 import { ActivatedRoute, RouterModule, Router, Params, ParamMap } from '@angular/router';
+
+
+import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'app-header',
@@ -13,7 +15,9 @@ export class HeaderComponent {
    mode: boolean;
    private key: string;
     
-    constructor(public rest:RestService, private route: ActivatedRoute, private router: Router) {}
+    constructor(public auth:AuthService,
+                private route: ActivatedRoute,
+                private router: Router) {}
     
     ngOnInit(){
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -25,4 +29,9 @@ export class HeaderComponent {
              }
         });
     }
+
+  logout(){
+       this.auth.logout();
+  }
+
 }

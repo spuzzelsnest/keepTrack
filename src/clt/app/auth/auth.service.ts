@@ -11,8 +11,8 @@ const endpoint = environment.apiUrl;
 
 @Injectable()
 
-export class AuthService {
-    
+export class AuthService { 
+
   constructor(
     private http: HttpClient,
     private route: Router
@@ -31,19 +31,25 @@ checkLogin(key:string): Observable<userModel[]> {
         map(this.userLogin)
     );
   }
-    sendToken(token: string) {
-    localStorage.setItem("LoggedInUser", token)
+ 
+  sendToken(token:string) {
+    //console.log('Send Token '+ token );
+    localStorage.setItem('LoggedInUser', token);
   }
+    
   getToken() {
-    return localStorage.getItem("LoggedInUser")
+    return localStorage.getItem('LoggedInUser')
   }
+    
   isLoggedIn() {
     return this.getToken() !== null;
   }
+    
   logout() {
-    localStorage.removeItem("LoggedInUser");
-    this.route.navigate(["Login"]);
+    localStorage.removeItem('LoggedInUser');
+    this.route.navigate(['/']);
   }
+    
 private handleError<T> (operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
 

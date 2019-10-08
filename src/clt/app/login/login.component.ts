@@ -37,24 +37,26 @@ export class LoginComponent implements OnInit {
     
     ngOnInit(){
         
+                console.log('TOKEN: ' + this.auth.getToken());
+        
         this.form = new FormGroup({
             key: new FormControl(null, {validators: [Validators.required]})
         })
     }
 
     onLogin(){
+
         if (this.form.invalid){
             return;
         }
 
         this.userLogin = [];
         const inputKey = this.form.value.key;
-        
+        this.auth.sendToken(this.form.value.key);
         this.sub = this.auth.checkLogin(inputKey)
             .pipe(take(1))
             .subscribe((uBlock: {}) => {
             this.userLogin = uBlock;
-            //this.auth.sendToken(this.form.value.email)
             const userPopup = new MatDialogConfig();
             userPopup.width = '600px';
             userPopup.height = '650px';
