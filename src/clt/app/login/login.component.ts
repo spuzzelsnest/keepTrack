@@ -37,8 +37,6 @@ export class LoginComponent implements OnInit {
     
     ngOnInit(){
         
-                console.log('TOKEN: ' + this.auth.getToken());
-        
         this.form = new FormGroup({
             key: new FormControl(null, {validators: [Validators.required]})
         })

@@ -33,7 +33,6 @@ checkLogin(key:string): Observable<userModel[]> {
   }
  
   sendToken(token:string) {
-    //console.log('Send Token '+ token );
     localStorage.setItem('LoggedInUser', token);
   }
     
