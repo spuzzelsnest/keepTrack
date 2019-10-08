@@ -46,6 +46,7 @@ export class OverviewComponent implements OnInit, OnDestroy {
                 this.userIdle.resetTimer();
             });
         }
+        console.log(count);
     });
       
    this.userIdle.onTimeout()

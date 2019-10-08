@@ -3,6 +3,7 @@ import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { RestService } from '../../rest.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -34,6 +35,7 @@ export class UserComponent implements OnInit {
     
     constructor(
         public rest:RestService,
+        public auth:AuthService,
         private route: ActivatedRoute,
         private router: Router,
         private dialogRef: MatDialogRef<UserComponent>, 
@@ -119,12 +121,13 @@ export class UserComponent implements OnInit {
             }, (err)=>{ console.log(err); 
            });        
         }
+        this.closeUser();
     }
 
     viewLogs(){
         this.dialogRef.close(); 
         this.router.navigate(['/'+this.key+'/logs']);
-        }
+    }
     
     onError() {
         this.src = this.defaultImg;
@@ -136,5 +139,6 @@ export class UserComponent implements OnInit {
     
     closeUser(){
         this.dialogRef.close();
+        this.auth.logout();
     }
 }

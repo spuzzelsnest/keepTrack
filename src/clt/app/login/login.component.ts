@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router,  Params, ParamMap } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import * as moment from 'moment';
 
-import { RestService } from '../rest.service';
+//import { RestService } from '../rest.service';
+import { AuthService } from '../auth/auth.service';
+//import { AuthGuardService } from '../guards/auth-guard.service';
 import { environment } from '../../environments/environment';
 import { UserComponent } from './user/user.component';
 import { logModel } from '../logModel';
@@ -17,15 +21,16 @@ import { logModel } from '../logModel';
 
 export class LoginComponent implements OnInit {
 
+    sub: Subscription;
     form: FormGroup;
     key: string;
     userName: string;
     userLogin:any = [];
-    
     env = environment;
 
     constructor(
-        public rest:RestService,
+        public auth:AuthService,
+        //private auth:AuthGuardService,
         public dialogRef: MatDialog,
         private route: ActivatedRoute,
         private router: Router) {}
@@ -38,12 +43,17 @@ export class LoginComponent implements OnInit {
     }
 
     onLogin(){
+
         if (this.form.invalid){
             return;
         }
+
         this.userLogin = [];
         const inputKey = this.form.value.key;
-        this.rest.checkLogin(inputKey).subscribe((uBlock: {}) => {
+        this.auth.sendToken(this.form.value.key);
+        this.sub = this.auth.checkLogin(inputKey)
+            .pipe(take(1))
+            .subscribe((uBlock: {}) => {
             this.userLogin = uBlock;
             const userPopup = new MatDialogConfig();
             userPopup.width = '600px';
@@ -63,4 +73,8 @@ export class LoginComponent implements OnInit {
         };
       this.form.reset();
    }
+
+  ngOnDestroy() {
+      if(this.sub) this.sub.unsubscribe();
+  }
 }

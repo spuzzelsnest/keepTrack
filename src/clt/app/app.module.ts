@@ -1,13 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserIdleModule } from 'angular-user-idle';
 import * as moment from 'moment';
+import es from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth-guard.service';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { ClockComponent } from './clock/clock.component';
@@ -15,6 +19,8 @@ import { UserComponent } from './login/user/user.component';
 import { OverviewComponent } from './overview/overview.component';
 import { EditComponent } from './overview/edit/edit.component';
 import { AngularMaterialModule } from './angular-material.module';
+
+registerLocaleData(es);
 
 @NgModule({
   declarations: [
@@ -39,7 +45,11 @@ import { AngularMaterialModule } from './angular-material.module';
     AngularMaterialModule,
     UserIdleModule.forRoot({idle:10, timeout:20, ping: 12})
   ],
-  providers: [],
+  providers: [ 
+      AuthService,
+      AuthGuard,
+      { provide: LOCALE_ID, useValue: "es-ES" }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
