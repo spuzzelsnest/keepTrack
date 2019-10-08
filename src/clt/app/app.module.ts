@@ -10,6 +10,8 @@ import { registerLocaleData } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth-guard.service';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { ClockComponent } from './clock/clock.component';
@@ -43,7 +45,9 @@ registerLocaleData(es);
     AngularMaterialModule,
     UserIdleModule.forRoot({idle:10, timeout:20, ping: 12})
   ],
-  providers: [
+  providers: [ 
+      AuthService,
+      AuthGuard,
       { provide: LOCALE_ID, useValue: "es-ES" }
   ],
   bootstrap: [AppComponent]

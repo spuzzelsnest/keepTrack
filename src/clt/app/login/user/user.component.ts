@@ -119,6 +119,7 @@ export class UserComponent implements OnInit {
             }, (err)=>{ console.log(err); 
            });        
         }
+        this.dialogRef.close(); 
     }
 
     viewLogs(){
