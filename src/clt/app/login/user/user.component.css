@@ -10,9 +10,13 @@ img{
 .spacer{
   margin-left: auto;
 }
-.clockBtn {
-  display: block;            
-  width: 100%;
-  padding: 20,0,20,0;
+.clockBtn {         
+  width: 70%;
+  height: 80px;
   text-align: center;
+  font-size: 20px;
+}
+.mat-raised-button {
+    height: 80px;
+    font-size: 20px;
 }

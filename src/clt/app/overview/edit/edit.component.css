@@ -23,3 +23,7 @@ mat-dialog-actions{
 .spacer{
   margin-left: auto;
 }
+.mat-raised-button {
+    height: 80px;
+    font-size: 20px;
+}

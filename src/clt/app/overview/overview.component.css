@@ -13,3 +13,7 @@ mat-spinner{
 mat-paginator{
   margin-top: 1rem;
 }
+.mat-raised-button {
+    height: 80px;
+    font-size: 20px;
+}
