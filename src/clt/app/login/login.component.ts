@@ -6,9 +6,7 @@ import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import * as moment from 'moment';
 
-//import { RestService } from '../rest.service';
 import { AuthService } from '../auth/auth.service';
-//import { AuthGuardService } from '../guards/auth-guard.service';
 import { environment } from '../../environments/environment';
 import { UserComponent } from './user/user.component';
 import { logModel } from '../logModel';
