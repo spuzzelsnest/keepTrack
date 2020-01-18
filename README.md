@@ -7,6 +7,11 @@ Premises access time tracker
 ```bash
 #Postgres
 
+(linux)
+apt-get update
+apt-get install postgresql
+
+(mac OSX)
 brew install postgresql
 
 #Create User and DB
@@ -20,7 +25,7 @@ createdb -p 5432 -O keeptrack api
 ```bash
 cd keepTrack
 
-#edit .env.sample
+#Edit .env.sample
 cp .env.sample .env
 nano .env
 
@@ -29,7 +34,7 @@ nano .env
     DBURL_dev='postgres://keeptrack:[PASSWORD]@localhost:5432/api'
     DBURL= //DBURL Production
 
-
+#Install packages 
 npm i
 npm update
 
@@ -59,7 +64,5 @@ ng serve
 npm start
 ```
 
-
+Open your browser and visit the page 'http://localhost:4200/'
 Seeders installed default user with login key '00000000'
-
-
