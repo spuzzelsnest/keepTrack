@@ -2,17 +2,22 @@
 
 premises access time
 
+# Pre-Reqs
+
+```bash
+brew install postgresql
+
+createuser --pwprompt keeptrack
+createdb -p 5432 -O keeptrack api 
+npm i -g npx
+```
 
 # Setup
 
 ```bash
 npm i
+npm update
 
-# Start frontend
-ng serve
-
-# Start backend
-npm start
 ```
 
 ## Database
@@ -33,6 +38,14 @@ npx sequelize-cli db:seed:all
 ```
 
 # Running The App
+```bash
+# Start frontend
+ng serve
+
+# Start backend
+npm start
+```
+
 
 Seeders installed default user with login key '00000000'
 
