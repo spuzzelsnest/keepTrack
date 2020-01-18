@@ -42,6 +42,7 @@
     "material-dialog": "0.0.1",
     "mime-types": "^2.1.24",
     "moment": "^2.24.0",
+    "npm": "^6.13.6",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
     "rxjs": "^6.5.2",
@@ -51,7 +52,7 @@
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.803.6",
+    "@angular-devkit/build-angular": "^0.803.23",
     "@angular/cdk": "^8.1.4",
     "@angular/cli": "^8.3.6",
     "@angular/compiler-cli": "^8.2.3",
