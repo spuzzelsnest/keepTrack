@@ -1,20 +1,35 @@
 # keepTrack
 
-premises access time
+Premises access time tracker
 
 # Pre-Reqs
 
 ```bash
+#Postgres
+
 brew install postgresql
+
+#Create User and DB
 
 createuser --pwprompt keeptrack
 createdb -p 5432 -O keeptrack api 
-npm i -g npx
 ```
 
 # Setup
 
 ```bash
+cd keepTrack
+
+#edit .env.sample
+cp .env.sample .env
+nano .env
+
+    #Edit
+    SPORT= //BACK END Port
+    DBURL_dev='postgres://keeptrack:[PASSWORD]@localhost:5432/api'
+    DBURL= //DBURL Production
+
+
 npm i
 npm update
 
@@ -25,8 +40,6 @@ npm update
 Postgres
 
 ```bash
-
-# Manually create database "keepTrack"
 # Update src/db/config/database.json
 
 export DBURL_dev=postgresql://[user[:password]@][netlocation][:port][/dbname]
